@@ -1,4 +1,4 @@
-class ItemsController < EntityController
+class ItemsController < EntitiesController
   def index
     if params[:series_id]
       @items = pages Item.where(:Series_number => params[:series_id])

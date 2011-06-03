@@ -1,7 +1,9 @@
 <%= make_header "Organisation" %>
+<div class="entity_data">
 <%= make_title @organisation.Organisation_title %>
 <%= simple_field "Date range", @organisation.date_range %>
 <%= simple_field "Creation", @organisation.Creation %>
 <%= simple_field "Abolition", @organisation.Abolition %>
 <%= rich_field "Administrative history note", @organisation.Administrative_history_note %>
 <%= numeric_field "Commonwealth Organisation (CO) number", @organisation.Commonwealth_Organisation_CO_number %>
+</div>

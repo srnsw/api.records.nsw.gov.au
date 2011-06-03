@@ -1,0 +1,23 @@
+<bib:Manuscript rdf:about="<%= url_for :action => "show", :controller => "items", :id => rdf_zotero, :only_path => false %>">
+  <z:itemType>manuscript</z:itemType>
+  <bib:authors>
+    <rdf:Seq>
+      <rdf:li>
+        <foaf:Person>
+          <foaf:surname></foaf:surname>
+          <foaf:givenname></foaf:givenname>
+        </foaf:Person>
+      </rdf:li>
+    </rdf:Seq>
+  </bib:authors>
+  <dc:title><%= rdf_zotero.Item_title %></dc:title>
+  <dc:date><%= rdf_zotero.Start_date %></dc:date>
+  <dc:identifier>
+    <dcterms:URI>
+      <rdf:value><%= url_for :action => "show", :controller => "items", :id => rdf_zotero, :only_path => false %></rdf:value>
+        </dcterms:URI>
+  </dc:identifier>
+  <z:archive>State Records NSW</z:archive>
+  <dc:coverage>NUA <%= rdf_zotero.series.Series_number %><% if rdf_zotero.Item_number_or_control_symbol %>, <%= rdf_zotero.Item_number_or_control_symbol %><% end %></dc:coverage>
+  <z:libraryCatalog>http://www.records.nsw.gov.au</z:libraryCatalog>
+</bib:Manuscript>

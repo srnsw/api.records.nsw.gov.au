@@ -1,7 +1,9 @@
 <%= make_header "Agency" %>
+<div class="entity_data">
 <%= make_title @agency.Agency_title %>
 <%= simple_field "Date range", @agency.date_range %>
 <%= simple_field "Category", @agency.Category %>
 <%= simple_field "Creation", @agency.Creation %>
 <%= simple_field "Abolition", @agency.Abolition %>
 <%= rich_field "Administrative history note", @agency.Administrative_history_note %>
+</div>

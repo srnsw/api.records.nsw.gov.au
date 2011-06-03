@@ -1,22 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <mods xmlns:xlink="http://www.w3.org/1999/xlink" version="3.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
-<titleInfo>
-  <title><%= @item.Item_title %></title>
-</titleInfo>
-<typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
-<genre authority="local">manuscript</genre>
-<!--name type="personal">
-  <namePart> </namePart>
-  <role>
-    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
-   </role>
-</name-->
-<originInfo>
-  <dateCreated><%= @item.Start_date %></dateCreated>
-</originInfo>
-<location>
-  <physicalLocation>State Records NSW</physicalLocation>
-  <shelfLocator>NUA <%= @item.series.Series_number %>, <%= @item.Item_number_or_control_symbol %></shelfLocator>
-  <url><%= url_for(:only_path => false) %></url>
-</location>
+<%= render :partial => "mods", :object => @item %>
 </mods>

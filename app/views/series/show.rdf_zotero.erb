@@ -6,27 +6,5 @@
  xmlns:foaf="http://xmlns.com/foaf/0.1/"
  xmlns:dc="http://purl.org/dc/elements/1.1/"
  xmlns:dcterms="http://purl.org/dc/terms/">
-    <bib:Manuscript rdf:about="<%= url_for(:only_path => false) %>">
-        <z:itemType>manuscript</z:itemType>
-        <bib:authors>
-            <rdf:Seq>
-                <rdf:li>
-                    <foaf:Person>
-                        <foaf:surname></foaf:surname>
-                        <foaf:givenname></foaf:givenname>
-                    </foaf:Person>
-                </rdf:li>
-            </rdf:Seq>
-        </bib:authors>
-        <dc:title><%= @series.Series_title %></dc:title>
-        <dc:date><%= @series.Start_date %></dc:date>
-        <dc:identifier>
-            <dcterms:URI>
-                <rdf:value><%= url_for(:only_path => false) %></rdf:value>
-            </dcterms:URI>
-        </dc:identifier>
-        <z:archive>State Records NSW</z:archive>
-        <dc:coverage>NUA <%= @series.Series_number %></dc:coverage>
-        <z:libraryCatalog>http://www.records.nsw.gov.au</z:libraryCatalog>
-    </bib:Manuscript>
+  <%= render :partial => "rdf_zotero", :object => @series %>
 </rdf:RDF>

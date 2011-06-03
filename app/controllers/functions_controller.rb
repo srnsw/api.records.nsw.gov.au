@@ -1,4 +1,4 @@
-class FunctionsController < EntityController
+class FunctionsController < EntitiesController
   def index
     @functions = pages Function
     

@@ -1,4 +1,4 @@
-class SeriesController < EntityController
+class SeriesController < EntitiesController
   def index
     @series = pages Series
          

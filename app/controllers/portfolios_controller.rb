@@ -1,4 +1,4 @@
-class PortfoliosController < EntityController
+class PortfoliosController < EntitiesController
   def index
     @portfolios = pages Portfolio
     

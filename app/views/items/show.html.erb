@@ -3,6 +3,7 @@
 <% end %>
 <abbr class="unapi-id" title="<%= url_for(:only_path => false) %>"></abbr>
 <%= make_header "Item" %>
+<div class="entity_data">
 <%= make_title @item.Item_title %>
 <%= link_field "Series", @item.series.Series_title, @item.series %>
 <%= simple_field "Item number", @item.Item_number_or_control_symbol %>
@@ -11,3 +12,4 @@
 <%= simple_field "Access Direction", @item.AccessDirectionNo %>
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
+</div>
