@@ -1,0 +1,5 @@
+<h1>Agencies</h1>
+<% @agencies.each do |agency| %>
+<%= link_p agency.Agency_title, agency %>
+<% end %>
+<%= page_navigation(@page_details) %>

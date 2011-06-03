@@ -1,0 +1,19 @@
+<titleInfo>
+  <title><%= mods.Series_title %></title>
+</titleInfo>
+<typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
+<genre authority="local">manuscript</genre>
+<!--name type="personal">
+  <namePart> </namePart>
+  <role>
+    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+   </role>
+</name-->
+<originInfo>
+  <dateCreated><%= mods.Start_date %></dateCreated>
+</originInfo>
+<location>
+  <physicalLocation>State Records NSW</physicalLocation>
+  <shelfLocator>NUA <%= mods.Series_number %></shelfLocator>
+  <url><%= url_for(:only_path => false) %></url>
+</location>

@@ -1,0 +1,5 @@
+<h1>Portfolios</h1>
+<% @portfolios.each do |portfolio| %>
+<%= link_p portfolio.Portfolio_title, portfolio %>
+<% end %>
+<%= page_navigation(@page_details) %>

@@ -1,0 +1,28 @@
+<% content_for :head do %><link rel="unapi-server" type="application/xml" title="unAPI"
+    href="<%= url_for(:action => 'index', :controller=> 'unapi', :only_path => false)%>" />
+<% end %>
+<abbr class="unapi-id" title="<%= url_for(:only_path => false) %>"></abbr>
+<%= make_header "Series" %>
+<div class="entity_data">
+<%= make_title @series.Series_title %>
+<%= simple_field "Date range", @series.date_range %>
+<%= simple_field "Contents date range", @series.contents_date_range %>
+<%= rich_field "Descriptive note", @series.Descriptive_note %>
+<%= simple_field "Format", @series.Format %>
+<%= simple_field "Arrangement", @series.Arrangement %>
+<%= simple_field "Copies", @series.Copies %>
+<%= simple_field "Bridging aids", @series.Bridging_aids %>
+<%= simple_field "Series control status", @series.Series_control_status %>
+<%= simple_field "Location", @series.Repository %>
+</div>
+<% if @items.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Items in this series" %>
+<% @items.each do |item| %>
+<div class="collection_search_result">
+<%= link_i item.Item_title, item %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
