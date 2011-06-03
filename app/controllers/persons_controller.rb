@@ -1,4 +1,4 @@
-class PersonsController < EntityController
+class PersonsController < EntitiesController
   def index
     @persons = pages Person
     

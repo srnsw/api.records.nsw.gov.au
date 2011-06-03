@@ -1,7 +1,9 @@
 <%= make_header "Person" %>
+<div class="entity_data">
 <%= make_title (@person.name_long) %>
 <%= simple_field "Date range", @person.date_range %>
 <%= simple_field "Alternative name", @person.Alternative_name %>
 <%= simple_field "Offices held", @person.Offices_held %>
 <%= rich_field "Biographical note", @person.Biographical_note %>
 <%= bool_field "Minister", @person.Minister %>
+</div>

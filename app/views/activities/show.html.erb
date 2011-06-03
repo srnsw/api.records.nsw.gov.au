@@ -1,6 +1,8 @@
 <%= make_header "Activity" %>
+<div class="entity_data">
 <%= make_title @activity.Activity_title %>
 <%= simple_field "Date range", @activity.date_range %>
 <%= simple_field "Creation", @activity.Creation %>
 <%= simple_field "Abolition", @activity.Abolition %>
 <%= rich_field "Descriptive note", @activity.Descriptive_note %>
+</div>

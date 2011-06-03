@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>collection.records.nsw.gov.au</title>
+  <title>api.records.nsw.gov.au</title>
   <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => 'opensearch', :format => 'xml') %>" title="State Records NSW search" />
   <%= stylesheet_link_tag 'srnsw' %>
-  <%= stylesheet_link_tag 'collection' %>
+  <%= stylesheet_link_tag 'api' %>
   <!--[if IE]><%= stylesheet_link_tag 'IEFixes', :media=>"all" %><![endif]-->
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
@@ -53,7 +53,8 @@
     </div>
     <div id="portal-breadcrumbs">
       <span id="breadcrumbs-you-are-here">You are here ::</span>
-      <% link_to "Disposal", controller=> 'home' %>
+ 	<%= link_to "API", root_path %>
+    <!--span class="breadcrumbSeparator"> &rarr; </span-->
     </div>
   </div>
 </div>

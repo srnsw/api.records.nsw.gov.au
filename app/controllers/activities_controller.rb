@@ -1,4 +1,4 @@
-class ActivitiesController < EntityController
+class ActivitiesController < EntitiesController
   def index
     @activities = pages Activity
     

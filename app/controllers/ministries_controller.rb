@@ -1,4 +1,4 @@
-class MinistriesController < EntityController
+class MinistriesController < EntitiesController
   def index
     @ministries = pages Ministry
     

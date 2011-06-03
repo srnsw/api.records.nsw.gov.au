@@ -1,4 +1,4 @@
-class AgenciesController < EntityController
+class AgenciesController < EntitiesController
   def index
     @agencies = pages Agency
     
