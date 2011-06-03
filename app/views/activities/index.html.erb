@@ -1,0 +1,5 @@
+<h1>Activities</h1>
+<% @activities.each do |activity| %>
+<%= link_p activity.Activity_title, activity %>
+<% end %>
+<%= page_navigation(@page_details) %>

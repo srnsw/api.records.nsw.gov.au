@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmnls="http://www.w3.org/2005/Atom" xmlns:opensearch="http://a9.com/-/spec/opensearch/1.1/" xmlns:srnsw-custom="http//www.records.nsw.gov.au/StateRecordsNSWOpenSearchExtensions">
+<title>State Records NSW search results</title>
+<author>
+  <name>State Records Authority of New South Wales</name>
+</author>
+<id><%= root_url %></id>
+<updated><%= SearchHelper::LAST_MODIFIED %></updated>
+<% if @custom_search %>
+  <% hits = @custom_search.hits %>
+<% else %>
+  <% hits = @what_search.hits %>
+<% end %>
+<opensearch:totalResults><%= @page_details.total_results %></opensearch:totalResults>
+<opensearch:startIndex><%= @page_details.offset %></opensearch:startIndex>
+<opensearch:itemsPerPage><%= @page_details.per_page %></opensearch:itemsPerPage>
+<opensearch:Query role="request" <%= open_search_query %> />
+<link rel="self" href="<%= request.url %>"/>
+<% if @page_details.prev_page %>
+<link rel="next" href="<%=url_for({:controller => 'search', :only_path => false}.merge(params_swap(:page, @page_details.prev_page))) %>"/>
+<% end %>
+<% if @page_details.next_page %>
+<link rel="next" href="<%=url_for({:controller => 'search', :only_path => false}.merge(params_swap(:page, @page_details.next_page))) %>"/>
+<% end %>
+<link rel="search" type="application/opensearchdescription+xml" href="<%= root_url + 'opensearchdescription.xml' %>"/>
+<%= render :partial => "opensearch", :collection => hits %>
+</feed>

@@ -1,0 +1,13 @@
+<% content_for :head do %><link rel="unapi-server" type="application/xml" title="unAPI"
+    href="<%= url_for(:action => 'index', :controller=> 'unapi', :only_path => false)%>" />
+<% end %>
+<abbr class="unapi-id" title="<%= url_for(:only_path => false) %>"></abbr>
+<%= make_header "Item" %>
+<%= make_title @item.Item_title %>
+<%= link_field "Series", @item.series.Series_title, @item.series %>
+<%= simple_field "Item number", @item.Item_number_or_control_symbol %>
+<%= simple_field "Date range", @item.date_range %>
+<%= rich_field "Descriptive note", @item.Descriptive_Note %>
+<%= simple_field "Access Direction", @item.AccessDirectionNo %>
+<%= numeric_field "Images", @item.ImagesCount %>
+<%= simple_field "Availability", @item.Availability %>

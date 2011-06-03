@@ -1,0 +1,5 @@
+<h1>Items</h1>
+<% @items.each do |item| %>
+<%= link_p item.Item_title, item %>
+<% end %>
+<%= page_navigation(@page_details) %>

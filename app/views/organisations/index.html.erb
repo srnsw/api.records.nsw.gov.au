@@ -1,0 +1,5 @@
+<h1>Organisations</h1>
+<% @organisations.each do |organisation| %>
+<%= link_p organisation.Organisation_title, organisation %>
+<% end %>
+<%= page_navigation(@page_details) %>

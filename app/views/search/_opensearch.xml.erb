@@ -1,0 +1,11 @@
+<% link = search_url(opensearch.class_name, opensearch.stored(:id), false) %>
+<entry>
+  <category term="<%= opensearch.class_name %>"/>
+  <title><%= opensearch.stored(:title) %></title>
+  <link href="<%= link %>"/>
+  <id><%= link %></id>
+  <% if opensearch.highlight(:description)%>
+    <summary type="html"><%= opensearch.highlight(:description).format {|fragment| content_tag(:em, fragment)} %></summary>
+  <% end %>
+  <updated><%= SearchHelper::LAST_MODIFIED %></updated>
+</entry>

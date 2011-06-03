@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>collection.records.nsw.gov.au</title>
+  <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => 'opensearch', :format => 'xml') %>" title="State Records NSW search" />
+  <%= stylesheet_link_tag 'srnsw' %>
+  <%= stylesheet_link_tag 'collection' %>
+  <!--[if IE]><%= stylesheet_link_tag 'IEFixes', :media=>"all" %><![endif]-->
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+  <%= yield :head %>
+</head>
+<body>
+<div id="visual-portal-wrapper">
+  <div id="portal-top">
+    <span class="state">NSW</span><br />
+    <span class="department">DSTA</span><br />
+    <span class="unit">SRNSW</span>
+    <div id="portal-header">
+      <div id="portal-searchbox">
+        <form name="searchform"
+            action="http://www.records.nsw.gov.au/search">
+          <label for="searchGadget" class="hiddenStructure">Search</label>
+          <div class="LSBox">
+            <span class="options"><a href="http://www.nsw.gov.au">askGovernment</a> |</span>| <a 
+            href="http://www.records.nsw.gov.au/contact-us" accesskey="6">contact us</a> | <a 
+            href="http://www.records.nsw.gov.au/state-archives/indexes-online">indexes online</a> | <a 
+            href="http://investigator.records.nsw.gov.au/">investigator</a> | <a 
+            href="http://srwww.records.nsw.gov.au/indexsearch/keyname.aspx">keyname search</a> | <a 
+            href="http://investigator.records.nsw.gov.au/asp/photosearch/">photo search</a> | or
+            <input name="SearchableText" type="text" size="18"
+               title="site search" accesskey="4"
+               class="inputLabel" id="searchGadget" />
+            <input type="submit" value="Search" />
+            <div class="LSResult" id="LSResult" style="">
+              <div class="LSShadow" id="LSShadow"></div>
+            </div>
+          </div>
+        </form>
+        <div id="portal-advanced-search" class="hiddenStructure">
+          <a href="http://www.records.nsw.gov.au/search_form">Advanced Search&hellip;</a>
+        </div>
+      </div>
+      <ul id="nav">
+	      <li><a href="/">Home</a></li>
+        <li><a href="http://www.records.nsw.gov.au/state-archives/">The State Archives</a></li>
+	      <li><a href="http://www.records.nsw.gov.au/recordkeeping/">Recordkeeping NSW public sector</a></li>
+	      <li><a href="http://www.records.nsw.gov.au/grr/">Government Records Repository</a></li>
+      </ul>
+      <a id="portal-logo" accesskey="1" href="http://www.records.nsw.gov.au">
+        <%= image_tag("logo.jpg", {:alt=>"State Records home", :height=>"70", :width=>"247"}) %>
+      </a>
+    </div>
+    <div id="portal-breadcrumbs">
+      <span id="breadcrumbs-you-are-here">You are here ::</span>
+      <% link_to "Disposal", controller=> 'home' %>
+    </div>
+  </div>
+</div>
+<div id="viewlet-above-content"></div>
+<div id="region-content" class="documentContent">
+<%= yield %>
+</div>
+<div class="visualClear" id="clear-space-before-footer"><!-- --></div>
+<div id="portal-footer">
+  <p><a title="NSW Government" href="http://www.nsw.gov.au">NSW Government</a>  | <a 
+  title="jobs.nsw" href="http://www.jobs.nsw.gov.au">jobs.nsw</a>  | <a 
+  title="Accessibility" href="http://www.records.nsw.gov.au/about-us/our-website/accessibility" 
+  accesskey="7">Accessibility</a>  | <a title="Contact Us" href="http://www.records.nsw.gov.au/contact-us" 
+  accesskey="6">Contact Us</a>  | <a title="Copyright Policy" 
+  href="http://www.records.nsw.gov.au/about-us/copyright-policy">Copyright</a> | <a 
+  title="Website Feedback" href="https://www.records.nsw.gov.au/contact-us/website-feedback">Feedback</a>  | <a 
+  title="Links" href="http://www.records.nsw.gov.au/about-us/links">Links</a>  | <a 
+  title="Privacy Policy" href="http://www.records.nsw.gov.au/about-us/our-website/website-privacy-policy">Privacy</a> | <a 
+  title="Sitemap" accesskey="5" href="/sitemap">Sitemap</a> </p>
+</div>
+<div id="flinks">
+  <div class="footerlinks2">
+    <h4>Quick Links</h4>
+      <p><a title="About State Records" href="http://www.records.nsw.gov.au/about-us/">About us</a></p>
+      <p><a title="Managing records in the NSW public sector" href="http://www.records.nsw.gov.au/publications/for-the-record-enewsletter/for-the-record-subscription/">For the Record eNewsletter</a></p>
+      <p><a title="Online news on research tools and resources, services and seminars, exhibitions" href="http://www.records.nsw.gov.au/publications/now-then-enewsletter/">Now&amp;Then eNewsletter</a></p>
+      <p><a title="Publications Catalogue" href="http://www.records.nsw.gov.au/publications/">Publications Catalogue</a></p>
+      <p><a title="File Retrieval" href="http://www.records.nsw.gov.au/grr/records-retrieval/">Records Retrieval (GRR)</a></p>
+  </div>
+  <div class="footerlinks">
+    <h4>Researchers</h4>
+      <p><a title="Getting started with your research" href="http://www.records.nsw.gov.au/state-archives/use-the-archives/getting-started/">Getting Started</a></p>
+      <p><a title="Resources for Family/Local Historians" href="http://www.records.nsw.gov.au/state-archives/resources-for/historians/family-historians/">Historians</a></p>
+      <p><a title="Information for Indigenous Communities" href="http://www.records.nsw.gov.au/state-archives/resources-for/indigenous-people/indigenous-communities">Indigenous Communities</a></p>
+      <p><a title="Researching from around NSW" href="http://www.records.nsw.gov.au/state-archives/resources-for/people-in-regional-nsw/">People in regional NSW</a></p>
+      <p><a title="When, where and how to visit us" href="http://www.records.nsw.gov.au/state-archives/use-the-archives/getting-started/visit-us/">Visit us</a></p>
+  </div>
+  <div class="footerlinks2">
+    <h4>Records Managers</h4>
+    <p><a title="Information for Local Government" href="http://www.records.nsw.gov.au/recordkeeping/resources-for/local-government">Local Government</a></p>
+    <p><a title="Information for Ministers' Offices" href="http://www.records.nsw.gov.au/recordkeeping/resources-for/ministers-offices">Ministers' Offices</a></p>
+    <p><a title="Information for NSW Public Sector CEOs" href="http://www.records.nsw.gov.au/recordkeeping/resources-for/chief-executives">NSW Public Sector CEOs</a></p>
+    <p><a title="Information for Small Public Offices" href="http://www.records.nsw.gov.au/recordkeeping/resources-for/small-public-offices/">Small Public Offices</a></p>
+    <p><a title="Information for Universities" href="http://www.records.nsw.gov.au/recordkeeping/resources-for/universities/universities">Universities</a></p>
+  </div>
+  <div class="footerlinks">
+    <h4>Tools</h4>
+    <p><a title="Register of Access Directions" href="http://www.records.nsw.gov.au/state-archives/register-of-access-directions/">Access Directions</a></p>
+    <p><a title="Our catalogue" href="http://investigator.records.nsw.gov.au/">Archives Investigator</a></p>
+    <p><a title="Government Recordkeeping Manual" href="http://www.records.nsw.gov.au/recordkeeping/government-recordkeeping-manual/">GRK Manual</a></p>
+    <p><a title="Search for a name or place in our collection" href="http://www.records.nsw.gov.au/state-archives/indexes-online">Indexes Online</a></p>
+    <p><a title="Our database of photographs" href="http://investigator.records.nsw.gov.au/asp/photosearch/">Photo Investigator</a></p>
+  </div>
+  <div class="footerlinks2">
+    <h4>Reading Rooms</h4>
+    <p><strong>Open:</strong><br />Monday-Friday 9am-5pm<br />Saturday 10am-4pm</p>
+    <p><strong>Closed:</strong><br />Sundays &amp; Public Holidays</p>
+  </div>
+  <div class="footernote">
+    <p><a href="/"><%= image_tag("nsw-gov-crest.gif") %></a>A Division of the Department of Services, Technology &amp; Administration</p>
+    <p>PO Box 516, Kingswood, NSW 2747, Australia | Phone: +61 2 9673 1788 | Fax: +61 2 9833 4518 | Email: info@records.nsw.gov.au | ABN: 96 588 554 718</p>
+  </div>
+</div>
+</body>
+</html>

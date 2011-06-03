@@ -1,0 +1,91 @@
+<%= render 'search' %>
+<% if @custom_search %>
+<div class="custom_search">
+<%= content_tag :h4, entity_names(params[:entities]) %>
+<% unless @custom_search.hits[0] %>
+  <p><em>No results</em></p>
+<% end %>
+<% for hit in @custom_search.hits %>
+  <div class="collection_search_result">
+    <%= search_link hit %>
+    <%= highlight_hits hit %>
+  </div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% else %>
+<div class="why_who">
+<div>
+<%= content_tag :h4, "Functions and activities" %>
+<% unless @why_search.hits[0] %>
+  <p><em>No results</em></p>
+<% end %>
+<% for hit in @why_search.hits %>
+  <div class="collection_search_result">
+    <%= search_link hit %>
+  </div>
+<% end %>
+<%= page_navigation(@fpage_details, :fpage) %>
+</div>
+<div>
+<%= content_tag :h4, "Agencies and people" %>
+<% unless @who_search.hits[0] %>
+  <p><em>No results</em></p>
+<% end %>
+<% for hit in @who_search.hits %>
+  <div class="collection_search_result">
+   <%= search_link hit %>
+  </div>
+<% end %>
+<%= page_navigation(@apage_details, :apage) %>
+</div>
+</div>
+<div class="what">
+<%= content_tag :h4, "Record series and items" %>
+<% unless @what_search.hits[0] %>
+  <p><em>No results</em></p>
+<% end %>
+<% for hit in @what_search.hits %>
+  <div class="collection_search_result">
+    <%= search_link hit %>
+    <%= highlight_hits hit %>
+  </div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
+<div class="filters">
+<% if @custom_search %>
+<div>
+<%= content_tag :h4, "Filter by date" %>
+  <% for row in @custom_search.facet(:era).rows %>
+   <%= date_filter(row) %>
+ <% end %>
+</div>
+<div> 
+<% if @custom_search.facet(:Series_number) %>
+<%= content_tag :h4, "Filter items by series" %>
+  <% for row in @custom_search.facet(:Series_number).rows %>
+   <%= series_filter(row) %>
+ <% end %>
+ <% end %>
+</div>
+<% else %>
+<div>
+<% if @what_search.facet(:era) %>
+<%= content_tag :h4, "Filter by date" %>
+  <% for row in @what_search.facet(:era).rows %>
+   <%= date_filter(row) %>
+ <% end %>
+<% end %>
+</div>
+<div> 
+<% if @what_search.facet(:Series_number) %>
+<%= content_tag :h4, "Filter items by series" %>
+  <% for row in @what_search.facet(:Series_number).rows %>
+   <%= series_filter(row) %>
+ <% end %>
+ <% end %>
+</div>
+<% end %>
+</div>

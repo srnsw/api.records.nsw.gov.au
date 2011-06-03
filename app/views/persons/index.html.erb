@@ -1,0 +1,5 @@
+<h1>Persons</h1>
+<% @persons.each do |person| %>
+<%= link_p person.name_short, person %>
+<% end %>
+<%= page_navigation(@page_details) %>
