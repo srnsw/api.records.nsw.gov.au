@@ -2,7 +2,7 @@ module SearchHelper
   LAST_MODIFIED = "2011-02-28T12:00:00Z" # FIX THIS - All models need a "last modified" field!
 
   def search_url entity_name, id, only_path = true
-    url_for(:action => "show", :controller => ApplicationHelper::CONTROLLERS[entity_name][0], :id => id, :only_path => only_path)
+    url_for(:action => "show", :controller => ApplicationHelper::ENTITIES[entity_name][0], :id => id, :only_path => only_path)
   end
   
   def search_link hit
