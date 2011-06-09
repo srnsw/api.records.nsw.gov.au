@@ -6,6 +6,22 @@ development:
   pool: 5
   timeout: 5000
 
+
+#development:
+#  adapter: sqlserver
+#  database: database_name
+#  host: server_name
+#  username: user_name
+#  password: your_pw_here
+
+
+development_clone:
+  adapter: sqlserver
+  database: AI_DB
+  host: 192.168.2.111
+  username: user_name_dev
+  password: pwd_dev
+ 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
