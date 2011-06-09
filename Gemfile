@@ -31,3 +31,7 @@ gem 'sqlite3'
 # end
 
 gem 'sunspot_rails', '~> 1.2.1'
+gem 'tiny_tds', '~> 0.4.5' #DB Connection
+gem 'activerecord-sqlserver-adapter', '~> 3.0.15' #SQLServer connection
+gem 'magic_multi_connections', '~> 1.2.1' #Multiple DB connections
+
