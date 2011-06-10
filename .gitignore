@@ -1,6 +1,6 @@
 .bundle
 db/*.db
-log/*.log
+log/*
 tmp/**/*
 solr/data/**/*
 vendor/cache
