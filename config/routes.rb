@@ -59,6 +59,7 @@ Collection::Application.routes.draw do
   match 'unapi' => 'unapi#index'
   match 'search' => 'search#show'
   match 'opensearch' => 'opensearch#index'
+  match 'usage' => 'usage#index' #developer documentation
  
   resources :activities, :only => [:index, :show]
   resources :agencies, :only => [:index, :show]
