@@ -90,12 +90,17 @@ module UsageHelper
     content_tag :dl, title + definition
   end
   
+  # returns html string
+  def title_description title, description
+    content = content_tag :h3, "/" + title
+    content += content_tag :p, description  
+  end
+  
   # creates documentation for search method
   # returns an html string	
   def search_documentation
     content = content_tag :h2, "Search"
-    content += content_tag :h3, "/search"
-  	content += content_tag :p, "Search the catalogue."
+    content += title_description "search", "Search the catalogue."
   	content += formats_documentation FORMATS, Search::SCHEMAS, "search"
   	content += params_documentation Search::PARAMS + PARAMS
   end
@@ -109,16 +114,14 @@ module UsageHelper
       content += content_tag :h2, description[0]
       content += content_tag :p, description[1]
       # documentation for method to acquire list of entities e.g. /series
-      content += content_tag :h3, "/" + entity[0]
-      content += content_tag :p, "Returns a list of " + entity[0] + "."
+      content += title_description entity[0], "Returns a list of " + entity[0] + "."
       formats = FORMATS
       # check for any special formats for this entity
       formats += Entities::FORMATS[description[0]] if Entities::FORMATS[description[0]]
       content += formats_documentation formats, Entities::SCHEMAS, entity[0]
       content += params_documentation PARAMS
       # documenation for method to acquire a single entity e.g. /series/13660     
-      content += content_tag :h3, "/" + entity[0] + "/[:id]"
-      content += content_tag :p, "Returns " + description[0].downcase + " with identifier :id."
+      content += title_description entity[0] + "/[:id]", "Returns " + description[0].downcase + " with identifier :id."
       example_path = entity[0] + "/" + description[2]
       content += formats_documentation formats, Entities::SCHEMAS, example_path
       # check if this entity has any methods for associated entities (at the
@@ -127,15 +130,14 @@ module UsageHelper
         associated_entity = ApplicationHelper::ENTITIES[association]
         associated_formats = FORMATS
         associated_formats += Entities::FORMATS[association] if Entities::FORMATS[association]
-        content += content_tag :h3, "/" + entity[0] + "/[:id]" + "/" + associated_entity[0]
         # documentation for method to acquire list of associated entities
-        content += content_tag :p,
+        content += title_description entity[0] + "/[:id]" + "/" + associated_entity[0],
           "Returns a list of " + associated_entity[0] + " within a particular " + description[0].downcase + "."
         content += formats_documentation associated_formats, Entities::SCHEMAS,
           entity[0] + "/" + description[2] + "/" + associated_entity[0]
+        content += params_documentation PARAMS
         # documentation for method to acquire a single associated entity
-        content += content_tag :h3, "/" + entity[0] + "/[:id]" + "/" + associated_entity[0] + "/[:number]"
-        content += content_tag :p,
+        content += title_description entity[0] + "/[:id]" + "/" + associated_entity[0] + "/[:number]",
         	"Returns the nth " + association.downcase + " within a particular " + description[0].downcase + "."
         content += formats_documentation associated_formats,  Entities::SCHEMAS,
           entity[0] + "/" + description[2] + "/" + associated_entity[0] + "/1"
