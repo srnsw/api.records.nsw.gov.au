@@ -17,7 +17,8 @@ module UsageHelper
   	
   module Entities
   	# this module contains descriptions, formats, schemas for formats, and associations specific to entity methods
-  	# the DESCRIPTIONS arrays contain the names of entities, descriptions, and an ID (for hyperlinks)
+  	# the DESCRIPTIONS arrays contain the names of entities, descriptions, an example ID (for hyperlinks),
+  	# and any associations
     DESCRIPTIONS = [["Function", "A function is a major area of responsibility, "\
     	"authority or jurisdiction assigned to or assumed by an organisation. "\
     	"Functions derive from mandates usually given in legislation. Functions "\
@@ -41,7 +42,7 @@ module UsageHelper
 			"who led it. Coalition ministries are often named after both leaders.", "1"],
 			["Series", "A record series is a group of (one or more) record items "\
 			"accumulated by an agency or person which have a common identity "\
-			"and system of control, and are generally in the same format.", "13660"],
+			"and system of control, and are generally in the same format.", "13660", "Item"],
 			["Item", "A record item is an individual unit within a record series, "\
 			"and the smallest entity. A record item may be in any format:"\
 			" (for example) a file, card, volume, plan or drawing, photograph "\
@@ -56,8 +57,6 @@ module UsageHelper
    	# hash of descriptions and links to external schemas for special formats
    	SCHEMAS = {"mods" => ["Library of Congress Metadata Object Description Schema",
    	  "http://www.loc.gov/standards/mods/"]}
-   	# Hash of any associations between entities e.g. series/13660/items
-   	ASSOCIATIONS = {"Series"=> "Item"}
   end
   
   # takes an array of formats, a hash of special schemas, and an example path
@@ -126,7 +125,7 @@ module UsageHelper
       content += formats_documentation formats, Entities::SCHEMAS, example_path
       # check if this entity has any methods for associated entities (at the
       # moment just /series/[:id]/items)
-      if association = Entities::ASSOCIATIONS[description[0]]
+      if association = description[3]
         associated_entity = ApplicationHelper::ENTITIES[association]
         associated_formats = FORMATS
         associated_formats += Entities::FORMATS[association] if Entities::FORMATS[association]
