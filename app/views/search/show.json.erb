@@ -4,11 +4,11 @@
   <% hits = @what_search.hits %>
 <% end %>
 { 
-  "StateRecordsSearch": {
-  "query": "<%= request.url %>",
+  "StateRecordsSearch":{
+  "query":"<%= request.url %>",
   "totalResults":<%= @page_details.total_results %>,
   "startIndex":<%= @page_details.offset %>,
   "itemsPerPage":<%= @page_details.per_page %>,
-  "Results": [<%= render :partial => "jsonsearch", :collection => hits %>]
-  }
+  "Results":[
+  <%= render :partial => "jsonsearch", :collection => hits %>]}
 }
