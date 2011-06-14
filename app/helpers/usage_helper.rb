@@ -16,7 +16,8 @@ module UsageHelper
   end
   	
   module Entities
-  	# this module contains descriptions, formats, schemas for formats, and associations specific to entity methods
+  	# this module contains descriptions of entities and their associations, formats, 
+  	# and schemas for formats
   	# the DESCRIPTIONS arrays contain the names of entities, descriptions, an example ID (for hyperlinks),
   	# and any associations
     DESCRIPTIONS = [["Function", "A function is a major area of responsibility, "\
