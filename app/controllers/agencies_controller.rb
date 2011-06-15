@@ -14,6 +14,7 @@ class AgenciesController < EntitiesController
     
     respond_to do |format|
       format.html
+      format.dc
       format.xml {render :xml => @agency.to_xml}
       format.json {render :json => @agency.to_json}
     end

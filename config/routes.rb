@@ -57,6 +57,7 @@ Collection::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
   match 'unapi' => 'unapi#index'
+  match 'oai' => 'oai#index'
   match 'search' => 'search#show'
   match 'opensearch' => 'opensearch#index'
   match 'usage' => 'usage#index' #developer documentation

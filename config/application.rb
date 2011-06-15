@@ -41,6 +41,7 @@ module Collection
     
     Mime::Type.register "application/xml", :mods
     Mime::Type.register "application/xml", :eac_cpf
+    Mime::Type.register "application/xml", :dc
     Mime::Type.register "application/xml", :rdf_zotero
   end
 end
