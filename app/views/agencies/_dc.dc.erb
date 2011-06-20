@@ -2,5 +2,5 @@
   <dc:title><%= dc.Agency_title %></dc:title>
   <dc:date><%= dc.date_range %></dc:date>
   <dc:description><%= dc.Administrative_history_note %></dc:description>
-  <dc:identifier><%= url_for :only_path => false %></dc:identifier>
+  <dc:identifier><%= url_for :action => "show", :controller => "agencies", :id => dc.Agency_number, :only_path => false %></dc:identifier>
 </oai_dc:dc>

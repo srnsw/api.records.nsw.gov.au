@@ -1,77 +1,102 @@
 class OaiController < ApplicationController
+include SRNSW
 include OaiHelper
+layout "oai.xml.erb"
 
 def index
-  render :text => make_oai, :content_type => "application/xml"
-end
-
-def make_oai
-  xml = oai_header 
-  xml += check_verb
-  xml += close_xml_tag "OAI-PMH"
-end
-
-def check_verb
   case params[:verb]
   when "GetRecord"
-    get_record
+    if (error_content = bad_argument?([:identifier, :metadataPrefix]))
+      report_error "badArgument", error_content
+    else
+      entity = resolve_oai_id(params[:identifier])
+      if entity
+      agency_id = entity[1]
+      @agency = Agency.find(agency_id)
+      render :template => "oai/getRecord.xml.erb", :content_type => "application/xml"
+      else
+        report_error "idDoesNotExist", "Bad identifier: #{params[:identifier]}"
+      end
+    end
   when "Identify"
-    identify
+    if (error_content = bad_argument?)
+      report_error "badArgument", error_content
+    else
+      render :template => "oai/identify.xml.erb", :content_type => "application/xml"
+    end
   when "ListIdentifiers"
-    list_identifiers
+    if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
+      report_error "badArgument", error_content
+    else
+      #
+    end
   when "ListMetadataFormats"
-    list_metadata_formats
+    if (error_content = bad_argument?(nil, [:identifier]))
+      report_error "badArgument", error_content
+    else
+      if params[:identifier]
+        entity = resolve_oai_id params[:identifier]
+        if entity
+          formats = UsageHelper::Entities::FORMATS[ApplicationHelper::ENTITY_CONTROLLERS[entity[0]]]
+          if formats
+            @formats = formats.collect do |fmt|
+              (arry = UsageHelper::Entities::SCHEMAS[fmt]) ? [fmt, arry[2], arry[3]] : nil           
+            end.compact
+            render :template => "oai/listMetdataFormats.xml.erb", :content_type => "application/xml"
+          else
+            report_error "noMetadataFormats", "There are no metadata formats for #{params[:identifier]}"
+          end
+        else
+          report_error "idDoesNotExist", "Bad identifier: #{params[:identifier]}"
+        end
+      else
+        @formats = UsageHelper::Entities::SCHEMAS.collect {|k, v| [k, v[2], v[3]]}
+        render :template => "oai/listMetdataFormats.xml.erb", :content_type => "application/xml"
+      end
+    end 
   when "ListRecords" 
-    list_records
+    if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
+      report_error "badArgument", error_content
+    else
+      #
+    end
   when "ListSets"
-    list_sets
+    if (error_content = bad_argument?(nil, [:resumptionToken]))
+      report_error "badArgument", error_content
+    else
+      @sets = UsageHelper::Entities::DESCRIPTIONS.collect do |desc|
+        [ApplicationHelper::ENTITIES[desc[0]][0], desc[0] + " descriptions", desc[1]]
+      end
+      render :template => "oai/listSets.xml.erb", :content_type => "application/xml"
+    end
   else
-    error_element("badArgument", "Expecting parameter verb=GetRecord|Identify|ListIdentifiers|ListMetadataFormats|ListRecords|ListSets")
+    report_error("badVerb",
+      "Expecting parameter verb=GetRecord|Identify|ListIdentifiers|ListMetadataFormats|ListRecords|ListSets")
   end
 end
 
-def check_identifier
-  @agency = Agency.find(params[:id])
+# test arguments to make sure all required arguments for any particular verb
+# are included and that no other arguments besides the optional ones are present
+# returns error string or false if no bad arguments
+protected
+def bad_argument? required=nil, optional=nil
+  arguments = params.except(:controller, :action)
+  required ? required << :verb : required = [:verb]
+  unless required.all? {|key| arguments.has_key?(key)}
+    return "Missing required arguments: " + required.reject {|key| arguments.has_key?(key)}.join(", ")
+  end
+  arguments = arguments.except(*required)
+  arguments = arguments.except(*optional) if optional
+  if arguments.empty?
+    false
+  else
+    "Includes illegal arguments: " + arguments.keys.join(", ")
+  end
 end
 
-# retrieve an individual metadata record from a repository
-# required params: identifier, metadataPrefix
-def get_record
-
-
-end
-
-# retrieve information about a repository
-# no arguments
-def identify 
-  identity = open_xml_tag "Identify"
-  identity += make_xml_element "repositoryName", "State Records Authority of New South Wales"
-  identity += make_xml_element "baseURL", root_url
-  identity += make_xml_element "adminEmail", "richard.lehane@records.nsw.gov.au"
-  identity += make_xml_element "earliestDateStamp", "1996-26-08"
-  identity += make_xml_element "deletedRecord", "no"
-  identity += make_xml_element "granularity", "YYYY-MM-DD"
-  identity += close_xml_tag "Identify"
-end
-
-def list_identifiers
-
-
-end
-
-def list_metadata_formats
-
-
-end
-
-def list_records
-
-
-end
-
-def list_sets
-
-
-
+def report_error code, content=nil
+  @error_code = code
+  @error_content = content
+  render :template => "oai/error.xml.erb", :content_type => "application/xml"
 end
 end

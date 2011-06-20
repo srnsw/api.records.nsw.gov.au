@@ -22,7 +22,8 @@ def make_xml_element name, content, attributes=nil
     element += content
     element += close_xml_tag(name)
   else
-    element.gsub(/>/, "/>")
+    element.gsub!(/>/, "/>")
   end
+  element
 end
 end

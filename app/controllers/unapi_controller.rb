@@ -16,6 +16,7 @@ class UnapiController < ApplicationController
     end
   end
   
+  protected
   def unapi_formats resource_string=nil
     xml_string = xml_processing_instruction
     attributes = resource_string ? [["id", resource_string]] : nil 

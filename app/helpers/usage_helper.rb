@@ -54,10 +54,15 @@ module UsageHelper
 			"no way to determine the context or content, or format of a record "\
 			"item without learning about the record series.", "2844"]]
    	# additional formats for particular entities
-   	FORMATS = {"Series" => ["mods", "rdf_zotero"], "Item" => ["mods", "rdf_zotero"]}
-   	# hash of descriptions and links to external schemas for special formats
+   	FORMATS = {"Series" => ["mods", "rdf_zotero"], "Item" => ["mods", "rdf_zotero"], "Agency" => ["oai_dc", "eac-cpf"]}
+   	# hash of schemas, links to descriptive pages, namespaces, and links to XML schemase
    	SCHEMAS = {"mods" => ["Library of Congress Metadata Object Description Schema",
-   	  "http://www.loc.gov/standards/mods/"]}
+   	  "http://www.loc.gov/standards/mods/", "http://www.loc.gov/mods/v3",
+   	  "http://www.loc.gov/standards/mods/mods.xsd"],
+   	  "oai_dc" => ["Dublin Core without qualification", "http://www.openarchives.org/OAI/openarchivesprotocol.html",
+   	  "http://www.openarchives.org/OAI/2.0/oai_dc/", "http://www.openarchives.org/OAI/2.0/oai_dc.xsd"], 
+   	  "eac-cpf" => ["Encoded Archival Context - Corporate Bodies, Persons, and Families",
+   	  "http://eac.staatsbibliothek-berlin.de/", "urn:isbn:1-931666-33-4", "http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd"]}
   end
   
   # takes an array of formats, a hash of special schemas, and an example path

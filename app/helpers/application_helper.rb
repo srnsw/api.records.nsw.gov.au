@@ -1,6 +1,7 @@
 module ApplicationHelper
   ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'group.png'], 'Ministry' => ['ministries', 'group.png'], 'Series' => ['series', 'folder_page.png'], 'Item' => ['items', 'page.png']} 
-  
+  ENTITY_CONTROLLERS = {'functions' => 'Function', 'activities' => 'Activity', 'agencies' => 'Agency', 'persons' => 'Person', 'organisations' => 'Organisation', 'ministries' => 'Ministry', 'series' => 'Series', 'items' => 'Item'}
+      
   def make_header entity
     content_tag :h1, entity
   end
@@ -48,9 +49,9 @@ module ApplicationHelper
   
   def img_link link, entity_name
     if image_name = ApplicationHelper::ENTITIES[entity_name][1]
-      new_link = image_tag(image_name, {:alt=> entity_name}) + " " + link
+      link = image_tag(image_name, {:alt=> entity_name}) + " " + link
     end
-    p = content_tag :p, new_link
+    p = content_tag :p, link
   end
   
   def link_field title, text, entity
