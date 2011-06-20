@@ -1,0 +1,8 @@
+<record>
+  <header>
+    <identifier><%= oai_id record %></identifier>
+    <datestamp>missing this field!</datestamp>
+    <setSpec>agencies</setSpec>
+  </header>
+  <metadata><%= render :template => "agencies/_dc.dc.erb", :locals => {:dc => record} %></metadata>
+</record>
