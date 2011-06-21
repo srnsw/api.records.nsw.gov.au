@@ -1,5 +1,5 @@
 class Series < Entity
-  set_table_name 'series'
+  set_table_name 'series_view'
   set_primary_key :Series_number
   has_many :items, :foreign_key => 'Series_number'
   searchable do 

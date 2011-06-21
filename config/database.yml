@@ -1,10 +1,10 @@
 # SQLite version 3.x
 #   gem install sqlite3-ruby (not necessary on OS X Leopard)
-development:
-  adapter: sqlite3
-  database: db/ai_sqlite.db
-  pool: 5
-  timeout: 5000
+#development:
+ # adapter: sqlite3
+ # database: db/ai_sqlite.db
+ # pool: 5
+ # timeout: 5000
 
 
 #development:
@@ -15,12 +15,12 @@ development:
 #  password: your_pw_here
 
 
-development_clone:
+development:
   adapter: sqlserver
-  database: AI_DB
-  host: 192.168.2.111
-  username: user_name_dev
-  password: pwd_dev
+  database: AI2
+  host: srwebsvr3
+  username: api
+  password: Digital1
  
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -32,7 +32,8 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
-  timeout: 5000
+  adapter: sqlserver
+  database: AI2
+  host: srwebsvr3
+  username: api
+  password: Digital1
