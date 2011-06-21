@@ -1,5 +1,5 @@
 class Person < Entity
-  set_table_name 'persons'
+  set_table_name 'persons_view'
   set_primary_key :Person_number
   searchable do 
     text :name_short, :boost => 2

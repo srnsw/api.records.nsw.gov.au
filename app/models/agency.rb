@@ -1,5 +1,5 @@
 class Agency < Entity
-  set_table_name 'agencies'
+  set_table_name 'agencies_view'
   set_primary_key :Agency_number
   searchable do 
     text :Agency_title, :boost => 2

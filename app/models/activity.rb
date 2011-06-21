@@ -1,5 +1,5 @@
 class Activity < Entity
-  set_table_name 'activities'
+  set_table_name 'activities_view'
   set_primary_key :Activity_number
   searchable do 
     text :Activity_title, :boost => 2

@@ -1,5 +1,5 @@
 class Function < Entity
-  set_table_name 'functions'
+  set_table_name 'functions_view'
   set_primary_key :Function_number
   searchable do 
     text :Function_title, :boost => 2
