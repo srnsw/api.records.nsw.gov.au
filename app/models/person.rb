@@ -1,6 +1,11 @@
 class Person < Entity
   set_table_name 'persons_view'
   set_primary_key :Person_number
+  
+  has_and_belongs_to_many :functions, :class_name => "Function", :join_table => "persons_link_functions"
+  has_and_belongs_to_many :agencies, :class_name => "Agency", :join_table => "persons_link_agencies"
+  has_and_belongs_to_many :series, :class_name => "Series", :join_table => "persons_link_series"
+  
   searchable do 
     text :name_short, :boost => 2
     text :Biographical_note
