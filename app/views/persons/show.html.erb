@@ -7,3 +7,40 @@
 <%= rich_field "Biographical note", @person.Biographical_note %>
 <%= bool_field "Minister", @person.Minister %>
 </div>
+
+<% if @person.functions.first %>
+<div class="function_relations">
+<%= content_tag :h4, "Functions exercised by this person" %>
+<% @person.functions.each do |function| %>
+<div class="collection_search_result">
+<%= link_i function.Function_title, function %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
+
+
+<% if @person.agencies.first %>
+<div class="agency_relations">
+<%= content_tag :h4, "Agencies related to this person" %>
+<% @person.agencies.each do |agency| %>
+<div class="collection_search_result">
+<%= link_i agency.Agency_title, agency %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
+
+<% if @person.series.first %>
+<div class="serie_relations">
+<%= content_tag :h4, "Record series created by this person" %>
+<% @person.series.each do |serie| %>
+<div class="collection_search_result">
+<%= link_i serie.Series_title, serie %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
