@@ -4,4 +4,4 @@ log/*
 tmp/**/*
 solr/data/**/*
 vendor/cache
-config/database.yml
+
