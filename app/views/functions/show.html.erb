@@ -4,3 +4,39 @@
 <%= simple_field "Date range", @function.date_range %>
 <%= rich_field "Descriptive note", @function.Descriptive_note %>
 </div>
+
+<% if @function.activities.first %>
+<div class="activity_relations">
+<%= content_tag :h4, "Activities comprising this function" %>
+<% @function.activities.each do |activity| %>
+<div class="collection_search_result">
+<%= link_i activity.Activity_title, activity %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
+
+<% if @function.agencies.first %>
+<div class="agency_relations">
+<%= content_tag :h4, "Agencies exercising this function" %>
+<% @function.agencies.each do |agency| %>
+<div class="collection_search_result">
+<%= link_i agency.Agency_title, agency %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
+
+<% if @function.persons.first %>
+<div class="person_relations">
+<%= content_tag :h4, "Persons exercising this function" %>
+<% @function.persons.each do |person| %>
+<div class="collection_search_result">
+<%= link_i person.name_long, person %>
+</div>
+<% end %>
+<%-#= page_navigation(@page_details) -%>
+</div>
+<% end %>
