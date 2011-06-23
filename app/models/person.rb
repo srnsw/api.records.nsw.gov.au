@@ -5,6 +5,8 @@ class Person < Entity
   has_and_belongs_to_many :functions, :class_name => "Function", :join_table => "persons_link_functions"
   has_and_belongs_to_many :agencies, :class_name => "Agency", :join_table => "persons_link_agencies"
   has_and_belongs_to_many :series, :class_name => "Series", :join_table => "persons_link_series"
+  has_and_belongs_to_many :portfolios, :class_name => "Portfolio", :join_table => "persons_link_portfolios"
+  has_and_belongs_to_many :ministries, :class_name => "Ministry", :join_table => "persons_link_ministries"
   
   searchable do 
     text :name_short, :boost => 2

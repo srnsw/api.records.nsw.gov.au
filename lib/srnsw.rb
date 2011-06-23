@@ -34,11 +34,11 @@ module SRNSW
     end
   end 
 
-  def pages model
+  def pages model, default=25
     length = model.count
     page = numeric_param params[:page]
     page = 1 unless page
-    count = max_param params[:count], 200, 25
+    count = max_param params[:count], 200, default
     @page_details = Pagination.new(page, count, length)
     model.limit(count).offset(@page_details.offset) 
   end

@@ -11,7 +11,10 @@ class FunctionsController < EntitiesController
   
   def show
     @function = Function.find(params[:id])
-    
+    @activities_page = pages @function.activities
+	@agencies_page =  pages @function.agencies
+	@persons_page =  pages @function.persons
+	
     respond_to do |format|
       format.html
       format.xml {render :xml => @function.to_xml}

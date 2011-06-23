@@ -11,7 +11,9 @@ class ActivitiesController < EntitiesController
   
   def show
     @activity = Activity.find(params[:id])
-    
+    @series_page = pages @activity.series
+	@functions_page = pages @activity.functions
+	
     respond_to do |format|
       format.html
       format.xml {render :xml => @activity.to_xml}

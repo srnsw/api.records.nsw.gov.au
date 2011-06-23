@@ -3,3 +3,15 @@
 <%= make_title @ministry.Ministry_title %>
 <%= simple_field "Date range", @ministry.date_range %>
 </div>
+
+<% if @portfolios_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Portfolios in this ministry" %>
+<% @portfolios_page.each do |portfolio| %>
+<div class="collection_search_result">
+<%= link_i portfolio.Portfolio_title, portfolio %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>

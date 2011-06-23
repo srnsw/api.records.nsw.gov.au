@@ -11,7 +11,8 @@ class MinistriesController < EntitiesController
   
   def show
     @ministry = Ministry.find(params[:id])
-    
+    @portfolios_page = pages @ministry.portfolios
+		
     respond_to do |format|
       format.html
       format.xml {render :xml => @ministry.to_xml}

@@ -7,26 +7,26 @@
 <%= rich_field "Descriptive note", @activity.Descriptive_note %>
 </div>
 
-<% if @activity.functions.first %>
-<div class="function_relations">
+<% if @functions_page.first %>
+<div class="entity_relations">
 <%= content_tag :h4, "Functions containing this activity" %>
-<% @activity.functions.each do |function| %>
+<% @functions_page.each do |function| %>
 <div class="collection_search_result">
 <%= link_i function.Function_title, function %>
 </div>
 <% end %>
-<%-#= page_navigation(@page_details) -%>
+<%= page_navigation(@page_details) %>
 </div>
 <% end %>
 
-<% if @activity.series.first %>
-<div class="serie_relations">
+<% if @series_page.first %>
+<div class="entity_relations">
 <%= content_tag :h4, "Record series documenting this activity" %>
-<% @activity.series.each do |serie| %>
+<% @series_page.each do |serie| %>
 <div class="collection_search_result">
 <%= link_i serie.Series_title, serie %>
 </div>
 <% end %>
-<%-#= page_navigation(@page_details) -%>
+<%= page_navigation(@page_details) %>
 </div>
 <% end %>

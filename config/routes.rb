@@ -61,14 +61,35 @@ Collection::Application.routes.draw do
   match 'opensearch' => 'opensearch#index'
   match 'usage' => 'usage#index' #developer documentation
  
-  resources :activities, :only => [:index, :show]
+  resources :activities, :only => [:index, :show] do
+	resources :functions, :only => [:index, :show]
+	resources :series, :only => [:index, :show]
+  end
   resources :agencies, :only => [:index, :show]
-  resources :functions, :only => [:index, :show]
+  resources :functions, :only => [:index, :show] do
+	resources :activities, :only => [:index, :show]
+	resources :agencies, :only => [:index, :show]
+	resources :persons, :only => [:index, :show]
+  end
   resources :items, :only => [:index, :show]
-  resources :ministries, :only => [:index, :show]
+  resources :ministries, :only => [:index, :show] do
+	resources :portfolios, :only => [:index, :show]
+  end
   resources :organisations, :only => [:index, :show]
-  resources :persons, :only => [:index, :show]
-  resources :portfolios, :only => [:index, :show]
+  resources :persons, :only => [:index, :show] do
+	resources :ministries, :only => [:index, :show]
+	resources :portfolios, :only => [:index, :show]
+	resources :functions, :only => [:index, :show]
+	resources :agencies, :only => [:index, :show]
+	resources :series, :only => [:index, :show]
+  end
+  resources :portfolios, :only => [:index, :show] do
+    resources :ministries, :only => [:index, :show]
+	resources :agencies, :only => [:index, :show]
+	resources :persons, :only => [:index, :show]
+#	resources :preceding, :only => [:index, :show]
+#	resources :succeeding, :only => [:index, :show]
+  end
   resources :series, :only => [:index, :show] do
     resources :items, :only => [:index, :show]
   end

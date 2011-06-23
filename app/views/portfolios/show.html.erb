@@ -4,3 +4,63 @@
 <%= simple_field "Date range", @portfolio.date_range %>
 <%= rich_field "Descriptive note", @portfolio.Descriptive_note %>
 </div>
+
+<% if @agencies_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Agencies administered through this portfolio" %>
+<% @agencies_page.each do |agency| %>
+<div class="collection_search_result">
+<%= link_i agency.Agency_title, agency %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
+
+<% if @persons_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Ministers appointed to this portfolio" %>
+<% @persons_page.each do |person| %>
+<div class="collection_search_result">
+<%= link_i person.name_long, person %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
+
+<% if @ministries_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Ministries containing this portfolio" %>
+<% @ministries_page.each do |ministry| %>
+<div class="collection_search_result">
+<%= link_i ministry.Ministry_title, ministry %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
+
+<% if @preceding_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Preceding portfolios" %>
+<% @preceding_page.each do |preceding| %>
+<div class="collection_search_result">
+<%= link_i preceding.Portfolio_title, preceding %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>
+
+<% if @succeeding_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Succeeding portfolios" %>
+<% @succeeding_page.each do |succeeding| %>
+<div class="collection_search_result">
+<%= link_i succeeding.Portfolio_title, succeeding %>
+</div>
+<% end %>
+<%= page_navigation(@page_details) %>
+</div>
+<% end %>

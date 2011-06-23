@@ -11,6 +11,11 @@ class PortfoliosController < EntitiesController
   
   def show
     @portfolio = Portfolio.find(params[:id])
+	@agencies_page = pages @portfolio.agencies, 5
+	@persons_page = pages @portfolio.persons, 5
+	@ministries_page = pages @portfolio.ministries, 5
+	@preceding_page = pages @portfolio.preceding, 5
+	@succeeding_page = pages @portfolio.succeeding, 5
     
     respond_to do |format|
       format.html
