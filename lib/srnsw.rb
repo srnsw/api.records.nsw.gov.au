@@ -34,9 +34,9 @@ module SRNSW
     end
   end 
 
-  def pages model, default=25
+  def pages model, default=25, page_param=:page
     length = model.count
-    page = numeric_param params[:page]
+    page = numeric_param page_param
     page = 1 unless page
     count = max_param params[:count], 200, default
     @page_details = Pagination.new(page, count, length)
