@@ -1,8 +1,4 @@
 <record>
-  <header>
-    <identifier><%= oai_id record %></identifier>
-    <datestamp>missing this field!</datestamp>
-    <setSpec>agencies</setSpec>
-  </header>
-  <metadata><%= render :template => "agencies/_dc.dc.erb", :locals => {:dc => record} %></metadata>
+  <%= render :partial => "header", :object => record %>
+  <metadata><%= render :template => @template, :locals => {@format.to_sym => record} %></metadata>
 </record>

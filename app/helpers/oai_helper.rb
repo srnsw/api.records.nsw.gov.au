@@ -28,8 +28,55 @@ def resolve_oai_id id
   end
 end
 
-def has_format? controller
-  
+def has_format? controller, format
+  formats = UsageHelper::Entities::FORMATS[ApplicationHelper::ENTITY_CONTROLLERS[controller]]
+  formats ? formats.index format : nil 
+end
+
+def set_spec entity
+  ApplicationHelper::ENTITIES[entity.class.name][0]
+end
+
+# resumption formats in format: format_set_from_until_cursor
+def resolve_token token
+  arry = token.split("_")
+  if arry.length == 5
+  arry = arry.collect {|item| item == "0" ? nil : item}
+    if format = arry[0]
+      if UsageHelper::Entities::SCHEMAS[format]
+        if set_spec = arry[1]
+          if ApplicationHelper::ENTITY_CONTROLLERS[set_spec]
+            return nil unless has_format? set_spec, format # if set_spec, must have format
+          end
+          else
+            nil # set_spec must be valid
+          end
+        end
+        # if dates exist, check that they are valid
+        arry[2..3].each do |date|
+          if date
+            begin
+              Date.parse(date)
+            rescue
+              return nil
+            end
+          end
+        end
+        if (arry[4] and arry[4].to_i > 0)
+          arry[4] = arry[4].to_i
+          return arry # the resumption token is passed all checks
+        else
+          nil # cursor must be a number
+        end
+      else
+        nil # format must exist
+      end
+    else
+     nil # must have a prefix
+    end
+   else
+    nil  # must have all five elements (or 0s)
+  end
 end
 
 # from the spec... "in cases where the request that generated this response

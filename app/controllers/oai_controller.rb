@@ -11,9 +11,16 @@ def index
     else
       entity = resolve_oai_id(params[:identifier])
       if entity
-      agency_id = entity[1]
-      @agency = Agency.find(agency_id)
-      render :template => "oai/getRecord.xml.erb", :content_type => "application/xml"
+        format = params[:metadataPrefix]
+        if has_format? entity[0], format
+          @format = format
+          @template = "#{entity[0]}/_#{@format}.#{@format}.erb"
+          model = ApplicationHelper::ENTITY_CONTROLLERS[entity[0]]
+          @entity = model.constantize.find(entity[1])
+          render :template => "oai/getRecord.xml.erb", :content_type => "application/xml"
+        else
+          report_error "cannotDisseminateFormat", "Bad format: #{params[:metadataPrefix]}"
+        end  
       else
         report_error "idDoesNotExist", "Bad identifier: #{params[:identifier]}"
       end
@@ -58,7 +65,7 @@ def index
     if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
       report_error "badArgument", error_content
     else
-      #
+      
     end
   when "ListSets"
     if (error_content = bad_argument?(nil, [:resumptionToken]))
