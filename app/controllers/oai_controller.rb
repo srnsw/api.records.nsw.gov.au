@@ -19,7 +19,7 @@ def index
           @entity = model.constantize.find(entity[1])
           render :template => "oai/getRecord.xml.erb", :content_type => "application/xml"
         else
-          report_error "cannotDisseminateFormat", "Bad format: #{params[:metadataPrefix]}"
+          report_error "cannotDisseminateFormat", "#{entity[0]} set does not support format: #{format}"
         end  
       else
         report_error "idDoesNotExist", "Bad identifier: #{params[:identifier]}"
@@ -35,7 +35,7 @@ def index
     if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
       report_error "badArgument", error_content
     else
-      #
+      retrieve_entities
     end
   when "ListMetadataFormats"
     if (error_content = bad_argument?(nil, [:identifier]))
@@ -65,7 +65,7 @@ def index
     if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
       report_error "badArgument", error_content
     else
-      
+      retrieve_entities
     end
   when "ListSets"
     if (error_content = bad_argument?(nil, [:resumptionToken]))
@@ -98,6 +98,77 @@ def bad_argument? required=nil, optional=nil
     false
   else
     "Includes illegal arguments: " + arguments.keys.join(", ")
+  end
+end
+
+def retrieve_entities
+  if token = params[:resumptionToken]
+    args = resolve_token token
+    if args
+      report_error "GoodToGo" #
+    else
+      report_error "badResumptionToken", "Token invalid: #{token}" and return
+    end
+  else
+    if valid_format? format = params[:metadataPrefix]
+      args = [format]
+    else
+      report_error "cannotDisseminateFormat", "Repository does not support format: #{format}" and return
+    end
+    if spec = params[:set]
+      if valid_spec? spec
+        if has_format? spec, format
+          args << spec
+        else
+          report_error "cannotDisseminateFormat", "#{spec} set does not support format: #{format}" and return
+        end
+      else
+        report_error "badArgument", "Set does not exist: #{spec}" and return
+      end
+    else
+      args << nil
+    end
+    if date = params[:from]
+      if valid_date? date
+        args << date
+      else
+        report_error "badArgument", "From is not a valid date: #{date}" and return
+      end
+    else
+      args << nil
+    end
+    if date = params[:until]
+      if valid_date? date
+        args << date
+      else
+        report_error "badArgument", "Until is not a valid date #{date}" and return
+      end
+    else
+      args << nil
+    end
+    args << nil
+    report_error "GoodToGo" and return #
+  end
+end
+
+def search args
+  if args[1]
+    entities = args[1]
+  else
+    entities = Entities::FORMATS.to_a.collect {|arry| arry[1].index(args[0]) ? arry[0] : nil}.compact
+  end
+   if args[2]
+        any_of do
+          with(:end_year).greater_than from
+          with(:end_year, nil)
+        end
+      end
+      if (to = numeric_param params[:to])
+        with(:start_year).less_than to
+      end
+  
+  search = Sunspot.search(entities) do
+  
   end
 end
 
