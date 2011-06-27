@@ -1,4 +1,6 @@
 module XmlHelper
+# hmm... and here lies madness! Should probably retire this helper.
+# It is currently being used by oai_helper and unapi controller
 def xml_processing_instruction
  '<?xml version="1.0" encoding="UTF-8"?>'
 end
