@@ -13,10 +13,9 @@ class OaiController < ApplicationController
           format = params[:metadataPrefix]
           if has_format? entity[0], format
             @format = format
-            @template = "#{entity[0]}/_#{@format}.#{@format}.erb"
             model = ApplicationHelper::ENTITY_CONTROLLERS[entity[0]]
             @entity = model.constantize.find(entity[1])
-            render :template => "oai/getRecord.xml.erb", :content_type => "application/xml"
+            render :template => "oai/getRecord.xml.erb", :content_type => "application/xml", :locals => {:class_name => model, :id => entity[1]}
           else
             report_error "cannotDisseminateFormat", "#{entity[0]} set does not support format: #{format}"
           end  
@@ -34,9 +33,10 @@ class OaiController < ApplicationController
       if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
         report_error "badArgument", error_content
       else
-        if (args = parse_list_args)
-          if (list = list_search args)
-         
+        if (@args = parse_list_args)
+          if (@list = list_search @args)
+            @format = @args[0]
+            render :template => "oai/listIdentifiers.xml.erb", :content_type => "application/xml"
           end
         end
       end
@@ -68,9 +68,10 @@ class OaiController < ApplicationController
       if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
         report_error "badArgument", error_content
       else
-        if (args = parse_list_args)
-          if (list = list_search args)
-         
+        if (@args = parse_list_args)
+          if (@list = list_search @args)
+            @format = @args[0]
+            render :template => "oai/listRecords.xml.erb", :content_type => "application/xml"
           end
         end
       end
@@ -256,7 +257,7 @@ class OaiController < ApplicationController
        @page_details = Pagination.new(page, count, length)
        list
      else
-      report_error "noRecordsMatch"
+      report_error "noRecordsMatch", "No records returned for these parameters"
       false
     end
   end

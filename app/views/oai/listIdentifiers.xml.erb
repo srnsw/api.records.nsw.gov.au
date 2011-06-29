@@ -1,3 +1,6 @@
 <ListIdentifiers>
-
+<% for hit in @list.hits %>
+<%= render :partial => "header", :locals => {:class_name => hit.class_name, :id => hit.stored(:title), :modified => hit.stored(:modified)} %>
+<% end %>
+<%= make_resumption_token %>
 </ListIdentifiers>
