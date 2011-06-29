@@ -5,5 +5,41 @@
 <%= simple_field "Creation", @organisation.Creation %>
 <%= simple_field "Abolition", @organisation.Abolition %>
 <%= rich_field "Administrative history note", @organisation.Administrative_history_note %>
-<%= numeric_field "Commonwealth Organisation (CO) number", @organisation.Commonwealth_Organisation_CO_number %>
+<%= numeric_field "Commonwealth Organisation (CO) number", @organisation.CO_number %>
 </div>
+
+<% if @agencies_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Agencies controlled by this organisation" %>
+<% @agencies_page.each do |agency| %>
+<div class="collection_search_result">
+<%= link_i agency.Agency_title, agency %>
+</div>
+<% end %>
+<%= will_paginate @agencies_page, :param_name => 'agencies_page' %>
+</div>
+<% end %>
+
+<% if @preceding_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Preceding organisations" %>
+<% @preceding_page.each do |org| %>
+<div class="collection_search_result">
+<%= link_i org.Organisation_title, org %>
+</div>
+<% end %>
+<%= will_paginate @preceding_page, :param_name => 'preceding_page' %>
+</div>
+<% end %>
+
+<% if @succeeding_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Succeeding organisations" %>
+<% @succeeding_page.each do |org| %>
+<div class="collection_search_result">
+<%= link_i org.Organisation_title, org %>
+</div>
+<% end %>
+<%= will_paginate @succeeding_page, :param_name => 'succeeding_page' %>
+</div>
+<% end %>

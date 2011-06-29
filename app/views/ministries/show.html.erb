@@ -12,6 +12,6 @@
 <%= link_i portfolio.Portfolio_title, portfolio %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @portfolios_page, :param_name => 'portfolios_page' %>
 </div>
 <% end %>

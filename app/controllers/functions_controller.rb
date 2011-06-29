@@ -11,9 +11,9 @@ class FunctionsController < EntitiesController
   
   def show
     @function = Function.find(params[:id])
-    @activities_page = pages @function.activities
-	@agencies_page =  pages @function.agencies
-	@persons_page =  pages @function.persons
+    @activities_page = @function.activities.paginate(:page => params[:activities_page], :per_page => 5)
+	@agencies_page = @function.agencies.paginate(:page => params[:agencies_page], :per_page => 5)
+	@persons_page = @function.persons.paginate(:page => params[:persons_page], :per_page => 5)
 	
     respond_to do |format|
       format.html

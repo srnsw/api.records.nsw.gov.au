@@ -13,7 +13,7 @@
 <%= link_i agency.Agency_title, agency %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @agencies_page, :param_name => 'agencies_page' %>
 </div>
 <% end %>
 
@@ -25,7 +25,7 @@
 <%= link_i person.name_long, person %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @persons_page, :param_name => 'persons_page' %>
 </div>
 <% end %>
 
@@ -37,7 +37,7 @@
 <%= link_i ministry.Ministry_title, ministry %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @ministries_page, :param_name => 'ministries_page' %>
 </div>
 <% end %>
 
@@ -49,7 +49,7 @@
 <%= link_i preceding.Portfolio_title, preceding %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @preceding_page, :param_name => 'preceding_page' %>
 </div>
 <% end %>
 
@@ -61,6 +61,6 @@
 <%= link_i succeeding.Portfolio_title, succeeding %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @preceding_page, :param_name => 'preceding_page' %>
 </div>
 <% end %>

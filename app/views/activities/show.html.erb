@@ -15,7 +15,7 @@
 <%= link_i function.Function_title, function %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @functions_page, :param_name => 'functions_page' %>
 </div>
 <% end %>
 
@@ -27,6 +27,6 @@
 <%= link_i serie.Series_title, serie %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @series_page, :param_name => 'series_page' %>
 </div>
 <% end %>

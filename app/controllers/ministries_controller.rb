@@ -11,7 +11,7 @@ class MinistriesController < EntitiesController
   
   def show
     @ministry = Ministry.find(params[:id])
-    @portfolios_page = pages @ministry.portfolios
+    @portfolios_page = @ministry.portfolios.paginate(:page => params[:portfolios_page], :per_page => 10)
 		
     respond_to do |format|
       format.html

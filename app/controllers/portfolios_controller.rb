@@ -10,12 +10,15 @@ class PortfoliosController < EntitiesController
   end
   
   def show
+  
+  suppage = numeric_param params[:suppage]
+  
     @portfolio = Portfolio.find(params[:id])
-	@agencies_page = pages @portfolio.agencies, 5
-	@persons_page = pages @portfolio.persons, 5
-	@ministries_page = pages @portfolio.ministries, 5
-	@preceding_page = pages @portfolio.preceding, 5
-	@succeeding_page = pages @portfolio.succeeding, 5
+	@agencies_page = @portfolio.agencies.paginate(:page => params[:agencies_page], :per_page => 5)
+	@persons_page = @portfolio.persons.paginate(:page => params[:persons_page], :per_page => 5)
+	@ministries_page = @portfolio.ministries.paginate(:page => params[:ministries_page], :per_page => 5)
+	@preceding_page = @portfolio.preceding.paginate(:page => params[:preceding_page], :per_page => 5)
+	@succeeding_page = @portfolio.succeeding.paginate(:page => params[:succeeding_page], :per_page => 5)
     
     respond_to do |format|
       format.html

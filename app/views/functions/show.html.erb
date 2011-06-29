@@ -13,7 +13,7 @@
 <%= link_i activity.Activity_title, activity %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @activities_page, :param_name => 'activities_page'%>
 </div>
 <% end %>
 
@@ -25,7 +25,7 @@
 <%= link_i agency.Agency_title, agency %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @agencies_page, :param_name => 'agencies_page' %>
 </div>
 <% end %>
 
@@ -37,6 +37,6 @@
 <%= link_i person.name_long, person %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @persons_page, :param_name => 'persons_page'  %>
 </div>
 <% end %>

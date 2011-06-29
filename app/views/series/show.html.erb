@@ -15,14 +15,101 @@
 <%= simple_field "Series control status", @series.Series_control_status %>
 <%= simple_field "Location", @series.Repository %>
 </div>
-<% if @items.first %>
+
+<% if @items_page.first %>
 <div class="entity_relations">
 <%= content_tag :h4, "Items in this series" %>
-<% @items.each do |item| %>
+<% @items_page.each do |item| %>
 <div class="collection_search_result">
 <%= link_i item.Item_title, item %>
 </div>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate @items_page, :param_name => 'items_page' %>
 </div>
 <% end %>
+
+<% if @activities_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Activities documented by this series" %>
+<% @activities_page.each do |activity| %>
+<div class="collection_search_result">
+<%= link_i activity.Activity_title, activity %>
+</div>
+<% end %>
+<%= will_paginate @activities_page, :param_name => 'activities_page' %>
+</div>
+<% end %>
+
+<% if @controlling_agencies_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Current agency responsible" %>
+<% @controlling_agencies_page.each do |each_agency| %>
+<div class="collection_search_result">
+<%= link_i each_agency.Agency_title, each_agency %>
+</div>
+<% end %>
+<%= will_paginate @controlling_agencies_page, :param_name => 'controlling_agencies_page' %>
+</div>
+<% end %>
+
+<% if @creating_agencies_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Creating agency" %>
+<% @creating_agencies_page.each do |each_agency| %>
+<div class="collection_search_result">
+<%= link_i each_agency.Agency_title, each_agency %>
+</div>
+<% end %>
+<%= will_paginate @creating_agencies_page, :param_name => 'creating_agencies_page' %>
+</div>
+<% end %>
+
+<% if @persons_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Persons creating this series" %>
+<% @persons_page.each do |person| %>
+<div class="collection_search_result">
+<%= link_i person.name_long, person %>
+</div>
+<% end %>
+<%= will_paginate @persons_page, :param_name => 'persons_page' %>
+</div>
+<% end %>
+
+<% if @related_series_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Related series" %>
+<% @related_series_page.each do |each_series| %>
+<div class="collection_search_result">
+<%= link_i each_series.Series_title, each_series %>
+</div>
+<% end %>
+<%= will_paginate @related_series_page, :param_name => 'related_series_page' %>
+</div>
+<% end %>
+
+<% if @preceding_series_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Preceding series" %>
+<% @preceding_series_page.each do |each_series| %>
+<div class="collection_search_result">
+<%= link_i each_series.Series_title, each_series %>
+</div>
+<% end %>
+<%= will_paginate @preceding_series_page, :param_name => 'preceding_series_page' %>
+</div>
+<% end %>
+
+<% if @succeeding_series_page.first %>
+<div class="entity_relations">
+<%= content_tag :h4, "Succeeding series" %>
+<% @succeeding_series_page.each do |each_series| %>
+<div class="collection_search_result">
+<%= link_i each_series.Series_title, each_series %>
+</div>
+<% end %>
+<%= will_paginate @succeeding_series_page, :param_name => 'succeeding_series_page' %>
+</div>
+<% end %>
+
+
