@@ -11,7 +11,6 @@ class SeriesController < EntitiesController
   
   def show
     
-	suppage = numeric_param params[:suppage]
 	
 	@series = Series.find(params[:id])
     @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:items_page], :per_page => 5)

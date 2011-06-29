@@ -11,8 +11,6 @@ class PortfoliosController < EntitiesController
   
   def show
   
-  suppage = numeric_param params[:suppage]
-  
     @portfolio = Portfolio.find(params[:id])
 	@agencies_page = @portfolio.agencies.paginate(:page => params[:agencies_page], :per_page => 5)
 	@persons_page = @portfolio.persons.paginate(:page => params[:persons_page], :per_page => 5)
