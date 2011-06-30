@@ -65,4 +65,9 @@ class Entity < ActiveRecord::Base
   def day_month_year date
     date.day.to_s + "/" + date.month.to_s + "/" + date.year.to_s
   end
+  
+  # date time into YYYY-MM-DD string
+  def date_simple datetime
+    datetime.to_date.to_s
+  end
 end
