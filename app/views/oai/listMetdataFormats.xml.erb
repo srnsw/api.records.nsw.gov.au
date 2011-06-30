@@ -1,0 +1,9 @@
+<ListMetadataFormats>
+<% @formats.each do |format| %>
+  <metadataFormat>
+    <metadataPrefix><%= format[0] %></metadataPrefix>
+    <schema><%= format[2] %></schema>
+    <metadataNamespace><%= format[1] %></metadataNamespace>
+  </metadataFormat>
+<% end %>
+</ListMetadataFormats>
