@@ -11,11 +11,11 @@
     </rdf:Seq>
   </bib:authors>
   <dc:title><%= rdf_zotero.Series_title %></dc:title>
-  <dc:date><%= rdf_zotero.Start_date %></dc:date>
+  <dc:date><%= date_simple(rdf_zotero.Start_date) %></dc:date>
   <dc:identifier>
     <dcterms:URI>
       <rdf:value><%= url_for :action => "show", :controller => "series", :id => rdf_zotero, :only_path => false %></rdf:value>
-        </dcterms:URI>
+    </dcterms:URI>
   </dc:identifier>
   <z:archive>State Records NSW</z:archive>
   <dc:coverage>NUA <%= rdf_zotero.Series_number %></dc:coverage>

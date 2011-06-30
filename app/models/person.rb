@@ -17,6 +17,7 @@ class Person < Entity
     integer :end_year, :trie => true do |person|
       person.Death_date ? person.Death_date.year : nil
     end
+    time :modified, :using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :name_short, :stored => true
     integer :id, :using => :Person_number, :stored => true
   end

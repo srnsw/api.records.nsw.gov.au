@@ -49,7 +49,7 @@ class Entity < ActiveRecord::Base
 
   def parse_date qualifier, date
     if date
-      if qualifier.nil?
+      if (qualifier.nil? or qualifier.strip.empty?)
         day_month_year(date)
       elsif qualifier == "year only" 
         date.year.to_s

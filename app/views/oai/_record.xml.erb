@@ -1,0 +1,4 @@
+<record>
+  <%= render :partial => "header", :locals => {:class_name => class_name, :id => id, :modified => modified} %>
+  <metadata><%= render :template => template_path(class_name, @format), :locals => {@format.to_sym => record} %></metadata>
+</record>
