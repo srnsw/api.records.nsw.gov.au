@@ -2,12 +2,22 @@
   <z:itemType>manuscript</z:itemType>
   <bib:authors>
     <rdf:Seq>
-      <rdf:li>
-        <foaf:Person>
-          <foaf:surname></foaf:surname>
-          <foaf:givenname></foaf:givenname>
-        </foaf:Person>
-      </rdf:li>
+      <% rdf_zotero.creating_agencies.each do |agency| %>
+        <rdf:li>
+          <foaf:Person>
+            <foaf:surname><%= agency.Agency_title %></foaf:surname>
+            <foaf:givenname></foaf:givenname>
+          </foaf:Person>
+        </rdf:li>
+      <% end %>
+      <% rdf_zotero.persons.each do |person| %>
+        <rdf:li>
+          <foaf:Person>
+            <foaf:surname><%= person.Surname %></foaf:surname>
+            <foaf:givenname><%= person.Given_names %></foaf:givenname>
+          </foaf:Person>
+        </rdf:li>
+      <% end %>
     </rdf:Seq>
   </bib:authors>
   <dc:title><%= rdf_zotero.Series_title %></dc:title>

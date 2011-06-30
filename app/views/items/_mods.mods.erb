@@ -3,12 +3,23 @@
 </titleInfo>
 <typeOfResource manuscript="yes" collection="yes">mixed material</typeOfResource>
 <genre authority="local">manuscript</genre>
-<!--name type="personal">
-  <namePart> </namePart>
+<% mods.series.creating_agencies.each do |agency| %>
+<name type="personal">
+  <namePart><%= agency.Agency_title %></namePart>
   <role>
     <roleTerm type="code" authority="marcrelator">aut</roleTerm>
    </role>
-</name-->
+</name>
+<% end %>
+<% mods.series.persons.each do |person| %>
+<name type="personal">
+  <namePart type="family"><%= person.Surname %></namePart>
+  <namePart type="given"><%= person.Given_names %></namePart>
+  <role>
+    <roleTerm type="code" authority="marcrelator">aut</roleTerm>
+   </role>
+</name>
+<% end %>
 <originInfo>
   <dateCreated><%= date_simple(mods.Start_date) %></dateCreated>
 </originInfo>
