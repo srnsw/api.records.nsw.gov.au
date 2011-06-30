@@ -30,7 +30,7 @@ class OaiController < ApplicationController
         render :template => "oai/identify.xml.erb", :content_type => "application/xml"
       end
     when "ListIdentifiers"
-      if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
+      if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set], :resumptionToken))
         report_error "badArgument", error_content
       else
         if (@args = parse_list_args)
@@ -65,7 +65,7 @@ class OaiController < ApplicationController
         end
       end 
     when "ListRecords" 
-      if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set, :resumptionToken]))
+      if (error_content = bad_argument?([:metadataPrefix], [:from, :until, :set], :resumptionToken))
         report_error "badArgument", error_content
       else
         if (@args = parse_list_args)
@@ -101,18 +101,31 @@ class OaiController < ApplicationController
   # make sure all required arguments for any particular verb
   # are included and that no other arguments besides the optional ones are present
   # returns error string or false if no bad arguments
-  def bad_argument? required=nil, optional=nil
+  def bad_argument? required=nil, optional=nil, exclusive=nil
     arguments = params.except(:controller, :action)
-    required ? required << :verb : required = [:verb]
-    unless required.all? {|key| arguments.has_key?(key)}
-      return "Missing required arguments: " + required.reject {|key| arguments.has_key?(key)}.join(", ")
-    end
-    arguments = arguments.except(*required)
-    arguments = arguments.except(*optional) if optional
-    if arguments.empty?
-      false
+    if exclusive && arguments.has_key?(exclusive)
+      if arguments.has_key?(:verb)
+        arguments = arguments.except(:verb, exclusive)
+        if arguments.empty?
+          return false
+        else
+          return "Includes illegal arguments: " + arguments.keys.join(", ")
+        end
+      else
+        return "Missing required arguments: verb"
+      end
     else
-      "Includes illegal arguments: " + arguments.keys.join(", ")
+      required ? required << :verb : required = [:verb]
+      unless required.all? {|key| arguments.has_key?(key)}
+        return "Missing required arguments: " + required.reject {|key| arguments.has_key?(key)}.join(", ")
+      end
+      arguments = arguments.except(*required)
+      arguments = arguments.except(*optional) if optional
+      if arguments.empty?
+        false
+      else
+        "Includes illegal arguments: " + arguments.keys.join(", ")
+      end
     end
   end
 
@@ -186,9 +199,9 @@ class OaiController < ApplicationController
     end
   end
 
-  # valid tokens are: [format]_[set | 0]_[from | 0]_[until | 0]_[page]
+  # valid tokens are: [format]:[set | 0]:[from | 0]:[until | 0]:[page]
   def resolve_token token
-    arry = token.split("_")
+    arry = token.split(":")
     return false unless arry.length == 5 # must be complete
     arry = arry.collect {|item| item == "0" ? nil : item}
     return false unless arry[0] # must have metadata prefix
@@ -236,12 +249,17 @@ class OaiController < ApplicationController
   # ListIdentifier and ListRecord
   def list_search args
     if args[1]
-      entities = args[1]
+      entities = args[1].collect {|controller| ApplicationHelper::ENTITY_CONTROLLERS[controller]}
     else
       entities = UsageHelper::Entities::FORMATS.to_a.collect {|arry| arry[1].index(args[0]) ? arry[0] : nil}.compact
     end
+    entities = entities.collect {|entity| entity.constantize}
     page = args[4]
-    page = 1 unless page
+    if page
+      page = page.to_i
+    else
+      page = 1
+    end
     count = 100
     list = Sunspot.search(entities) do
       if args[2]

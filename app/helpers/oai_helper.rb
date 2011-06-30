@@ -35,7 +35,7 @@ def make_resumption_token
   if @page_details.needs_navigation?
     if @page_details.next_page
       @args[-1] = @page_details.next_page
-      token = @args.collect {|arg| arg = "0" unless arg}.join("_")      
+      token = @args.collect {|arg| arg.nil? ? "0" : arg}.join(":")      
     else
       token = nil
     end

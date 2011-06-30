@@ -85,6 +85,13 @@ module ApplicationHelper
     params_dup
   end
   
+  # returns YYYY-MM-DD
+  def date_simple datetime
+    if datetime
+     datetime.to_date.to_s
+    end
+  end
+  
   def page_navigation page_details, param=:page
     if page_details.needs_navigation? 
       showing = page_details.showing
