@@ -15,7 +15,7 @@ class Organisation < Entity
     integer :end_year, :trie => true do |organisation|
       organisation.End_date ? organisation.End_date.year : nil
     end
-    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
+    time :modified, :using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :Organisation_title, :stored => true
     integer :id, :using => :Organisation_number, :stored => true
   end
