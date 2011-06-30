@@ -1,0 +1,5 @@
+<h1>Agencies</h1>
+<% @superiors_page.each do |agency| %>
+<%= link_p agency.Agency_title, agency %>
+<% end %>
+<%= will_paginate @superiors_page %>

@@ -62,35 +62,80 @@ Collection::Application.routes.draw do
   match 'usage' => 'usage#index' #developer documentation
  
   resources :activities, :only => [:index, :show] do
-	resources :functions, :only => [:index, :show]
-	resources :series, :only => [:index, :show]
+	member do
+	  get 'functions'
+	  get 'series'
+	end
   end
-  resources :agencies, :only => [:index, :show]
+  
+  resources :agencies, :only => [:index, :show] do
+    member do
+	  get 'preceding'
+	  get 'succeeding'
+	  get 'superior'
+	  get 'subordinate'
+	  get 'related'
+	  get 'functions'
+	  get 'organisations'
+	  get 'persons'
+	  get 'series_created'
+	  get 'series_controlled'
+	end
+  end
+  
   resources :functions, :only => [:index, :show] do
-	resources :activities, :only => [:index, :show]
-	resources :agencies, :only => [:index, :show]
-	resources :persons, :only => [:index, :show]
+	member do
+	  get 'activities'
+	  get 'agencies'
+	  get 'persons'
+	end
   end
+  
   resources :items, :only => [:index, :show]
+  
   resources :ministries, :only => [:index, :show] do
-	resources :portfolios, :only => [:index, :show]
+	member do
+	  get 'portfolios'
+	end
   end
-  resources :organisations, :only => [:index, :show]
+  
+  resources :organisations, :only => [:index, :show] do
+	  member do
+		get 'preceding'
+		get 'succeeding'
+		get 'agencies'
+	  end
+  end
+  
   resources :persons, :only => [:index, :show] do
-	resources :ministries, :only => [:index, :show]
-	resources :portfolios, :only => [:index, :show]
-	resources :functions, :only => [:index, :show]
-	resources :agencies, :only => [:index, :show]
-	resources :series, :only => [:index, :show]
+    member do
+	  get 'ministries'
+      get 'portfolios'
+	  get 'functions'
+	  get 'agencies'
+	  get 'series'
+	end
   end
+  
   resources :portfolios, :only => [:index, :show] do
-    resources :ministries, :only => [:index, :show]
-	resources :agencies, :only => [:index, :show]
-	resources :persons, :only => [:index, :show]
-#	resources :preceding, :only => [:index, :show]
-#	resources :succeeding, :only => [:index, :show]
+    member do
+		get 'ministries'
+		get 'agencies'
+		get 'persons'
+		get 'preceding'
+		get 'succeeding'
+	end
   end
   resources :series, :only => [:index, :show] do
-    resources :items, :only => [:index, :show]
+	member do
+		get 'items'
+		get 'agencies_creating'
+		get 'agencies_controlling'
+		get 'preceding'
+		get 'succeeding'
+		get 'related'
+		get 'activities'
+		get 'persons'
+	end
   end
 end

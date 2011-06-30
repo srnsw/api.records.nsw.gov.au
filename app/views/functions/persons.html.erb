@@ -1,0 +1,5 @@
+<h1>Persons</h1>
+<% @persons_page.each do |person| %>
+<%= link_p person.name_short, person %>
+<% end %>
+<%= will_paginate @persons_page %>

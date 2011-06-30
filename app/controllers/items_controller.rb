@@ -1,25 +1,19 @@
 class ItemsController < EntitiesController
   def index
-    if params[:series_id]
-      @items = pages Item.where(:Series_number => params[:series_id])
-    else
-      @items = pages Item
-    end
+    
+    @items = Item.paginate(:page => params[:page], :per_page => 25)
     
     respond_to do |format|
       format.html
-      format.xml {render :xml => to_paginated_xml(@items)}
-      format.json {render :json => to_paginated_json(@items)}
+      format.xml {render :xml => @items.to_xml}
+      format.json {render :json => @items.to_json}
     end
   end
   
   def show
-    if params[:series_id]
-      @item = Item.where(:Series_number => params[:series_id]).limit(1).offset(params[:id].to_i - 1).first
-    else
-      @item = Item.find(params[:id])
-    end
-        
+    
+	@item = Item.find(params[:id])
+    
     respond_to do |format|
       format.html
       format.mods

@@ -2,4 +2,4 @@
 <% @series.each do |series| %>
 <%= link_p series.Series_title, series %>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate(@series) %>

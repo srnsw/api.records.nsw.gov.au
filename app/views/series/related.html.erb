@@ -1,0 +1,5 @@
+<h1>Series</h1>
+<% @related_series_page.each do |series| %>
+<%= link_p series.Series_title, series %>
+<% end %>
+<%= will_paginate @related_series_page%>

@@ -2,4 +2,4 @@
 <% @persons.each do |person| %>
 <%= link_p person.name_short, person %>
 <% end %>
-<%= page_navigation(@page_details) %>
+<%= will_paginate(@persons) %>

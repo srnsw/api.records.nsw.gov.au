@@ -1,0 +1,5 @@
+<h1>Ministries</h1>
+<% @ministries_page.each do |ministry| %>
+<%= link_p ministry.Ministry_title, ministry %>
+<% end %>
+<%= will_paginate @ministries_page%>
