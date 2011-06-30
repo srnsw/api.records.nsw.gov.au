@@ -24,7 +24,7 @@ class Agency < Entity
     integer :end_year, :trie => true do |agency|
       agency.End_date ? agency.End_date.year : nil
     end
-    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
+    time :modified, :using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :Agency_title, :stored => true
     integer :id, :using => :Agency_number, :stored => true
   end
