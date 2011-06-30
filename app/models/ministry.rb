@@ -12,7 +12,7 @@ class Ministry < Entity
     integer :end_year, :trie => true do |activity|
       ministry.End_date ? ministry.End_date.year : nil
     end
-    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
+    time :modified, :using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :Ministry_title, :stored => true
     integer :id, :using => :Ministry_number, :stored => true
   end

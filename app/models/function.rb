@@ -12,7 +12,7 @@ class Function < Entity
     integer :start_year, :trie => true do |function|
       function.Start_date ? function.Start_date.year : nil
     end
-    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
+    time :modified, :using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :Function_title, :stored => true
     integer :id, :using => :Function_number, :stored => true
   end
