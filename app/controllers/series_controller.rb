@@ -1,11 +1,11 @@
 class SeriesController < EntitiesController
   def index
-    @series = Series.paginate(:page => params[:page], :per_page => 25)
+    @series = Series.pages params
          
      respond_to do |format|
       format.html
-      format.xml {render :xml => @series.to_xml}  
-      format.json {render :json => @series.to_json}
+      format.xml {render :xml => to_paginated_xml @series}  
+      format.json {render :json => to_paginated_json @series}
     end
   end
   
@@ -14,9 +14,9 @@ class SeriesController < EntitiesController
 	suppage = numeric_param params[:suppage]
 	
 	@series = Series.find(params[:id])
-    @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:items_page], :per_page => 5)
+  @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:items_page], :per_page => 5)
 	
-	@activities_page = @series.activities.paginate(:page => params[:activities_page], :per_page => 5)
+	@activities_page = @series.activities.pages(params, :activities_page, 5)
 	@controlling_agencies_page = @series.controlling_agencies.paginate(:page => params[:controlling_agencies_page], :per_page => 5)
 	@creating_agencies_page = @series.creating_agencies.paginate(:page => params[:creating_agencies_page], :per_page => 5)
 	@persons_page = @series.persons.paginate(:page => params[:persons_page], :per_page => 5)

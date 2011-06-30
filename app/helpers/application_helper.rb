@@ -92,15 +92,16 @@ module ApplicationHelper
     end
   end
   
-  def page_navigation page_details, param=:page
+  # custom page navigation (see SRNSW.rb)
+  def page_navigation page_details
     if page_details.needs_navigation? 
       showing = page_details.showing
       if page_details.prev_page
-        prev_image = link_to image_tag("resultset_previous.png", {:alt=> "Previous page"}), params_swap(param, page_details.prev_page)
+        prev_image = link_to image_tag("resultset_previous.png", {:alt=> "Previous page"}), params_swap(page_details.page_param, page_details.prev_page)
         showing = " " + showing
       end
       if page_details.next_page
-        next_image = link_to image_tag("resultset_next.png", {:alt=> "Next page"}), params_swap(param, page_details.next_page)
+        next_image = link_to image_tag("resultset_next.png", {:alt=> "Next page"}), params_swap(page_details.page_param, page_details.next_page)
         showing = showing + " "
       end
       content = prev_image ? prev_image : String.new

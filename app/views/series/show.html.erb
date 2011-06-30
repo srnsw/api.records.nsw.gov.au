@@ -36,7 +36,7 @@
 <%= link_i activity.Activity_title, activity %>
 </div>
 <% end %>
-<%= will_paginate @activities_page, :param_name => 'activities_page' %>
+<%= page_navigation(@activities_page.page_navigation) %>
 </div>
 <% end %>
 

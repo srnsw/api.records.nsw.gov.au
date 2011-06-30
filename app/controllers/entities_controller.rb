@@ -1,3 +1,3 @@
 class EntitiesController < ApplicationController
-  include SRNSW # lib/srnsw.rb
+include SRNSW::Serializers
 end

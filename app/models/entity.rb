@@ -19,6 +19,8 @@ class Entity < ActiveRecord::Base
 # that is a Hash indexed by the class. If a connection is requested,
 # the retrieve_connection method will go up the class-hierarchy until a connection is found in the connection pool.
 #
+# add custom pagination
+extend SRNSW::Pages
 
   def date_range
     date_string self.Start_date_qualifier, self.Start_date, self.End_date_qualifier, self.End_date

@@ -272,7 +272,7 @@ class OaiController < ApplicationController
      end
      length = list.total
      if length > 0
-       @page_details = Pagination.new(page, count, length)
+       @token_details = Pagination.new(page, count, length)
        list
      else
       report_error "noRecordsMatch", "No records returned for these parameters"

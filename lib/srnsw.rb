@@ -36,14 +36,15 @@ module SRNSW
   end 
   
   module Pages
-    def pages params, page_param=:page, count=25
+    def pages params, page_param=:page, default_count=25
       length = self.count
       page = SRNSW::Utils.numeric_param params[page_param]
       page = 1 unless page
       if page_param == :page
-        count = SRNSW::Utils max_param params[page_param], 200, count
+        count = SRNSW::Utils.max_param params[:count], 200, default_count
       end  
       @page_details = SRNSW::Pagination.new(page, count, length, page_param)
+      self.limit(count).offset(@page_details.offset) 
     end 
     
     def page_details
@@ -69,44 +70,22 @@ module SRNSW
     end
   end
   
-  def pages model, default=25, page_param=:page
-    length = model.count
-    page = numeric_param page_param
-    page = 1 unless page
-    count = max_param params[:count], 200, default
-    @page_details = Pagination.new(page, count, length)
-    model.limit(count).offset(@page_details.offset) 
-  end
-  
-  def numeric_param page
-    if page
-      page = page.to_i > 0 ? page.to_i : nil
-    end
-  end
-   
-  def max_param param, max, default=nil
-    param = numeric_param(param)
-    if param
-     param > max ? max : param
-    else
-      default
-    end
-  end
-  
-  def to_paginated_xml set
-    require 'builder' unless defined? ::Builder
+  module Serializers
+    def to_paginated_xml set
+      require 'builder' unless defined? ::Builder
 
-    builder = ::Builder::XmlMarkup.new(:indent => 2)
-    builder.instruct!
-    root = set.first.class.name.pluralize.downcase
-    builder.tag!(root, {:type => "array"}) do |xml|
-      set.to_a.unshift(set.page_details).each do |record|
-      xml << record.to_xml(:skip_instruct => true)
+      builder = ::Builder::XmlMarkup.new(:indent => 2)
+      builder.instruct!
+      root = set.first.class.name.pluralize.downcase
+      builder.tag!(root, {:type => "array"}) do |xml|
+        set.to_a.unshift(set.page_details).each do |record|
+        xml << record.to_xml(:skip_instruct => true)
+        end
       end
     end
-  end
-  
-  def to_paginated_json set
-    set.to_a.unshift(set.page_details).to_json
+    
+    def to_paginated_json set
+      set.to_a.unshift(set.page_details).to_json
+    end
   end
 end

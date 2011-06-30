@@ -1,6 +1,7 @@
 class SearchController < ApplicationController
   include SRNSW # lib/srnsw.rb
-
+  include SRNSW::Utils
+  
   def index
   end
   
@@ -34,8 +35,8 @@ class SearchController < ApplicationController
       @custom_search, @page_details = search entities, page, count
     else
       @what_search, @page_details = search [Item, Series], page, count
-      @who_search, @apage_details = search [Agency, Person], apage, 15
-      @why_search, @fpage_details = search [Function, Activity], fpage, 5
+      @who_search, @apage_details = search [Agency, Person], apage, 15, :apage
+      @why_search, @fpage_details = search [Function, Activity], fpage, 5, :fpage
     end
     
     respond_to do |format|
@@ -46,7 +47,7 @@ class SearchController < ApplicationController
   end
   
   protected
-  def search entities, page, count
+  def search entities, page, count, page_param=:page
      eras = [[1775,1800], [1800,1825], [1825,1850], [1850,1875], [1875,1900],
     [1900,1925], [1925,1950], [1950,1975], [1975,2000], [2000,2025]]
     
@@ -100,7 +101,7 @@ class SearchController < ApplicationController
     
     length = search.total
     
-    [search] << Pagination.new(page, count, length)
+    [search] << Pagination.new(page, count, length, page_param)
   end
   
    def const_param entities

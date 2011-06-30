@@ -32,14 +32,14 @@ def make_request_element
 end
 
 def make_resumption_token
-  if @page_details.needs_navigation?
-    if @page_details.next_page
-      @args[-1] = @page_details.next_page
+  if @token_details.needs_navigation?
+    if @token_details.next_page
+      @args[-1] = @token_details.next_page
       token = @args.collect {|arg| arg.nil? ? "0" : arg}.join(":")      
     else
       token = nil
     end
-    make_xml_element("resumptionToken", token, [["completeListSize", @page_details.total_results], ["cursor", @page_details.offset]]).html_safe
+    make_xml_element("resumptionToken", token, [["completeListSize", @token_details.total_results], ["cursor", @token_details.offset]]).html_safe
   end
 end
 end
