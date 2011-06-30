@@ -11,6 +11,7 @@ class Item < Entity
     integer :end_year, :trie => true do |item|
       item.End_date ? item.End_date.year : nil
     end
+    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
     integer :Series_number, :references => Series
     string :title, :using => :Item_title, :stored => true
     integer :id, :using => :ID, :stored => true

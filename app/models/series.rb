@@ -20,6 +20,7 @@ class Series < Entity
     integer :end_year, :trie => true do |series|
       series.End_date ? series.End_date.year : nil
     end
+    time :modified, using => :Last_amendment_date, :trie => true, :stored => true
     string :title, :using => :Series_title, :stored => true
     integer :id, :using => :Series_number, :stored => true
   end
