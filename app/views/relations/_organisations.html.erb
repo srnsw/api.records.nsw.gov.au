@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% organisations.each do |organisation| %>
+<div class="collection_search_result">
+<%= link_i organisation.Organisation_title, organisation %>
+</div>
+<% end %>
+<%= page_navigation(organisations.page_details) %>
+</div>

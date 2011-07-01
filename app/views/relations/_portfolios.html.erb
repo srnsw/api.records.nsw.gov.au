@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% portfolios.each do |portfolio| %>
+<div class="collection_search_result">
+<%= link_i portfolio.Portfolio_title, portfolio %>
+</div>
+<% end %>
+<%= page_navigation(portfolios.page_details) %>
+</div>

@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% ministries.each do |ministry| %>
+<div class="collection_search_result">
+<%= link_i ministry.Ministry_title, ministry %>
+</div>
+<% end %>
+<%= page_navigation(ministries.page_details) %>
+</div>
