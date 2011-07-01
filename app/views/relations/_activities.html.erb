@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% activities.each do |activity| %>
+<div class="collection_search_result">
+<%= link_i activity.Activity_title, activity %>
+</div>
+<% end %>
+<%= page_navigation(activities.page_details) %>
+</div>

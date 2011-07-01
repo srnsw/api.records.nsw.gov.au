@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% series.each do |series| %>
+<div class="collection_search_result">
+<%= link_i series.Series_title, series %>
+</div>
+<% end %>
+<%= page_navigation(series.page_details) %>
+</div>

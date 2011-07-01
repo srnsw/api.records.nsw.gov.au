@@ -1,0 +1,9 @@
+<div class="relations_item">
+<%= content_tag :h4, title %>
+<% persons.each do |person| %>
+<div class="collection_search_result">
+<%= link_i person.name_long, person %>
+</div>
+<% end %>
+<%= page_navigation(persons.page_details) %>
+</div>
