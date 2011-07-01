@@ -4,15 +4,13 @@ class SeriesController < EntitiesController
          
      respond_to do |format|
       format.html
-      format.xml {render :xml => to_paginated_xml @series}  
-      format.json {render :json => to_paginated_json @series}
+      format.xml {render :xml => to_paginated_xml(@series)}  
+      format.json {render :json => to_paginated_json(@series)}
     end
   end
   
   def show
     
-	suppage = numeric_param params[:suppage]
-	
 	@series = Series.find(params[:id])
   @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:items_page], :per_page => 5)
 	

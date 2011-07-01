@@ -42,7 +42,9 @@ module SRNSW
       page = 1 unless page
       if page_param == :page
         count = SRNSW::Utils.max_param params[:count], 200, default_count
-      end  
+      else
+        count = default_count
+      end
       @page_details = SRNSW::Pagination.new(page, count, length, page_param)
       self.limit(count).offset(@page_details.offset) 
     end 
