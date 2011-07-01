@@ -16,100 +16,38 @@
 <%= simple_field "Location", @series.Repository %>
 </div>
 
-<% if @items_page.first %>
 <div class="entity_relations">
-<%= content_tag :h4, "Items in this series" %>
-<% @items_page.each do |item| %>
-<div class="collection_search_result">
-<%= link_i item.Item_title, item %>
-</div>
-<% end %>
-<%= will_paginate @items_page, :param_name => 'items_page' %>
-</div>
+
+<% if @creating_agencies.first %>
+<%= render :partial => 'relations/agencies', :object => @creating_agencies, locals => {title => "Creating agency"} %>
 <% end %>
 
-<% if @activities_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Activities documented by this series" %>
-<% @activities_page.each do |activity| %>
-<div class="collection_search_result">
-<%= link_i activity.Activity_title, activity %>
-</div>
-<% end %>
-<%= page_navigation(@activities_page.page_details) %>
-</div>
+<% if @persons.first %>
+<%= render :partial => 'relations/persons', :object => @persons, locals => {title => "Persons creating this series"} %>
 <% end %>
 
-<% if @controlling_agencies_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Current agency responsible" %>
-<% @controlling_agencies_page.each do |each_agency| %>
-<div class="collection_search_result">
-<%= link_i each_agency.Agency_title, each_agency %>
-</div>
-<% end %>
-<%= will_paginate @controlling_agencies_page, :param_name => 'controlling_agencies_page' %>
-</div>
+<% if @controlling_agencies.first %>
+<%= render :partial => 'relations/agencies', :object => @controlling_agencies, locals => {title => "Current agency responsible"} %>
 <% end %>
 
-<% if @creating_agencies_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Creating agency" %>
-<% @creating_agencies_page.each do |each_agency| %>
-<div class="collection_search_result">
-<%= link_i each_agency.Agency_title, each_agency %>
-</div>
-<% end %>
-<%= will_paginate @creating_agencies_page, :param_name => 'creating_agencies_page' %>
-</div>
+<% if @activities.first %>
+<%= render :partial => 'relations/activities', :object => @activities, locals => {title => "Activities documented by this series"} %>
 <% end %>
 
-<% if @persons_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Persons creating this series" %>
-<% @persons_page.each do |person| %>
-<div class="collection_search_result">
-<%= link_i person.name_long, person %>
-</div>
-<% end %>
-<%= will_paginate @persons_page, :param_name => 'persons_page' %>
-</div>
+<% if @preceding_series.first %>
+<%= render :partial => 'relations/series', :object => @preceding_series, locals => {title => "Preceding series"} %>
 <% end %>
 
-<% if @related_series_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Related series" %>
-<% @related_series_page.each do |each_series| %>
-<div class="collection_search_result">
-<%= link_i each_series.Series_title, each_series %>
-</div>
-<% end %>
-<%= will_paginate @related_series_page, :param_name => 'related_series_page' %>
-</div>
+<% if @succeeding_series.first %>
+<%= render :partial => 'relations/series', :object => @succeeding_series, locals => {title => "Succeeding series"} %>
 <% end %>
 
-<% if @preceding_series_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Preceding series" %>
-<% @preceding_series_page.each do |each_series| %>
-<div class="collection_search_result">
-<%= link_i each_series.Series_title, each_series %>
-</div>
-<% end %>
-<%= will_paginate @preceding_series_page, :param_name => 'preceding_series_page' %>
-</div>
+<% if @related_series.first %>
+<%= render :partial => 'relations/series', :object => @related_series, locals => {title => "Related series"} %>
 <% end %>
 
-<% if @succeeding_series_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Succeeding series" %>
-<% @succeeding_series_page.each do |each_series| %>
-<div class="collection_search_result">
-<%= link_i each_series.Series_title, each_series %>
-</div>
-<% end %>
-<%= will_paginate @succeeding_series_page, :param_name => 'succeeding_series_page' %>
-</div>
+<% if @items.first %>
+<%= render :partial => 'relations/items', :object => @items, locals => {title => "Items in this series"} %>
 <% end %>
 
-
+</div>

@@ -109,13 +109,21 @@ margin-bottom: 20px;
 
 div.entity_relations
 {
-margin-top: 40px;
-padding-left: 2%;
-padding-right: 2%;
+margin-top: 25px;
 float: left;
 width:30%;
+margin-bottom: 20px;
+}
+
+div.relations_item
+{
+margin-top: 0px;
+margin-left: 0px;
+margin-right: 0px;
 margin-bottom: 20px;
 border: solid;
 border-width: 1px;
 border-color: #4779ae;
+padding-left: 10px;
+padding-right: 5px;
 }

@@ -4,23 +4,27 @@ class SeriesController < EntitiesController
          
      respond_to do |format|
       format.html
+      format.mods
+      format.rdf_zotero
       format.xml {render :xml => to_paginated_xml(@series)}  
       format.json {render :json => to_paginated_json(@series)}
     end
   end
   
   def show
+	  @series = Series.find(params[:id])
+	  
+	  @creating_agencies = @series.creating_agencies.pages(params, :creating_agencies_page, 5)
+	  @persons = @series.persons.pages(params, :persons_page, 5)
+    @controlling_agencies = @series.controlling_agencies.pages(params, :controlling_agencies_page, 5)
+	  
+    @activities = @series.activities.pages(params, :activities_page, 5)
     
-	@series = Series.find(params[:id])
-  @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:items_page], :per_page => 5)
-	
-	@activities_page = @series.activities.pages(params, :activities_page, 5)
-	@controlling_agencies_page = @series.controlling_agencies.paginate(:page => params[:controlling_agencies_page], :per_page => 5)
-	@creating_agencies_page = @series.creating_agencies.paginate(:page => params[:creating_agencies_page], :per_page => 5)
-	@persons_page = @series.persons.paginate(:page => params[:persons_page], :per_page => 5)
-	@preceding_series_page = @series.preceding_series.paginate(:page => params[:preceding_series_page], :per_page => 5)
-	@related_series_page = @series.related_series.paginate(:page => params[:related_series_page], :per_page => 5)
-	@succeeding_series_page = @series.succeeding_series.paginate(:page => params[:succeeding_series_page], :per_page => 5)
+    @preceding_series = @series.preceding_series.pages(params, :preceding_series_page, 5)
+	  @succeeding_series = @series.succeeding_series.pages(params, :succeeding_series_page, 5)
+    @related_series = @series.related_series.pages(params, :related_series_page, 5)
+    
+    @items = Item.where(:Series_number => params[:id]).pages(params, :items_page, 10)
     
     respond_to do |format|
       format.html
@@ -32,83 +36,80 @@ class SeriesController < EntitiesController
   end
   
   def items
-   @series = Series.find(params[:id])
-   @items_page = Item.where(:Series_number => params[:id]).paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @items_page.to_xml}
-      format.json {render :json => @items_page.to_json}
+    @items = Item.where(:Series_number => params[:id]).pages(params)
+    respond_to do |format|
+      format.html {render :template => 'items/index'}
+      format.xml {render :xml => to_paginated_xml(@items)}
+      format.json {render :json => to_paginated_json(@items)}
     end
   end
   
   def agencies_creating
-   @series = Series.find(params[:id])
-   @creating_agencies_page = @series.creating_agencies.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @creating_agencies_page.to_xml}
-      format.json {render :json => @creating_agencies_page.to_json}
+    series = Series.find(params[:id])
+    @agencies = series.creating_agencies.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'agencies/index'}
+      format.xml {render :xml => to_paginated_xml(@agencies)}
+      format.json {render :json => to_paginated_json(@agencies)}
     end
   end
 
   def agencies_controlling
-   @series = Series.find(params[:id])
-   @controlling_agencies_page = @series.controlling_agencies.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @controlling_agencies_page.to_xml}
-      format.json {render :json => @controlling_agencies_page.to_json}
+    series = Series.find(params[:id])
+    @agencies = series.controlling_agencies.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'agencies/index'}
+      format.xml {render :xml => to_paginated_xml(@agencies)}
+      format.json {render :json => to_paginated_json(@agencies)}
     end
   end
 		
   def preceding
-   @series = Series.find(params[:id])
-   @preceding_series_page = @series.preceding_series.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @preceding_series_page.to_xml}
-      format.json {render :json => @preceding_series_page.to_json}
+    series = Series.find(params[:id])
+    @series = series.preceding_series.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'index'}
+      format.xml {render :xml => to_paginated_xml(@series)}
+      format.json {render :json => to_paginated_json(@series)}
     end
   end
 		
   def succeeding
-   @series = Series.find(params[:id])
-   @succeeding_series_page = @series.succeeding_series.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @succeeding_series_page.to_xml}
-      format.json {render :json => @succeeding_series_page.to_json}
+    series = Series.find(params[:id])
+    @series = series.succeeding_series.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'index'}
+      format.xml {render :xml => to_paginated_xml(@series)}
+      format.json {render :json => to_paginated_json(@series)}
     end
   end
 		
   def related
-   @series = Series.find(params[:id])
-   @related_series_page = @series.related_series.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @related_series_page.to_xml}
-      format.json {render :json => @related_series_page.to_json}
+    series = Series.find(params[:id])
+    @series = series.related_series.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'index'}
+      format.xml {render :xml => to_paginated_xml(@series)}
+      format.json {render :json => to_paginated_json(@series)}
     end
   end
 		
   def activities
-   @series = Series.find(params[:id])
-   @activities_page = @series.activities.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @activities_page.to_xml}
-      format.json {render :json => @activities_page.to_json}
+    series = Series.find(params[:id])
+    @activities = series.activities.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'activities/index'}
+      format.xml {render :xml => to_paginated_xml(@activities)}
+      format.json {render :json => to_paginated_json(@activities)}
     end
   end
 		
   def persons
-   @series = Series.find(params[:id])
-   @persons_page = @series.persons.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @persons_page.to_xml}
-      format.json {render :json => @persons_page.to_json}
+    series = Series.find(params[:id])
+    @persons = series.persons.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'persons/index'}
+      format.xml {render :xml => to_paginated_xml(@persons)}
+      format.json {render :json => to_paginated_json(@persons)}
     end
-  end
-  
 end
