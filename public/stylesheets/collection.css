@@ -119,3 +119,11 @@ border: solid;
 border-width: 1px;
 border-color: #4779ae;
 }
+
+div.relations_item
+{
+margin-top: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-bottom: 20px;
+}
