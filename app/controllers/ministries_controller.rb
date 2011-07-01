@@ -1,17 +1,17 @@
 class MinistriesController < EntitiesController
   def index
-    @ministries = Ministry.paginate(:page => params[:page], :per_page => 25)
+    @ministries = Ministry.pages(params)
     
     respond_to do |format|
       format.html
-      format.xml {render :xml => @ministries.to_xml}
-      format.json {render :json => @ministries.to_json}
+      format.xml {render :xml => to_paginated_xml(@ministries)}
+      format.json {render :json => to_paginated_json(@ministries)}
     end
   end
   
   def show
     @ministry = Ministry.find(params[:id])
-    @portfolios_page = @ministry.portfolios.paginate(:page => params[:portfolios_page], :per_page => 10)
+    @portfolios = @ministry.portfolios.pages(params, :portfolios_page, 10)
 		
     respond_to do |format|
       format.html
@@ -21,13 +21,13 @@ class MinistriesController < EntitiesController
   end
   
   def portfolios
-    @ministry = Ministry.find(params[:id])
-    @portfolios_page = @ministry.portfolios.paginate(:page => params[:page], :per_page => 25)
+    ministry = Ministry.find(params[:id])
+    @portfolios = ministry.portfolios.pages(params)
 		
     respond_to do |format|
-      format.html
-      format.xml {render :xml => @portfolios_page.to_xml}
-      format.json {render :json => @portfolios_page.to_json}
+      format.html {render :tempate => 'portfolios/index'}
+      format.xml {render :xml => to_paginated_xml(@portfolios)}
+      format.json {render :json => to_paginated_json(@portfolios)}
     end
   end
 end

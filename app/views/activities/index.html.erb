@@ -2,4 +2,4 @@
 <% @activities.each do |activity| %>
 <%= link_p activity.Activity_title, activity %>
 <% end %>
-<%= will_paginate(@activities) %>
+<%= page_navigation(@activities.page_details) %>

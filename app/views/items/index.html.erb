@@ -2,4 +2,4 @@
 <% @items.each do |item| %>
 <%= link_p item.Item_title, item %>
 <% end %>
-<%= will_paginate(@items) %>
+<%= page_navigation(@items.page_details) %>

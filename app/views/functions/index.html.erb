@@ -2,4 +2,4 @@
 <% @functions.each do |function| %>
 <%= link_p function.Function_title, function %>
 <% end %>
-<%= will_paginate(@functions) %>
+<%= page_navigation(@functions.page_details) %>

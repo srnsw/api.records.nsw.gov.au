@@ -8,52 +8,26 @@
 <%= bool_field "Minister", @person.Minister %>
 </div>
 
-<% if @ministries_page.first %>
 <div class="entity_relations">
-<%= content_tag :h4, "Ministries containing this person" %>
-<% @ministries_page.each do |ministry| %>
-<div class="collection_search_result">
-<%= link_i ministry.Ministry_title, ministry %>
-</div>
-<% end %>
-<% will_paginate @ministries_page, :param_name => 'ministries_page' %>
-</div>
+
+<% if @agencies.first %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies related to this person"} %>
 <% end %>
 
-<% if @portfolios_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Portfolios this person held as minister" %>
-<% @portfolios_page.each do |portfolio| %>
-<div class="collection_search_result">
-<%= link_i portfolio.Portfolio_title, portfolio %>
-</div>
-<% end %>
-<% will_paginate @portfolios_page, :param_name => 'portfolios_page' %>
-</div>
+<% if @ministries.first %>
+<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this person"} %>
 <% end %>
 
-<% if @functions_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Functions exercised by this person" %>
-<% @functions_page.each do |function| %>
-<div class="collection_search_result">
-<%= link_i function.Function_title, function %>
-</div>
-<% end %>
-<% will_paginate @functions_page, :param_name => 'functions_page' %>
-</div>
+<% if @portfolios.first %>
+<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios this person held as minister"} %>
 <% end %>
 
-
-<% if @agencies_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Agencies related to this person" %>
-<% @agencies_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<% will_paginate @agencies_page, :param_name => 'agencies_page' %>
-</div>
+<% if @functions.first %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this person"} %>
 <% end %>
 
+<% if @series.first %>
+<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series created by this person"} %>
+<% end %>
+
+</div>

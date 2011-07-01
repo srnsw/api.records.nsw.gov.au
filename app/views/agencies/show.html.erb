@@ -8,124 +8,46 @@
 <%= rich_field "Administrative history note", @agency.Administrative_history_note %>
 </div>
 
-
-<% if @functions_page.first %>
 <div class="entity_relations">
-<%= content_tag :h4, "Functions exercised by this agency" %>
-<% @functions_page.each do |function| %>
-<div class="collection_search_result">
-<%= link_i function.Function_title, function %>
-</div>
-<% end %>
-<%= will_paginate @functions_page, :param_name => 'functions_page'%>
-</div>
+
+<% if @preceding.first %>
+<%= render :partial => 'relations/agencies', :object => @preceding, :locals => {:title => "Preceding agencies"} %>
 <% end %>
 
-<% if @organisations_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Organisations controlling this agency" %>
-<% @organisations_page.each do |organisation| %>
-<div class="collection_search_result">
-<%= link_i organisation.Organisation_title, organisation %>
-</div>
-<% end %>
-<%= will_paginate @organisations_page, :param_name => 'organisations_page' %>
-</div>
+<% if @succeeding.first %>
+<%= render :partial => 'relations/agencies', :object => @succeeding, :locals => {:title => "Succeeding agencies"} %>
 <% end %>
 
-<% if @persons_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Persons related to this agency" %>
-<% @persons_page.each do |person| %>
-<div class="collection_search_result">
-<%= link_i person.name_long, person %>
-</div>
-<% end %>
-<%= will_paginate @persons_page, :param_name => 'persons_page' %>
-</div>
+<% if @superiors.first %>
+<%= render :partial => 'relations/agencies', :object => @superiors, :locals => {:title => "Superior agencies"} %>
 <% end %>
 
-<% if @preceding_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Preceding agencies" %>
-<% @preceding_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<%= will_paginate @preceding_page, :param_name => 'preceding_page' %>
-</div>
+<% if @subordinates.first %>
+<%= render :partial => 'relations/agencies', :object => @subordinates, :locals => {:title => "Subordinate agencies"} %>
 <% end %>
 
-<% if @related_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Related agencies" %>
-<% @related_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<%= will_paginate @related_page, :param_name => 'related_page' %>
-</div>
+<% if @related.first %>
+<%= render :partial => 'relations/agencies', :object => @related, :locals => {:title => "Related agencies"} %>
 <% end %>
 
-<% if @series_controlled_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Record series controlled by this agency" %>
-<% @series_controlled_page.each do |serie| %>
-<div class="collection_search_result">
-<%= link_i serie.Series_title, serie %>
-</div>
-<% end %>
-<%= will_paginate @series_controlled_page, :param_name => 'series_controlled_page' %>
-</div>
+<% if @organisations.first %>
+<%= render :partial => 'relations/organisations', :object => @organisations, :locals => {:title => "Organisations controlling this agency"} %>
 <% end %>
 
-<% if @series_created_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Record series created by this agency" %>
-<% @series_created_page.each do |serie| %>
-<div class="collection_search_result">
-<%= link_i serie.Series_title, serie %>
-</div>
-<% end %>
-<%= will_paginate @series_created_page, :param_name => 'series_created_page' %>
-</div>
+<% if @persons.first %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons related to this agency"} %>
 <% end %>
 
-<% if @subordinates_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Subordinate agencies" %>
-<% @subordinates_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<%= will_paginate @subordinates_page, :param_name => 'subordinates_page' %>
-</div>
+<% if @functions.first %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this agency"} %>
 <% end %>
 
-
-<% if @succeeding_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Succeeding agencies" %>
-<% @succeeding_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<%= will_paginate @succeeding_page, :param_name => 'succeeding_page' %>
-</div>
+<% if @series_created.first %>
+<%= render :partial => 'relations/series', :object => @series_created, :locals => {:title => "Record series created by this agency"} %>
 <% end %>
 
-<% if @superiors_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Superior agencies" %>
-<% @superiors_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
+<% if @series_controlled.first %>
+<%= render :partial => 'relations/series', :object => @series_controlled, :locals => {:title => "Record series controlled by this agency"} %>
 <% end %>
-<%= will_paginate @superiors_page, :param_name => 'superiors_page' %>
+
 </div>
-<% end %>

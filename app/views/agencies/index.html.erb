@@ -2,4 +2,4 @@
 <% @agencies.each do |agency| %>
 <%= link_p agency.Agency_title, agency %>
 <% end %>
-<%= will_paginate(@agencies) %>
+<%= page_navigation(@agencies.page_details) %>

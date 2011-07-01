@@ -68,7 +68,7 @@ class SeriesController < EntitiesController
     series = Series.find(params[:id])
     @series = series.preceding_series.pages(params)
     respond_to do |format|
-      format.html {render :template => 'index'}
+      format.html {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end
@@ -78,7 +78,7 @@ class SeriesController < EntitiesController
     series = Series.find(params[:id])
     @series = series.succeeding_series.pages(params)
     respond_to do |format|
-      format.html {render :template => 'index'}
+      format.html {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end
@@ -88,7 +88,7 @@ class SeriesController < EntitiesController
     series = Series.find(params[:id])
     @series = series.related_series.pages(params)
     respond_to do |format|
-      format.html {render :template => 'index'}
+      format.html {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end
@@ -112,4 +112,5 @@ class SeriesController < EntitiesController
       format.xml {render :xml => to_paginated_xml(@persons)}
       format.json {render :json => to_paginated_json(@persons)}
     end
+  end
 end

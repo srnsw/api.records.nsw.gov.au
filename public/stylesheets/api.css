@@ -103,7 +103,7 @@ div.entity_data
 {
 float: left;
 width: 60%;
-padding-right: 3%;
+padding-right: 4%;
 margin-bottom: 20px;
 }
 
@@ -111,7 +111,7 @@ div.entity_relations
 {
 margin-top: 25px;
 float: left;
-width:30%;
+width:34%;
 margin-bottom: 20px;
 }
 
@@ -124,6 +124,6 @@ margin-bottom: 20px;
 border: solid;
 border-width: 1px;
 border-color: #4779ae;
-padding-left: 10px;
+padding-left: 15px;
 padding-right: 5px;
 }

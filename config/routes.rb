@@ -3,48 +3,48 @@ Collection::Application.routes.draw do
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  # match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:
-  #   match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
+  # match 'products/:id/purchase' => 'catalog#purchase', :as => :purchase
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+  # resources :products
 
   # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
+  # resources :products do
+  # member do
+  # get 'short'
+  # post 'toggle'
+  # end
   #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
+  # collection do
+  # get 'sold'
+  # end
+  # end
 
   # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
+  # resources :products do
+  # resources :comments, :sales
+  # resource :seller
+  # end
 
   # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
+  # resources :products do
+  # resources :comments
+  # resources :sales do
+  # get 'recent', :on => :collection
+  # end
+  # end
 
   # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+  # namespace :admin do
+  # # Directs /admin/products/* to Admin::ProductsController
+  # # (app/controllers/admin/products_controller.rb)
+  # resources :products
+  # end
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
@@ -63,80 +63,81 @@ Collection::Application.routes.draw do
   match 'usage' => 'usage#index' #developer documentation
  
   resources :activities, :only => [:index, :show] do
-	member do
-	  get 'functions'
-	  get 'series'
-	end
+    member do
+      get 'functions'
+      get 'series'
+    end
   end
   
   resources :agencies, :only => [:index, :show] do
     member do
-	  get 'preceding'
-	  get 'succeeding'
-	  get 'superior'
-	  get 'subordinate'
-	  get 'related'
-	  get 'functions'
-	  get 'organisations'
-	  get 'persons'
-	  get 'series_created'
-	  get 'series_controlled'
-	end
+      get 'preceding'
+      get 'succeeding'
+      get 'superior'
+      get 'subordinate'
+      get 'related'
+      get 'functions'
+      get 'organisations'
+      get 'persons'
+      get 'series_created'
+      get 'series_controlled'
+    end
   end
   
   resources :functions, :only => [:index, :show] do
-	member do
-	  get 'activities'
-	  get 'agencies'
-	  get 'persons'
-	end
+    member do
+      get 'activities'
+      get 'agencies'
+      get 'persons'
+    end
   end
   
   resources :items, :only => [:index, :show]
   
   resources :ministries, :only => [:index, :show] do
-	member do
-	  get 'portfolios'
-	end
+    member do
+      get 'portfolios'
+    end
   end
   
   resources :organisations, :only => [:index, :show] do
-	  member do
-		get 'preceding'
-		get 'succeeding'
-		get 'agencies'
-	  end
+    member do
+      get 'preceding'
+      get 'succeeding'
+      get 'agencies'
+    end
   end
   
   resources :persons, :only => [:index, :show] do
     member do
-	  get 'ministries'
+      get 'ministries'
       get 'portfolios'
-	  get 'functions'
-	  get 'agencies'
-	  get 'series'
-	end
+      get 'functions'
+      get 'agencies'
+      get 'series'
+    end
   end
   
   resources :portfolios, :only => [:index, :show] do
     member do
-		get 'ministries'
-		get 'agencies'
-		get 'persons'
-		get 'preceding'
-		get 'succeeding'
-	end
+      get 'ministries'
+      get 'agencies'
+      get 'persons'
+      get 'preceding'
+      get 'succeeding'
+    end
   end
+
   resources :series, :only => [:index, :show] do
-	member do
-		get 'items'
-		get 'agencies_creating'
-		get 'agencies_controlling'
-		get 'preceding'
-		get 'succeeding'
-		get 'related'
-		get 'activities'
-		get 'persons'
-	end
+    member do
+      get 'items'
+      get 'agencies_creating'
+      get 'agencies_controlling'
+      get 'preceding'
+      get 'succeeding'
+      get 'related'
+      get 'activities'
+      get 'persons'
+    end
   end
 end

@@ -19,35 +19,35 @@
 <div class="entity_relations">
 
 <% if @creating_agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @creating_agencies, locals => {title => "Creating agency"} %>
+<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:title => "Creating agency"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, locals => {title => "Persons creating this series"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons creating this series"} %>
 <% end %>
 
 <% if @controlling_agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @controlling_agencies, locals => {title => "Current agency responsible"} %>
+<%= render :partial => 'relations/agencies', :object => @controlling_agencies, :locals => {:title => "Current agency responsible"} %>
 <% end %>
 
 <% if @activities.first %>
-<%= render :partial => 'relations/activities', :object => @activities, locals => {title => "Activities documented by this series"} %>
+<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities documented by this series"} %>
 <% end %>
 
 <% if @preceding_series.first %>
-<%= render :partial => 'relations/series', :object => @preceding_series, locals => {title => "Preceding series"} %>
+<%= render :partial => 'relations/series', :object => @preceding_series, :locals => {:title => "Preceding series"} %>
 <% end %>
 
 <% if @succeeding_series.first %>
-<%= render :partial => 'relations/series', :object => @succeeding_series, locals => {title => "Succeeding series"} %>
+<%= render :partial => 'relations/series', :object => @succeeding_series, :locals => {:title => "Succeeding series"} %>
 <% end %>
 
 <% if @related_series.first %>
-<%= render :partial => 'relations/series', :object => @related_series, locals => {title => "Related series"} %>
+<%= render :partial => 'relations/series', :object => @related_series, :locals => {:title => "Related series"} %>
 <% end %>
 
 <% if @items.first %>
-<%= render :partial => 'relations/items', :object => @items, locals => {title => "Items in this series"} %>
+<%= render :partial => 'relations/items', :object => @items, :locals => {:title => "Items in this series"} %>
 <% end %>
 
 </div>

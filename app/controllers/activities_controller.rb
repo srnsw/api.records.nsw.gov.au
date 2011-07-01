@@ -1,20 +1,18 @@
 class ActivitiesController < EntitiesController
   def index
-    
-    @activities = Activity.paginate(:page => params[:page], :per_page => 25)
-	respond_to do |format|
+    @activities = Activity.pages(params)
+    respond_to do |format|
       format.html
-      format.xml {render :xml => @activities.to_xml}
-      format.json {render :json => @activities.to_json}
+      format.xml {render :xml => to_paginated_xml(@activities)}
+      format.json {render :json => to_paginated_json(@activities)}
     end
   end
   
   def show
-  
-  @activity = Activity.find(params[:id])
-  @series_page = @activity.series.paginate(:page => params[:series_page], :per_page => 10)
-  @functions_page = @activity.functions.paginate(:page => params[:functions_page], :per_page => 10)
-	
+    @activity = Activity.find(params[:id])
+    @functions = @activity.functions.pages(params, :functions_page, 5)
+    @series = @activity.series.pages(params, :series_page, 10)
+
     respond_to do |format|
       format.html
       format.xml {render :xml => @activity.to_xml}
@@ -23,23 +21,22 @@ class ActivitiesController < EntitiesController
   end
   
   def functions
-  @activity = Activity.find(params[:id])
-  @functions_page = @activity.functions.paginate(:page => params[:page], :per_page => 10)
+    activity = Activity.find(params[:id])
+    @functions = activity.functions.pages(params)
     respond_to do |format|
-      format.html
-      format.xml {render :xml => @functions_page.to_xml}
-      format.json {render :json => @functions_page.to_json}
+      format.html {render :template => 'functions/index'}
+      format.xml {render :xml => to_paginated_xml(@functions)}
+      format.json {render :json => to_paginated_json(@functions)}
     end
   end
   
   def series
-  @activity = Activity.find(params[:id])
-  @series_page = @activity.series.paginate(:page => params[:page], :per_page => 25)
-   respond_to do |format|
-      format.html
-      format.xml {render :xml => @series_page.to_xml}
-      format.json {render :json => @series_page.to_json}
+    activity = Activity.find(params[:id])
+    @series = activity.series.pages(params)
+    respond_to do |format|
+      format.html {render :template => 'series/index'}
+      format.xml {render :xml => to_paginated_xml(@series)}
+      format.json {render :json => to_paginated_json(@series)}
     end
   end
-
 end

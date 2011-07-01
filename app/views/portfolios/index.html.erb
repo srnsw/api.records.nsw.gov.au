@@ -2,4 +2,4 @@
 <% @portfolios.each do |portfolio| %>
 <%= link_p portfolio.Portfolio_title, portfolio %>
 <% end %>
-<%= will_paginate(@portfolios) %>
+<%= page_navigation(@portfolios.page_details) %>

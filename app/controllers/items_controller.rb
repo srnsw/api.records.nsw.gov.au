@@ -1,17 +1,17 @@
 class ItemsController < EntitiesController
   def index
-    
-    @items = Item.paginate(:page => params[:page], :per_page => 25)
+    @items = Item.pages(params)
     
     respond_to do |format|
       format.html
-      format.xml {render :xml => @items.to_xml}
-      format.json {render :json => @items.to_json}
+      format.mods
+      format.rdf_zotero
+      format.xml {render :xml => to_paginated_xml(@items)}
+      format.json {render :json => to_paginated_json(@items)}
     end
   end
   
   def show
-    
 	@item = Item.find(params[:id])
     
     respond_to do |format|

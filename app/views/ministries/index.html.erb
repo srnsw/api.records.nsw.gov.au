@@ -2,4 +2,4 @@
 <% @ministries.each do |ministry| %>
 <%= link_p ministry.Ministry_title, ministry %>
 <% end %>
-<%= will_paginate(@ministries) %>
+<%= page_navigation(@ministries.page_details) %>

@@ -5,38 +5,18 @@
 <%= rich_field "Descriptive note", @function.Descriptive_note %>
 </div>
 
-<% if @activities_page.first %>
 <div class="entity_relations">
-<%= content_tag :h4, "Activities comprising this function" %>
-<% @activities_page.each do |activity| %>
-<div class="collection_search_result">
-<%= link_i activity.Activity_title, activity %>
-</div>
-<% end %>
-<%= will_paginate @activities_page, :param_name => 'activities_page'%>
-</div>
+
+<% if @activities.first %>
+<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities comprising this function"} %>
 <% end %>
 
-<% if @agencies_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Agencies exercising this function" %>
-<% @agencies_page.each do |agency| %>
-<div class="collection_search_result">
-<%= link_i agency.Agency_title, agency %>
-</div>
-<% end %>
-<%= will_paginate @agencies_page, :param_name => 'agencies_page' %>
-</div>
+<% if @agencies.first %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies exercising this function"} %>
 <% end %>
 
-<% if @persons_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Persons exercising this function" %>
-<% @persons_page.each do |person| %>
-<div class="collection_search_result">
-<%= link_i person.name_long, person %>
-</div>
+<% if @persons.first %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons exercising this function"} %>
 <% end %>
-<%= will_paginate @persons_page, :param_name => 'persons_page'  %>
+
 </div>
-<% end %>

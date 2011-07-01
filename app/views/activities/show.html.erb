@@ -7,26 +7,14 @@
 <%= rich_field "Descriptive note", @activity.Descriptive_note %>
 </div>
 
-<% if @functions_page.first %>
 <div class="entity_relations">
-<%= content_tag :h4, "Functions containing this activity" %>
-<% @functions_page.each do |function| %>
-<div class="collection_search_result">
-<%= link_i function.Function_title, function %>
-</div>
-<% end %>
-<%= will_paginate @functions_page, :param_name => 'functions_page' %>
-</div>
+
+<% if @functions.first %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions containing this activity"} %>
 <% end %>
 
-<% if @series_page.first %>
-<div class="entity_relations">
-<%= content_tag :h4, "Record series documenting this activity" %>
-<% @series_page.each do |serie| %>
-<div class="collection_search_result">
-<%= link_i serie.Series_title, serie %>
-</div>
+<% if @series.first %>
+<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series documenting this activity"} %>
 <% end %>
-<%= will_paginate @series_page, :param_name => 'series_page' %>
+
 </div>
-<% end %>
