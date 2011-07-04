@@ -6,48 +6,49 @@
 <%= simple_field "Creation", @agency.Creation %>
 <%= simple_field "Abolition", @agency.Abolition %>
 <%= rich_field "Administrative history note", @agency.Administrative_history_note %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @preceding.first %>
-<%= render :partial => 'relations/agencies', :object => @preceding, :locals => {:title => "Preceding agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @preceding, :locals => {:title => "Preceding agencies", :browse_uri => "#{current_uri}/preceding"} %>
 <% end %>
 
 <% if @succeeding.first %>
-<%= render :partial => 'relations/agencies', :object => @succeeding, :locals => {:title => "Succeeding agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @succeeding, :locals => {:title => "Succeeding agencies", :browse_uri => "#{current_uri}/succeeding"} %>
 <% end %>
 
 <% if @superiors.first %>
-<%= render :partial => 'relations/agencies', :object => @superiors, :locals => {:title => "Superior agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @superiors, :locals => {:title => "Superior agencies", :browse_uri => "#{current_uri}/superior"} %>
 <% end %>
 
 <% if @subordinates.first %>
-<%= render :partial => 'relations/agencies', :object => @subordinates, :locals => {:title => "Subordinate agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @subordinates, :locals => {:title => "Subordinate agencies", :browse_uri => "#{current_uri}/subordinate"} %>
 <% end %>
 
 <% if @related.first %>
-<%= render :partial => 'relations/agencies', :object => @related, :locals => {:title => "Related agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @related, :locals => {:title => "Related agencies", :browse_uri => "#{current_uri}/related"} %>
 <% end %>
 
 <% if @organisations.first %>
-<%= render :partial => 'relations/organisations', :object => @organisations, :locals => {:title => "Organisations controlling this agency"} %>
+<%= render :partial => 'relations/organisations', :object => @organisations, :locals => {:title => "Organisations controlling this agency", :browse_uri => "#{current_uri}/organisations"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons related to this agency"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons related to this agency", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
 <% if @functions.first %>
-<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this agency"} %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this agency", :browse_uri => "#{current_uri}/functions"} %>
 <% end %>
 
 <% if @series_created.first %>
-<%= render :partial => 'relations/series', :object => @series_created, :locals => {:title => "Record series created by this agency"} %>
+<%= render :partial => 'relations/series', :object => @series_created, :locals => {:title => "Record series created by this agency", :browse_uri => "#{current_uri}/series_created"} %>
 <% end %>
 
 <% if @series_controlled.first %>
-<%= render :partial => 'relations/series', :object => @series_controlled, :locals => {:title => "Record series controlled by this agency"} %>
+<%= render :partial => 'relations/series', :object => @series_controlled, :locals => {:title => "Record series controlled by this agency", :browse_uri => "#{current_uri}/series_controlled"} %>
 <% end %>
 
 </div>

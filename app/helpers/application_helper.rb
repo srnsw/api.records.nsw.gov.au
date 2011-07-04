@@ -63,6 +63,11 @@ module ApplicationHelper
     end
   end
   
+  def link_header text, link
+    sub_uri = make_link text, link
+    content_tag :h4, sub_uri
+  end
+  
   def link_p text, entity
     link = make_link text, entity
     content_tag :p, link

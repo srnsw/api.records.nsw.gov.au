@@ -20,12 +20,12 @@ class MinistriesController < EntitiesController
     end
   end
   
-  def portfolios
-    ministry = Ministry.find(params[:id])
+  def portfolios	
+	ministry = Ministry.find(params[:id])
     @portfolios = ministry.portfolios.pages(params)
-		
+	
     respond_to do |format|
-      format.html {render :tempate => 'portfolios/index'}
+      format.html {render :template => 'portfolios/index'}
       format.xml {render :xml => to_paginated_xml(@portfolios)}
       format.json {render :json => to_paginated_json(@portfolios)}
     end

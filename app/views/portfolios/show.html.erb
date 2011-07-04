@@ -3,28 +3,29 @@
 <%= make_title @portfolio.Portfolio_title %>
 <%= simple_field "Date range", @portfolio.date_range %>
 <%= rich_field "Descriptive note", @portfolio.Descriptive_note %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @preceding.first %>
-<%= render :partial => 'relations/portfolios', :object => @preceding, :locals => {:title => "Preceding portfolios"} %>
+<%= render :partial => 'relations/portfolios', :object => @preceding, :locals => {:title => "Preceding portfolios", :browse_uri => "#{current_uri}/preceding"} %>
 <% end %>
 
 <% if @succeeding.first %>
-<%= render :partial => 'relations/portfolios', :object => @succeeding, :locals => {:title => "Succeeding portfolios"} %>
+<%= render :partial => 'relations/portfolios', :object => @succeeding, :locals => {:title => "Succeeding portfolios", :browse_uri => "#{current_uri}/succeeding"} %>
 <% end %>
 
 <% if @ministries.first %>
-<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this portfolio"} %>
+<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this portfolio", :browse_uri => "#{current_uri}/ministries"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Ministers appointed to this portfolio"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Ministers appointed to this portfolio", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies administered through this portfolio"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies administered through this portfolio", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 </div>

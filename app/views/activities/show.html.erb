@@ -5,16 +5,17 @@
 <%= simple_field "Creation", @activity.Creation %>
 <%= simple_field "Abolition", @activity.Abolition %>
 <%= rich_field "Descriptive note", @activity.Descriptive_note %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @functions.first %>
-<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions containing this activity"} %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions containing this activity", :browse_uri => "#{current_uri}/functions"} %>
 <% end %>
 
 <% if @series.first %>
-<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series documenting this activity"} %>
+<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series documenting this activity", :browse_uri => "#{current_uri}/series"} %>
 <% end %>
 
 </div>

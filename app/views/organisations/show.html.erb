@@ -6,20 +6,21 @@
 <%= simple_field "Abolition", @organisation.Abolition %>
 <%= rich_field "Administrative history note", @organisation.Administrative_history_note %>
 <%= numeric_field "Commonwealth Organisation (CO) number", @organisation.CO_number %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @preceding.first %>
-<%= render :partial => 'relations/organisations', :object => @preceding, :locals => {:title => "Preceding organisations"} %>
+<%= render :partial => 'relations/organisations', :object => @preceding, :locals => {:title => "Preceding organisations", :browse_uri => "#{current_uri}/preceding"} %>
 <% end %>
 
 <% if @succeeding.first %>
-<%= render :partial => 'relations/organisations', :object => @succeeding, :locals => {:title => "Succeeding organisations"} %>
+<%= render :partial => 'relations/organisations', :object => @succeeding, :locals => {:title => "Succeeding organisations", :browse_uri => "#{current_uri}/succeeding"} %>
 <% end %>
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies controlled by this organisation"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies controlled by this organisation", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 </div>

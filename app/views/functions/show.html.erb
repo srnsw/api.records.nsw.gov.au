@@ -3,20 +3,21 @@
 <%= make_title @function.Function_title %>
 <%= simple_field "Date range", @function.date_range %>
 <%= rich_field "Descriptive note", @function.Descriptive_note %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @activities.first %>
-<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities comprising this function"} %>
+<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities comprising this function", :browse_uri => "#{current_uri}/activities"} %>
 <% end %>
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies exercising this function"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies exercising this function", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons exercising this function"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons exercising this function", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
 </div>

@@ -6,28 +6,29 @@
 <%= simple_field "Offices held", @person.Offices_held %>
 <%= rich_field "Biographical note", @person.Biographical_note %>
 <%= bool_field "Minister", @person.Minister %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies related to this person"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies related to this person", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 <% if @ministries.first %>
-<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this person"} %>
+<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this person", :browse_uri => "#{current_uri}/ministries"} %>
 <% end %>
 
 <% if @portfolios.first %>
-<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios this person held as minister"} %>
+<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios this person held as minister", :browse_uri => "#{current_uri}/portfolios"} %>
 <% end %>
 
 <% if @functions.first %>
-<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this person"} %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this person", :browse_uri => "#{current_uri}/functions"} %>
 <% end %>
 
 <% if @series.first %>
-<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series created by this person"} %>
+<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series created by this person", :browse_uri => "#{current_uri}/series"} %>
 <% end %>
 
 </div>

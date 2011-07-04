@@ -14,40 +14,41 @@
 <%= simple_field "Bridging aids", @series.Bridging_aids %>
 <%= simple_field "Series control status", @series.Series_control_status %>
 <%= simple_field "Location", @series.Repository %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @creating_agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:title => "Creating agency"} %>
+<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:title => "Creating agency", :browse_uri => "#{current_uri}/agencies_creating"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons creating this series"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Persons creating this series", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
 <% if @controlling_agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @controlling_agencies, :locals => {:title => "Current agency responsible"} %>
+<%= render :partial => 'relations/agencies', :object => @controlling_agencies, :locals => {:title => "Current agency responsible", :browse_uri => "#{current_uri}/agencies_controlling"} %>
 <% end %>
 
 <% if @activities.first %>
-<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities documented by this series"} %>
+<%= render :partial => 'relations/activities', :object => @activities, :locals => {:title => "Activities documented by this series", :browse_uri => "#{current_uri}/activities"} %>
 <% end %>
 
 <% if @preceding_series.first %>
-<%= render :partial => 'relations/series', :object => @preceding_series, :locals => {:title => "Preceding series"} %>
+<%= render :partial => 'relations/series', :object => @preceding_series, :locals => {:title => "Preceding series", :browse_uri => "#{current_uri}/preceding"} %>
 <% end %>
 
 <% if @succeeding_series.first %>
-<%= render :partial => 'relations/series', :object => @succeeding_series, :locals => {:title => "Succeeding series"} %>
+<%= render :partial => 'relations/series', :object => @succeeding_series, :locals => {:title => "Succeeding series", :browse_uri => "#{current_uri}/succeeding"} %>
 <% end %>
 
 <% if @related_series.first %>
-<%= render :partial => 'relations/series', :object => @related_series, :locals => {:title => "Related series"} %>
+<%= render :partial => 'relations/series', :object => @related_series, :locals => {:title => "Related series", :browse_uri => "#{current_uri}/related"} %>
 <% end %>
 
 <% if @items.first %>
-<%= render :partial => 'relations/items', :object => @items, :locals => {:title => "Items in this series"} %>
+<%= render :partial => 'relations/items', :object => @items, :locals => {:title => "Items in this series", :browse_uri => "#{current_uri}/items"} %>
 <% end %>
 
 </div>

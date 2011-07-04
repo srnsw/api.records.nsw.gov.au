@@ -2,12 +2,13 @@
 <div class="entity_data">
 <%= make_title @ministry.Ministry_title %>
 <%= simple_field "Date range", @ministry.date_range %>
+<% current_uri = request.env['PATH_INFO'] %>
 </div>
 
 <div class="entity_relations">
 
 <% if @portfolios.first %>
-<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios in this ministry"} %>
+<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios in this ministry", :browse_uri => "#{current_uri}/portfolios"} %>
 <% end %>
 
 </div>
