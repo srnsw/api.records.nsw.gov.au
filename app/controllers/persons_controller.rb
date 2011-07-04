@@ -16,7 +16,7 @@ class PersonsController < EntitiesController
     @ministries = @person.ministries.pages(params, :ministries_page, 5)
     @portfolios = @person.portfolios.pages(params, :portfolios_page, 5)
     @functions = @person.functions.pages(params, :functions_page, 5)
-    @series = @person.series.paginate(params, :series_page, 10)
+    @series = @person.series.pages(params, :series_page, 10)
   
     respond_to do |format|
       format.html
