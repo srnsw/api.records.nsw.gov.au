@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<eac_cpf_set>
+<page_details>
+  <totalResults><%= @agencies.page_details.total_results %></totalResults>
+  <startIndex><%= @agencies.page_details.offset %></startIndex>
+  <itemsPerPage><%= @agencies.page_details.per_page %></itemsPerPage>
+</page_details>
+<%= render :partial => "agencies/eac_cpf", :collection => @agencies %>
+</eac_cpf_set>
