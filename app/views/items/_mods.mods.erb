@@ -25,6 +25,6 @@
 </originInfo>
 <location>
   <physicalLocation>State Records NSW</physicalLocation>
-  <shelfLocator>NUA <%= mods.series.Series_number %><% if has_content? mods.Item_number_or_control_symbol %>, <%= mods.Item_number_or_control_symbol %><% end %></shelfLocator>
+  <shelfLocator>NUA <%= mods.series.Series_number %><% if mods.Item_number_or_control_symbol %>, <%= mods.Item_number_or_control_symbol %><% end %></shelfLocator>
   <url><%= url_for :action => "show", :controller => "items", :id => mods, :only_path => false %></url>
 </location>

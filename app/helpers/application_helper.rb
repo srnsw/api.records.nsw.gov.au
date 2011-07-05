@@ -10,14 +10,8 @@ module ApplicationHelper
     content_tag :h3, title.html_safe
   end
   
-  def has_contents? field
-    if field
-      field.strip.empty? ? false : true
-    end
-  end
-  
   def rich_field title, field
-    if has_contents? field
+    if field
       dic_title = content_tag :dt, title + ":"
       dic_def = content_tag :dd, field.html_safe.gsub(/\n/, '<br/>').gsub('<br><br/>', '<br/>')
       content_tag :dl, dic_title + dic_def
@@ -25,7 +19,7 @@ module ApplicationHelper
   end
   
   def simple_field title, field
-    if has_contents? field
+    if field
       dic_title = content_tag :dt, title + ":"
       dic_def = content_tag :dd, field.html_safe
       content_tag :dl, dic_title + dic_def
