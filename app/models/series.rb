@@ -10,7 +10,8 @@ class Series < Entity
   has_and_belongs_to_many :preceding_series, :class_name => "Series", :join_table => "series_link_preceding_series" ,  :foreign_key => "series_id", :association_foreign_key => "preceding_id"
   has_and_belongs_to_many :succeeding_series, :class_name => "Series", :join_table => "series_link_succeeding_series" , :foreign_key => "series_id", :association_foreign_key => "succeeding_id"
   has_and_belongs_to_many :related_series, :class_name => "Series", :join_table => "series_link_related_series", :foreign_key => "series_id", :association_foreign_key => "related_id"
-  
+  has_and_belongs_to_many :controlling_series, :class_name => "Series", :join_table => "series_link_controlling_series" ,  :foreign_key => "series_id", :association_foreign_key => "controlling_id"
+  has_and_belongs_to_many :controlled_series, :class_name => "Series", :join_table => "series_link_controlled_series" , :foreign_key => "series_id", :association_foreign_key => "controlled_id"
   searchable do 
     text :Series_title, :boost => 2
     text :description, :using => :Descriptive_note, :stored => true

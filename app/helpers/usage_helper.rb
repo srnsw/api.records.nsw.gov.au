@@ -24,72 +24,26 @@ module UsageHelper
     	"authority or jurisdiction assigned to or assumed by an organisation. "\
     	"Functions derive from mandates usually given in legislation. Functions "\
     	"can be permissive or prescriptive. They constitute the principal themes of "\
-    	"business of any organisation.", "1", 
-      [['activities', 'Activity', 'activities comprising a particular function', '1'],
-      ['agencies', 'Agency', 'agencies exercising a particular function', '1'],
-      ['persons', 'Person', 'persons exercising a particular function', '1']]
-      ],
+    	"business of any organisation.", "1"],
 		  ["Activity", "An activity is a part of a function. Activities provide more"\
 		  " specific functional context for record series than can be provided"\
-		  "be provided by a function.", "1",
-      [['functions', 'Function', 'functions containing a particular activity', '1'],
-      ['series', 'Series', 'series documenting a particular activity', '1']]
-      ],
+		  "be provided by a function.", "1"],
 		  ["Agency", "﻿An agency is an administrative or business unit which has "\
-		  "responsibility for carrying out some designated activity.",  "1",
-      [['preceding', 'Agency', 'agencies preceding a particular agency', '1'],
-      ['succeeding', 'Agency', 'agencies succeeding a particular agency', '1'],
-      ['superior', 'Agency', 'agencies superior to a particular agency', '1'],
-      ['subordinate', 'Agency', 'agencies subordinate to a particular agency', '1'],
-      ['related', 'Agency', 'agencies related to a particular agency', '7'],
-      ['functions', 'Function', 'functions exercised by a particular agency', '1'],
-      ['organisations', 'Organisation', 'organisations controlling a particular agency', '1'],
-      ['persons', 'Person', 'persons related to a particular agency', '23'],
-      ['series_created', 'Series', 'series created by a particular agency', '1'],
-      ['series_controlled', 'Series', 'series controlled by a particular agency', '1']]
-      ],
+		  "responsibility for carrying out some designated activity.",  "1"],
 			["Person", "A person is an individual who creates records, usually in "\
 			"an official capacity, but whose records have not been maintained in "\
-			"the records of the associated agency.", "2",
-      [['agencies', 'Agency', 'agencies related to a particular person', '69'],
-      ['ministries', 'Ministry', 'ministries containing a particular person', '69'],
-      ['portfolios', 'Portfolio', 'portfolios held by a particular person', '69'],
-      ['functions', 'Function', 'functions exercised by a particular person', '69'],
-      ['series', 'Series', 'series created by a particular person', '69']]
-      ],
+			"the records of the associated agency.", "2"],
 			["Organisation", "An organisation is a whole government, municipal "\
 			"council, incorporated company, church or other body that is generally "\
 			"regarded as independent and autonomous in the performance of its "\
-			"normal functions.", "1",
-      [['preceding', 'Organisation', 'organisations preceding a particular organisation', '2'],
-      ['succeeding', 'Organisation', 'organisations succeeding a particular organisation', '1'],
-      ['agencies', 'Agency', 'agencies controlled by a particular organisation', '1']]
-      ],
+			"normal functions.", "1"],
 			["Ministry", "A ministry is the body of ministers who hold warrants "\
 			"from the Head of State as members of the Executive Council. A ministry "\
 			"comprises a number of portfolios. A ministry is often named for the Premier "\
-			"who led it. Coalition ministries are often named after both leaders.", "1",
-      [['portfolios', 'Portfolio', 'portfolios in a particular ministry', '1']]],
-      ["Portfolio", "A portfolio is the responsibility, or combination of responsibilities, "\
-      "assigned to a particular minister. Portfolios administer agencies.", "2",
-      [['preceding', 'Porfolio', 'portfolios preceding a particular portfolio', '12'],
-      ['succeeding', 'Porfolio', 'porfolios succeeding a particular portfolio', '2'],
-      ['ministries', 'Ministry', 'ministries containing a particular porfolio', '2'],
-      ['persons', 'Person', 'ministers appointed to a particular portfolio', '2'],
-      ['agencies', 'Agency', 'agencies administered through a particular portfolio', '2']]
-      ],
+			"who led it. Coalition ministries are often named after both leaders.", "1"],
 			["Series", "A record series is a group of (one or more) record items "\
 			"accumulated by an agency or person which have a common identity "\
-			"and system of control, and are generally in the same format.", "1",
-      [['persons', 'Person', 'persons responsible for creating a particular series', '1'],
-      ['agencies_creating', 'Agency', 'agencies responsible for creating a particular series', '13660'],
-      ['agencies_controlling', 'Agency', 'agencies controlling a particular series', '1', '13660'],
-      ['activities', 'Activity', 'activities documented by a particular series', '1'],
-      ['preceding', 'Series', 'series preceding a particular series', '1'],
-      ['succeeding', 'Series', 'series succeeding a particular series', '1'],
-      ['related', 'Series', 'series related to a particular series', '13660'],
-      ['items', 'Item', 'items in a particular series', '13660']]
-      ],
+			"and system of control, and are generally in the same format.", "13660", "Item"],
 			["Item", "A record item is an individual unit within a record series, "\
 			"and the smallest entity. A record item may be in any format:"\
 			" (for example) a file, card, volume, plan or drawing, photograph "\
@@ -175,21 +129,26 @@ module UsageHelper
       content += title_description entity[0] + "/[:id]", "Returns " + description[0].downcase + " with identifier :id."
       example_path = entity[0] + "/" + description[2]
       content += formats_documentation formats, Entities::SCHEMAS, example_path
-      # check if this entity has any methods for associated entities
-      # associations are arrays of form: [route, Entity, description, example path (an id)]
-      if associations = description[3]
-        associations.each do |association|
-          associated_formats = FORMATS
-          associated_formats += Entities::FORMATS[association[1]] if Entities::FORMATS[association[1]]
-          # documentation for method to acquire list of associated entities
-          content += title_description entity[0] + "/[:id]" + "/" + association[0],
-            "Returns a list of " + association[2] + "."
-          content += formats_documentation associated_formats, Entities::SCHEMAS,
-            entity[0] + "/" + association[3] + "/" + association[0]
-          content += params_documentation PARAMS
-        end
+      # check if this entity has any methods for associated entities (at the
+      # moment just /series/[:id]/items)
+      if association = description[3]
+        associated_entity = ApplicationHelper::ENTITIES[association]
+        associated_formats = FORMATS
+        associated_formats += Entities::FORMATS[association] if Entities::FORMATS[association]
+        # documentation for method to acquire list of associated entities
+        content += title_description entity[0] + "/[:id]" + "/" + associated_entity[0],
+          "Returns a list of " + associated_entity[0] + " within a particular " + description[0].downcase + "."
+        content += formats_documentation associated_formats, Entities::SCHEMAS,
+          entity[0] + "/" + description[2] + "/" + associated_entity[0]
+        content += params_documentation PARAMS
+        # documentation for method to acquire a single associated entity
+        content += title_description entity[0] + "/[:id]" + "/" + associated_entity[0] + "/[:number]",
+        	"Returns the nth " + association.downcase + " within a particular " + description[0].downcase + "."
+        content += formats_documentation associated_formats,  Entities::SCHEMAS,
+          entity[0] + "/" + description[2] + "/" + associated_entity[0] + "/1"
       end   
     end
     content.html_safe
   end
 end
+

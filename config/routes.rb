@@ -138,6 +138,8 @@ Collection::Application.routes.draw do
       get 'related'
       get 'activities'
       get 'persons'
+	  get 'controlling'
+	  get 'controlled'
     end
   end
 end
