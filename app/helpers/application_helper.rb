@@ -2,6 +2,11 @@ module ApplicationHelper
   ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'group.png'], 'Ministry' => ['ministries', 'group.png'], 'Series' => ['series', 'folder_page.png'], 'Portfolio' => ['portfolios', 'folder_page.png'], 'Item' => ['items', 'page.png']} 
   ENTITY_CONTROLLERS = {'functions' => 'Function', 'activities' => 'Activity', 'agencies' => 'Agency', 'persons' => 'Person', 'organisations' => 'Organisation', 'ministries' => 'Ministry', 'series' => 'Series', 'items' => 'Item', 'portfolios' => 'Portfolio'}
 
+  # used in OAI layout and EAC-CPF views
+  def utcdatetime
+    Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+  end
+
   def make_header entity
     content_tag :h1, entity
   end

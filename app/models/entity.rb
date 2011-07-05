@@ -26,6 +26,15 @@ extend SRNSW::Pages
     date_string self.Start_date_qualifier, self.Start_date, self.End_date_qualifier, self.End_date
   end
   
+  # used in eac-cpf views
+  def date_start
+    parse_date(self.Start_date_qualifier, self.Start_date)
+  end
+  
+  def date_end
+    parse_date(self.End_date_qualifier, self.End_date)
+  end
+  
   def date_string start_qual, start_date, end_qual=nil, end_date=nil
     date_string = String.new
     start_date = parse_date(start_qual, start_date)

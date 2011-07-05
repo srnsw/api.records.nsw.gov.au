@@ -1,10 +1,6 @@
 module OaiHelper
 include XmlHelper
 
-def utcdatetime
-  Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
-end
-
 # create an OAI ID from a model name and id
 def oai_id class_name, id
   "oai:" + request.host + ":" + to_set_spec(class_name) + "/" + id.to_s # id can be either passed as string or integer
