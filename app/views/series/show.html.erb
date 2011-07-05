@@ -47,6 +47,14 @@
 <%= render :partial => 'relations/series', :object => @related_series, :locals => {:title => "Related series", :browse_uri => "#{current_uri}/related"} %>
 <% end %>
 
+<% if @controlling_series.first %>
+<%= render :partial => 'relations/series', :object => @controlling_series, :locals => {:title => "Controlling series", :browse_uri => "#{current_uri}/controlling"} %>
+<% end %>
+
+<% if @controlled_series.first %>
+<%= render :partial => 'relations/series', :object => @controlled_series, :locals => {:title => "Controlled series", :browse_uri => "#{current_uri}/controlled"} %>
+<% end %>
+
 <% if @items.first %>
 <%= render :partial => 'relations/items', :object => @items, :locals => {:title => "Items in this series", :browse_uri => "#{current_uri}/items"} %>
 <% end %>
