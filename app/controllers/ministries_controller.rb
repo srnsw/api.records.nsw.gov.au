@@ -25,7 +25,7 @@ class MinistriesController < EntitiesController
     @portfolios = ministry.portfolios.pages(params)
 	
     respond_to do |format|
-      format.html {render :template => 'portfolios/index'}
+      format.any {render :action => 'portfolios/index'}
       format.xml {render :xml => to_paginated_xml(@portfolios)}
       format.json {render :json => to_paginated_json(@portfolios)}
     end

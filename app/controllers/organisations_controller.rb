@@ -29,7 +29,7 @@ class OrganisationsController < EntitiesController
     @organisations = organisation.preceding.pages(params)
 	
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@organisations)}
       format.json {render :json => to_paginated_json(@organisations)}
     end
@@ -40,7 +40,7 @@ class OrganisationsController < EntitiesController
     @organisations = organisation.succeeding.pages(params)
 	
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@organisations)}
       format.json {render :json => to_paginated_json(@organisations)}
     end
@@ -51,7 +51,7 @@ class OrganisationsController < EntitiesController
    @agencies = organisation.agencies.pages(params)
    
    respond_to do |format|
-      format.html {render :template => 'agencies/index'}
+      format.any {render :action => 'agencies/index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end

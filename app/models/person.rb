@@ -38,6 +38,7 @@ class Person < Entity
     name += self.Given_names + " " if self.Given_names
     name += self.Surname if self.Surname
     name += " (" + self.Postnomial_honorifics + ")" if self.Postnomial_honorifics
+    name
   end
   
   def date_range

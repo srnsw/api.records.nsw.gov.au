@@ -1,0 +1,59 @@
+<eac-cpf xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+<control>
+  <recordId><%= url_for :action => "show", :controller => "agencies", :id => eac_cpf.Agency_number, :only_path => false %>.eac_cpf</recordId>
+  <maintenanceStatus>new</maintenanceStatus>
+  <maintenanceAgency>
+    <agencyCode>nla.party-477539</agencyCode>
+    <agencyName>State Records Authority of New South Wales</agencyName>
+  </maintenanceAgency>
+  <languageDeclaration>
+    <language languageCode="eng">English</language>
+    <script scriptCode="Latn">Latin</script>
+  </languageDeclaration>
+  <maintenanceHistory>
+    <maintenanceEvent>
+      <eventType>created</eventType>
+      <% time_now = utcdatetime %>
+      <eventDateTime standardDateTime="<%= time_now %>"><%= time_now %></eventDateTime>
+      <agentType>machine</agentType>
+      <agent>created</agent>
+    </maintenanceEvent>
+  </maintenanceHistory>
+</control>
+<cpfDescription>
+  <identity>
+    <entityId><%= url_for :action => "show", :controller => "agencies", :id => eac_cpf.Agency_number, :only_path => false %></entityId>
+    <entityType>corporateBody</entityType>
+    <nameEntry>
+      <part>eac_cpf.Agency_title</part>
+    </nameEntry>
+  </identity>
+  <description>
+    <% fromDate = date_simple(eac_cpf.Start_date) %>
+    <% toDate = date_simple(eac_cpf.End_date) %>
+    <% if fromDate && toDate %>
+      <existDates>
+        <dateRange>
+          <fromDate standardDate="<%= fromDate %>"><%= fromDate %><%= eac_cpf.date_start %></fromDate>
+          <toDate standardDate="<%= toDate %>"><%= eac_cpf.date_end %></toDate>
+        </dateRange>
+      </existDates>
+    <% elsif fromDate %>
+      <existDates>
+        <date standardDate="<%= fromDate %>" notBefore="<%= fromDate %>"><%= fromDate %><%= eac_cpf.date_start %></date>
+      </existDates>
+    <% elsif toDate %>
+      <existDates>
+        <date standardDate="<%= toDate %>" notAfter="<%= fromDate %>"><%= eac_cpf.date_end %></date>
+      </existDates>
+    <% end %>
+    <biogHist>
+    
+    </biogHist>
+
+  </description>
+  <relations>
+  
+  </relations>
+</cpfDescription>
+</eac-cpf>

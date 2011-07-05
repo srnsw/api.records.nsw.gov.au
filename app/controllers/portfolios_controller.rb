@@ -30,7 +30,7 @@ class PortfoliosController < EntitiesController
     @ministries = portfolio.ministries.pages(params)
     
     respond_to do |format|
-      format.html {render :template => 'ministries/index'}
+      format.any {render :action => 'ministries/index'}
       format.xml {render :xml => to_paginated_xml(@ministries)}
       format.json {render :json => to_paginated_json(@ministries)}
     end
@@ -41,7 +41,7 @@ class PortfoliosController < EntitiesController
     @agencies = portfolio.agencies.pages(params)
     
     respond_to do |format|
-      format.html {render :template => 'agencies/index'}
+      format.any {render :action => 'agencies/index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -52,7 +52,7 @@ class PortfoliosController < EntitiesController
     @persons = portfolio.persons.pages(params)
     
     respond_to do |format|
-      format.html {render :template => 'persons/index'}
+      format.any {render :action => 'persons/index'}
       format.xml {render :xml => to_paginated_xml(@persons)}
       format.json {render :json => to_paginated_json(@persons)}
     end
@@ -63,7 +63,7 @@ class PortfoliosController < EntitiesController
     @portfolios = portfolio.preceding.pages(params)
     
     respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@portfolios)}
       format.json {render :json => to_paginated_json(@portfolios)}
     end
@@ -74,7 +74,7 @@ class PortfoliosController < EntitiesController
     @portfolios = portfolio.succeeding.pages(params)
     
     respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@portfolios)}
       format.json {render :json => to_paginated_json(@portfolios)}
     end
