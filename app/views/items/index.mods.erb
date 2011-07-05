@@ -2,7 +2,7 @@
 <modsCollection xmlns:xlink="http://www.w3.org/1999/xlink" version="3.4" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.loc.gov/mods/v3" xsi:schemaLocation="http://www.loc.gov/mods/v3 http://www.loc.gov/standards/mods/v3/mods-3-4.xsd">
 <% @items.each do |item| %>
 <mods>
-  <%= render :partial => "mods", :object => item %>
+  <%= render :partial => "items/mods", :object => item %>
 </mods>
 <% end %>
 </modsCollection>
