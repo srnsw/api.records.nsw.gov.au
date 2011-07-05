@@ -40,7 +40,7 @@ class AgenciesController < EntitiesController
 	  @agencies = agency.preceding.pages(params)
 	
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -51,7 +51,7 @@ class AgenciesController < EntitiesController
     @agencies = agency.succeeding.pages(params)
     
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -62,7 +62,7 @@ class AgenciesController < EntitiesController
     @agencies = agency.superiors.pages(params)
   
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -73,7 +73,7 @@ class AgenciesController < EntitiesController
     @agencies = agency.subordinates.pages(params)
   
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -84,7 +84,7 @@ class AgenciesController < EntitiesController
     @agencies = agency.related.pages(params)
   
 	  respond_to do |format|
-      format.html {render :action => 'index'}
+      format.any {render :action => 'index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -95,7 +95,7 @@ class AgenciesController < EntitiesController
     @functions = agency.functions.pages(params)
   
 	  respond_to do |format|
-      format.html {render :template => 'functions/index'}
+      format.any {render :action => 'functions/index'}
       format.xml {render :xml => to_paginated_xml(@functions)}
       format.json {render :json => to_paginated_json(@functions)}
     end
@@ -106,7 +106,7 @@ class AgenciesController < EntitiesController
     @organisations = agency.organisations.pages(params)
   
 	  respond_to do |format|
-      format.html {render :template => 'organisations/index'}
+      format.any {render :action => 'organisations/index'}
       format.xml {render :xml => to_paginated_xml(@organisations)}
       format.json {render :json => to_paginated_json(@organisations)}
     end
@@ -117,7 +117,7 @@ class AgenciesController < EntitiesController
     @persons = agency.persons.pages(params)
   
 	  respond_to do |format|
-      format.html {render :template => 'persons/index'}
+      format.any {render :action => 'persons/index'}
       format.xml {render :xml => to_paginated_xml(@persons)}
       format.json {render :json => to_paginated_json(@persons)}
     end
@@ -128,7 +128,7 @@ class AgenciesController < EntitiesController
     @series = agency.series_created.pages(params)
   
 	  respond_to do |format|
-      format.html {render :template => 'series/index'}
+      format.any {render :action => 'series/index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end
@@ -139,7 +139,7 @@ class AgenciesController < EntitiesController
     @series = agency.series_controlled.pages(params)
   
 	  respond_to do |format|
-      format.html {render :template => 'series/index'}
+      format.any {render :action => 'series/index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end

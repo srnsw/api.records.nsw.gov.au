@@ -29,7 +29,7 @@ class PersonsController < EntitiesController
      person = Person.find(params[:id])
      @functions = person.functions.pages(params)
      respond_to do |format|
-        format.html {render :template => 'functions/index'}
+        format.any {render :action => 'functions/index'}
         format.xml {render :xml => to_paginated_xml(@functions)}
         format.json {render :json => to_paginated_json(@functions)}
       end
@@ -39,7 +39,7 @@ class PersonsController < EntitiesController
      person = Person.find(params[:id])
      @agencies = person.agencies.pages(params)
      respond_to do |format|
-        format.html {render :template => 'agencies/index'}
+        format.any {render :action => 'agencies/index'}
         format.xml {render :xml => to_paginated_xml(@agencies)}
         format.json {render :json => to_paginated_json(@agencies)}
       end
@@ -49,7 +49,7 @@ class PersonsController < EntitiesController
     person = Person.find(params[:id])
     @portfolios = person.portfolios.pages(params)
     respond_to do |format|
-      format.html {render :template => 'portfolios/index'}
+      format.any {render :action => 'portfolios/index'}
       format.xml {render :xml => to_paginated_xml(@portfolios)}
       format.json {render :json => to_paginated_json(@portfolios)}
     end
@@ -59,7 +59,7 @@ class PersonsController < EntitiesController
     person = Person.find(params[:id])
     @ministries = person.ministries.pages(params)
     respond_to do |format|
-      format.html {render :template => 'ministries/index'}
+      format.any {render :action => 'ministries/index'}
       format.xml {render :xml => to_paginated_xml(@ministries)}
       format.json {render :json => to_paginated_json(@ministries)}
     end
@@ -69,7 +69,7 @@ class PersonsController < EntitiesController
     person = Person.find(params[:id])
     @series = person.series.pages(params)
     respond_to do |format|
-      format.html {render :template => 'series/index'}
+      format.any {render :action => 'series/index'}
       format.xml {render :xml => to_paginated_xml(@series)}
       format.json {render :json => to_paginated_json(@series)}
     end

@@ -27,7 +27,7 @@ class FunctionsController < EntitiesController
    function = Function.find(params[:id])
    @agencies = function.agencies.pages(params)
    respond_to do |format|
-      format.html {render :template => 'agencies/index'}
+      format.any {render :action => 'agencies/index'}
       format.xml {render :xml => to_paginated_xml(@agencies)}
       format.json {render :json => to_paginated_json(@agencies)}
     end
@@ -37,7 +37,7 @@ class FunctionsController < EntitiesController
    function = Function.find(params[:id])
    @persons = function.persons.pages(params)
    respond_to do |format|
-      format.html {render :template => 'persons/index'}
+      format.any {render :action => 'persons/index'}
       format.xml {render :xml => to_paginated_xml(@persons)}
       format.json {render :json => to_paginated_json(@persons)}
     end
@@ -47,7 +47,7 @@ class FunctionsController < EntitiesController
    function = Function.find(params[:id])
    @activities = function.activities.pages(params)
    respond_to do |format|
-      format.html {render :template => 'activities/index'}
+      format.any {render :action => 'activities/index'}
       format.xml {render :xml => to_paginated_xml(@activities)}
       format.json {render :json => to_paginated_json(@activities)}
     end
