@@ -7,5 +7,5 @@
   <% if opensearch.highlight(:description)%>
     <summary type="html"><%= opensearch.highlight(:description).format {|fragment| content_tag(:em, fragment)} %></summary>
   <% end %>
-  <updated><%= opensearch.modified %></updated>
+  <updated><%= opensearch.stored(:modified) %></updated>
 </entry>
