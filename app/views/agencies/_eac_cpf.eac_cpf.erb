@@ -1,4 +1,4 @@
-<eac-cpf xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
+<eac-cpf xmlns:xlink="http://www.w3.org/1999/xlink" xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
 <control>
   <recordId><%= url_for :action => "show", :controller => "agencies", :id => eac_cpf.Agency_number, :only_path => false %>.eac_cpf</recordId>
   <maintenanceStatus>new</maintenanceStatus>
@@ -31,29 +31,57 @@
   <description>
     <% fromDate = date_simple(eac_cpf.Start_date) %>
     <% toDate = date_simple(eac_cpf.End_date) %>
-    <% if fromDate && toDate %>
-      <existDates>
-        <dateRange>
-          <fromDate standardDate="<%= fromDate %>"><%= fromDate %><%= eac_cpf.date_start %></fromDate>
-          <toDate standardDate="<%= toDate %>"><%= eac_cpf.date_end %></toDate>
-        </dateRange>
-      </existDates>
-    <% elsif fromDate %>
-      <existDates>
-        <date standardDate="<%= fromDate %>" notBefore="<%= fromDate %>"><%= fromDate %><%= eac_cpf.date_start %></date>
-      </existDates>
-    <% elsif toDate %>
-      <existDates>
-        <date standardDate="<%= toDate %>" notAfter="<%= fromDate %>"><%= eac_cpf.date_end %></date>
-      </existDates>
+    <% if fromDate or toDate %>
+    <existDates>
+      <%= render :partial => 'agencies/dates', :locals => {:fromDate => fromDate, :dateStart => eac_cpf.date_start, :toDate => toDate, :dateEnd => eac_cpf.date_end} %>
+    </existDate>
+    <% end %>
+    <% creation = eac_cpf.Creation %>
+    <% abolition = eac_cpf.Abolition %>
+    <% if creation or abolition %>
+    <mandates>
+      <% if creation %>
+      <mandate>
+        <citation><%= creation %></citation>
+        <descriptiveNote><p>Legislation - Creation</p></descriptiveNote>
+      </mandate>
+      <% end %>
+      <% if abolition %>
+      <mandate>
+        <citation><%= abolition %></citation>
+        <descriptiveNote><p>Legislation - Abolition</p></descriptiveNote>
+      </mandate>
+      <% end %>
+    </mandates>
     <% end %>
     <biogHist>
-    
+      <%= EacCpfHelper.to_eac_formatting eac_cpf.Administrative_history_note %>
     </biogHist>
-
   </description>
   <relations>
-  
+    <% eac_cpf.preceding.each do |preceding| %>
+      <%= render :partial => 'agencies/relation', :object => preceding, :locals => {:relationship_type => "temporal-earlier"} %>
+    <% end %>
+    <% eac_cpf.succeeding.each do |succeeding| %>
+      <%= render :partial => 'agencies/relation', :object => preceding, :locals => {:relationship_type => "temporal-earlier"} %><%= render :partial => 'relations', :object => succeeding, :locals => {:relationship_type => "temporal-later"} %>
+    <% end %>
+    <% eac_cpf.superiors.each do |superior| %>
+      <%= render :partial => 'agencies/relation', :object => superior, :locals => {:relationship_type => "hierarchical-parent"} %>
+    <% end %>
+    <% eac_cpf.subordinates.each do |subordinate| %>
+      <%= render :partial => 'agencies/relation', :object => subordinate, :locals => {:relationship_type => "hierarchical-child"} %>
+    <% end %>
+    <% eac_cpf.related.each do |related| %>
+      <%= render :partial => 'agencies/relation', :object => related, :locals => {:relationship_type => "associative"} %>
+    <% end %>
+    <% eac_cpf.functions.each do |function| %>
+      <functionRelation functionRelationType="performs" xlink:href="<%= url_for :action => "show", :controller => "functions", :id => function.Function_number, :only_path => false%>">
+        <relationEntry><%= function.Function_title %></relationEntry>
+        <%= render :partial => 'agencies/dates', :locals => {:fromDate => date_simple(function.Start_date), :dateStart => date_simple(function.Start_date), :toDate => nil, :dateEnd => nil} %>
+        <date standardDate="<%= funcDate %>" notBefore="<%= funcDate %>"><%= funcDate %></date>
+        <descriptiveNote><%= EacCpfHelper.to_eac_formatting function.Descriptive_note %></descriptiveNote>
+      </functionRelation>
+    <% end %>
   </relations>
 </cpfDescription>
 </eac-cpf>
