@@ -5,7 +5,7 @@
 <%= make_header "Series" %>
 <div class="entity_data">
 <%= make_title @series.Series_title %>
-<%= simple_field "Date range", @series.date_range %>
+<%= simple_field "Date range", @series.date_range unless @series.contents_date_range %>
 <%= simple_field "Contents date range", @series.contents_date_range %>
 <%= rich_field "Descriptive note", @series.Descriptive_note %>
 <%= simple_field "Format", @series.Format %>
