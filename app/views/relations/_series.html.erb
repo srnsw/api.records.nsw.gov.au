@@ -1,9 +1,9 @@
 <div class="relations_item">
-<%= link_header title, browse_uri %>
+<%= content_tag :h4, title %>
 <% series.each do |s| %>
 <div class="collection_search_result">
 <%= link_i s.Series_title, s %>
 </div>
 <% end %>
-<%= page_navigation(series.page_details) %>
+<%= page_navigation(series.page_details, browse_uri) %>
 </div>

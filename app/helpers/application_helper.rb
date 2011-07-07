@@ -68,12 +68,11 @@ module ApplicationHelper
     end
   end
   
-  def link_header text, link
-    sub_uri = make_link text, link
-    content_tag :h4, sub_uri
-  end
+	def link_browse uri
+		link_to image_tag("folder_explore.png", {:alt=> "browse"}), uri
+	end
   
-  def link_p text, entity
+	def link_p text, entity
     link = make_link text, entity
     content_tag :p, link
   end
@@ -103,7 +102,7 @@ module ApplicationHelper
   end
   
   # custom page navigation (see SRNSW.rb)
-  def page_navigation page_details
+  def page_navigation page_details, browse_uri=nil
     if page_details.needs_navigation? 
       showing = page_details.showing
       if page_details.prev_page
@@ -117,6 +116,7 @@ module ApplicationHelper
       content = prev_image ? prev_image : String.new
       content += showing
       content += next_image if next_image
+			content += " ".concat(link_browse browse_uri) if browse_uri
       content_tag :p, content, {:class => "collection_navigation"}, false
     end
   end
