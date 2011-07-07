@@ -1,11 +1,10 @@
 <% if fromDate && toDate %>
-    <dateRange>
-       <fromDate standardDate="<%= fromDate %>"><%= fromDate %><%= dateStart %></fromDate>
-        <toDate standardDate="<%= toDate %>"><%= dateEnd %></toDate>
-        </dateRange>
-      </existDates>
-    <% elsif fromDate %>
-        <date standardDate="<%= fromDate %>" notBefore="<%= fromDate %>"><%= fromDate %><%= dateStart %></date>
-    <% elsif toDate %>
-        <date standardDate="<%= toDate %>" notAfter="<%= fromDate %>"><%= dateEnd %></date>
-    <% end %>
+  <dateRange>
+    <fromDate standardDate="<%= fromDate %>"><%= dateStart %></fromDate>
+    <toDate standardDate="<%= toDate %>"><%= dateEnd %></toDate>
+  </dateRange>
+<% elsif fromDate %>
+  <date standardDate="<%= fromDate %>" notBefore="<%= fromDate %>"><%= dateStart %></date>
+<% elsif toDate %>
+  <date standardDate="<%= toDate %>" notAfter="<%= toDate %>"><%= dateEnd %></date>
+<% end %>
