@@ -92,7 +92,12 @@ Collection::Application.routes.draw do
     end
   end
   
-  resources :items, :only => [:index, :show]
+  resources :items, :only => [:index, :show] do
+		member do
+			get 'agencies'
+			get 'persons'
+		end
+	end
   
   resources :ministries, :only => [:index, :show] do
     member do

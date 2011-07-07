@@ -5,11 +5,30 @@
 <%= make_header "Item" %>
 <div class="entity_data">
 <%= make_title @item.Item_title %>
-<%= link_field "Series", @item.series.Series_title, @item.series %>
 <%= simple_field "Item number", @item.Item_number_or_control_symbol %>
 <%= simple_field "Date range", @item.date_range %>
 <%= rich_field "Descriptive note", @item.Descriptive_Note %>
 <%= simple_field "Access Direction", @item.AccessDirectionNo %>
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
+<% current_uri = request.env['PATH_INFO'] %>
+</div>
+
+<div class="entity_relations">
+
+<div class="relations_item">
+<%= link_header "Series", "#{current_uri}/series" %>
+<div class="collection_search_result">
+<%= link_i @item.series.Series_title, @item.series %>
+</div>
+</div>
+
+<% if @creating_agencies.first %>
+<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:title => "Creating agency", :browse_uri => "#{current_uri}/agencies"} %>
+<% end %>
+
+<% if @persons.first %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Creating person", :browse_uri => "#{current_uri}/persons"} %>
+<% end %>
+
 </div>

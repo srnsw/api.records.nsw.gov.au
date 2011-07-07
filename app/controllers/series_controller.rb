@@ -14,17 +14,17 @@ class SeriesController < EntitiesController
   def show
 	@series = Series.find(params[:id])
 	  
-	@creating_agencies = @series.creating_agencies.pages(params, :creating_agencies_page, 5)
-	@persons = @series.persons.pages(params, :persons_page, 5)
+		@creating_agencies = @series.creating_agencies.pages(params, :creating_agencies_page, 5)
+		@persons = @series.persons.pages(params, :persons_page, 5)
     @controlling_agencies = @series.controlling_agencies.pages(params, :controlling_agencies_page, 5)
 	  
     @activities = @series.activities.pages(params, :activities_page, 5)
     
     @preceding_series = @series.preceding_series.pages(params, :preceding_series_page, 5)
-	@succeeding_series = @series.succeeding_series.pages(params, :succeeding_series_page, 5)
+		@succeeding_series = @series.succeeding_series.pages(params, :succeeding_series_page, 5)
     @related_series = @series.related_series.pages(params, :related_series_page, 5)
     @controlling_series = @series.controlling_series.pages(params, :controlling_series_page, 5)
-	@controlled_series = @series.controlled_series.pages(params, :controlled_series_page, 5)
+		@controlled_series = @series.controlled_series.pages(params, :controlled_series_page, 5)
 	
     @items = Item.where(:Series_number => params[:id]).pages(params, :items_page, 10)
     
