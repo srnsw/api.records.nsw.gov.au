@@ -1,9 +1,9 @@
 <eac-cpf xmlns="urn:isbn:1-931666-33-4" xmlns:xlink="http://www.w3.org/1999/xlink"	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"	xsi:schemaLocation="urn:isbn:1-931666-33-4 http://eac.staatsbibliothek-berlin.de/schema/cpf.xsd">
 <control>
-  <recordId><%= url_for :action => "show", :controller => "agencies", :id => eac_cpf.Agency_number, :only_path => false %>.eac_cpf</recordId>
+  <recordId>agencies:<%= eac_cpf.Agency_number %>.eac_cpf</recordId>
   <maintenanceStatus>new</maintenanceStatus>
   <maintenanceAgency>
-    <agencyCode>nla.party-477539</agencyCode>
+    <agencyCode>AU-ANL:477539</agencyCode>
     <agencyName>State Records Authority of New South Wales</agencyName>
   </maintenanceAgency>
   <languageDeclaration>
