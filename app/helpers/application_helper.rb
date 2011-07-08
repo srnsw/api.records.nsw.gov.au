@@ -116,7 +116,7 @@ module ApplicationHelper
       content = prev_image ? prev_image : String.new
       content += showing
       content += next_image if next_image
-			content += link_browse browse_uri if browse_uri
+      content += " ".html_safe.concat(link_browse browse_uri) if browse_uri
       content_tag :p, content, {:class => "collection_navigation"}, false
     end
   end
