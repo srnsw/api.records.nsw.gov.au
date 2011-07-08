@@ -1,4 +1,4 @@
 <cpfRelation cpfRelationType="<%= relationship_type %>" xlink:href="<%= url_for :action => "show", :controller => "agencies", :id => relation.Agency_number, :only_path => false%>">
   <relationEntry><%= relation.Agency_title %></relationEntry>
-  <%= render :partial => 'agencies/dates', :locals => {:fromDate => date_simple(relation.Start_date), :dateStart => relation.date_start, :toDate => date_simple(relation.End_date), :dateEnd => relation.date_end} %>
+  <%= render :partial => 'agencies/dates.eac_cpf.erb', :locals => {:fromDate => date_simple(relation.Start_date), :dateStart => relation.date_start, :toDate => date_simple(relation.End_date), :dateEnd => relation.date_end} %>
 </cpfRelation>

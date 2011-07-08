@@ -33,7 +33,7 @@
     <% toDate = date_simple(eac_cpf.End_date) %>
     <% if fromDate or toDate %>
     <existDates>
-      <%= render :partial => 'agencies/dates', :locals => {:fromDate => fromDate, :dateStart => eac_cpf.date_start, :toDate => toDate, :dateEnd => eac_cpf.date_end} %>
+      <%= render :partial => 'agencies/dates.eac_cpf.erb', :locals => {:fromDate => fromDate, :dateStart => eac_cpf.date_start, :toDate => toDate, :dateEnd => eac_cpf.date_end} %>
     </existDates>
     <% end %>
     <% creation = eac_cpf.Creation %>
@@ -60,24 +60,24 @@
   </description>
   <relations>
     <% eac_cpf.preceding.each do |preceding| %>
-      <%= render :partial => 'agencies/relation', :object => preceding, :locals => {:relationship_type => "temporal-earlier"} %>
+      <%= render :partial => 'agencies/relation.eac_cpf.erb', :object => preceding, :locals => {:relationship_type => "temporal-earlier"} %>
     <% end %>
     <% eac_cpf.succeeding.each do |succeeding| %>
-      <%= render :partial => 'agencies/relation', :object => succeeding, :locals => {:relationship_type => "temporal-later"} %>
+      <%= render :partial => 'agencies/relation.eac_cpf.erb', :object => succeeding, :locals => {:relationship_type => "temporal-later"} %>
     <% end %>
     <% eac_cpf.superiors.each do |superior| %>
-      <%= render :partial => 'agencies/relation', :object => superior, :locals => {:relationship_type => "hierarchical-parent"} %>
+      <%= render :partial => 'agencies/relation.eac_cpf.erb', :object => superior, :locals => {:relationship_type => "hierarchical-parent"} %>
     <% end %>
     <% eac_cpf.subordinates.each do |subordinate| %>
-      <%= render :partial => 'agencies/relation', :object => subordinate, :locals => {:relationship_type => "hierarchical-child"} %>
+      <%= render :partial => 'agencies/relation.eac_cpf.erb', :object => subordinate, :locals => {:relationship_type => "hierarchical-child"} %>
     <% end %>
     <% eac_cpf.related.each do |related| %>
-      <%= render :partial => 'agencies/relation', :object => related, :locals => {:relationship_type => "associative"} %>
+      <%= render :partial => 'agencies/relation.eac_cpf.erb', :object => related, :locals => {:relationship_type => "associative"} %>
     <% end %>
     <% eac_cpf.functions.each do |function| %>
       <functionRelation functionRelationType="performs" xlink:href="<%= url_for :action => "show", :controller => "functions", :id => function.Function_number, :only_path => false%>">
         <relationEntry><%= function.Function_title %></relationEntry>
-        <%= render :partial => 'agencies/dates', :locals => {:fromDate => date_simple(function.Start_date), :dateStart => date_simple(function.Start_date), :toDate => nil, :dateEnd => nil} %>
+        <%= render :partial => 'agencies/dates.eac_cpf.erb', :locals => {:fromDate => date_simple(function.Start_date), :dateStart => date_simple(function.Start_date), :toDate => nil, :dateEnd => nil} %>
         <descriptiveNote><%= EacCpfHelper.to_eac_formatting function.Descriptive_note %></descriptiveNote>
       </functionRelation>
     <% end %>
