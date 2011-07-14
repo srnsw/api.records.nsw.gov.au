@@ -1,3 +1,6 @@
 <%= render 'search' %>
 <p>If you are a developer, see the <%= link_to "API Documentation", {:action=> "index", :controller => "usage"} %>.</p>
 
+<% content_for :title do %>
+<% "State Records NSW API" %>
+<% end %>

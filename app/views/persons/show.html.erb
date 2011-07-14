@@ -1,3 +1,7 @@
+<% content_for :title do %>
+<% @person.name_long %>
+<% end %>
+
 <%= make_header "Person" %>
 <div class="entity_data">
 <%= make_title (@person.name_long) %>

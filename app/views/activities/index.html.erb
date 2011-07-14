@@ -3,3 +3,7 @@
 <%= link_p activity.Activity_title, activity %>
 <% end %>
 <%= page_navigation(@activities.page_details) %>
+
+<% content_for :title do %>
+<% "Activities" %>
+<% end %>

@@ -3,3 +3,7 @@
 <%= link_p organisation.Organisation_title, organisation %>
 <% end %>
 <%= page_navigation(@organisations.page_details) %>
+
+<% content_for :title do %>
+<% "Organisations" %>
+<% end %>

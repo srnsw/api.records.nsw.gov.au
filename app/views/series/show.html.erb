@@ -1,6 +1,11 @@
 <% content_for :head do %><link rel="unapi-server" type="application/xml" title="unAPI"
     href="<%= url_for(:action => 'index', :controller=> 'unapi', :only_path => false)%>" />
 <% end %>
+
+<% content_for :title do %>
+<% @series.Series_title %>
+<% end %>
+
 <abbr class="unapi-id" title="<%= url_for(:only_path => false) %>"></abbr>
 <%= make_header "Series" %>
 <div class="entity_data">

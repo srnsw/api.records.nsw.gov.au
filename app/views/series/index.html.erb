@@ -3,3 +3,7 @@
 <%= link_p series.Series_title, series %>
 <% end %>
 <%= page_navigation(@series.page_details) %>
+
+<% content_for :title do %>
+<% "Series" %>
+<% end %>

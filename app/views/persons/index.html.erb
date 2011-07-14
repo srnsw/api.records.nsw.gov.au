@@ -3,3 +3,7 @@
 <%= link_p person.name_short, person %>
 <% end %>
 <%= page_navigation(@persons.page_details) %>
+
+<% content_for :title do %>
+<% "Persons" %>
+<% end %>

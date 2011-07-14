@@ -3,3 +3,7 @@
 <%= link_p portfolio.Portfolio_title, portfolio %>
 <% end %>
 <%= page_navigation(@portfolios.page_details) %>
+
+<% content_for :title do %>
+<% "Portfolios" %>
+<% end %>

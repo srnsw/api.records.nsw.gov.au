@@ -3,3 +3,7 @@
 <%= link_p ministry.Ministry_title, ministry %>
 <% end %>
 <%= page_navigation(@ministries.page_details) %>
+
+<% content_for :title do %>
+<% "Ministries" %>
+<% end %>
