@@ -35,7 +35,7 @@ gem 'tiny_tds', '~> 0.4.5' #DB Connection
 gem 'activerecord-sqlserver-adapter', '~> 3.0.15' #SQLServer connection
 gem 'activesupport', '~> 3.0.3'
 gem 'arel', '~> 2.0.7'
-gem 'magic_multi_connections', '~> 1.2.1' #Multiple DB connections
+#gem 'magic_multi_connections', '~> 1.2.1' #Multiple DB connections
 gem "rake", "0.8.7"
 
 
