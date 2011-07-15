@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title> <%= yield :title %> </title>
+  <title><%= (title = yield :title) ? title : "api.records.nsw.gov.au" %></title>
   <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => 'opensearch', :format => 'xml') %>" title="State Records NSW search" />
   <%= stylesheet_link_tag 'srnsw' %>
   <%= stylesheet_link_tag 'api' %>
