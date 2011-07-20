@@ -35,7 +35,7 @@ module UsageHelper
       [['functions', 'Function', 'functions containing a particular activity', '1'],
       ['series', 'Series', 'series documenting a particular activity', '1']]
       ],
-		  ["Agency", "﻿An agency is an administrative or business unit which has "\
+		  ["Agency", "An agency is an administrative or business unit which has "\
 		  "responsibility for carrying out some designated activity.",  "1",
       [['preceding', 'Agency', 'agencies preceding a particular agency', '1'],
       ['succeeding', 'Agency', 'agencies succeeding a particular agency', '1'],
