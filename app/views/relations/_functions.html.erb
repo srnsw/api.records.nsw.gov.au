@@ -5,5 +5,5 @@
 <%= link_i function.Function_title, function %>
 </div>
 <% end %>
-<%= page_navigation(functions.page_details, browse_uri) %>
+<%= paginate functions, :param_name => param_name, :per_page => 5, :browse_uri => browse_uri %>
 </div>

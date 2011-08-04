@@ -2,7 +2,7 @@
 <% @ministries.each do |ministry| %>
 <%= link_p ministry.Ministry_title, ministry %>
 <% end %>
-<%= page_navigation(@ministries.page_details) %>
+<%= paginate @ministries, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Ministries" %>

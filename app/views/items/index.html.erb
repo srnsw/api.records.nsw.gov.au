@@ -2,7 +2,7 @@
 <% @items.each do |item| %>
 <%= link_p item.Item_title, item %>
 <% end %>
-<%= page_navigation(@items.page_details) %>
+<%= paginate @items, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Items" %>

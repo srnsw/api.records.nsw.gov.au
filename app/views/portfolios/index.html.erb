@@ -2,7 +2,7 @@
 <% @portfolios.each do |portfolio| %>
 <%= link_p portfolio.Portfolio_title, portfolio %>
 <% end %>
-<%= page_navigation(@portfolios.page_details) %>
+<%= paginate @portfolios, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Portfolios" %>

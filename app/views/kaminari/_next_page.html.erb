@@ -1,0 +1,4 @@
+<% unless current_page.last? %>
+  <%= link_to image_tag("resultset_next.png", {:alt=> "Next page"}), url%>
+<% end %>
+<%= link_to image_tag("folder_explore.png", {:alt=> "browse"}), browse_uri if browse_uri%>

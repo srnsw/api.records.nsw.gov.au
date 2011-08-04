@@ -71,7 +71,13 @@ module ApplicationHelper
 	def link_browse uri
 		link_to image_tag("folder_explore.png", {:alt=> "browse"}), uri
 	end
-  
+	
+	def link_tag title, lnk, entityname
+		linktag = link_to title.html_safe, lnk
+		img_link linktag, entityname
+		
+	end
+	
 	def link_p text, entity
     link = make_link text, entity
     content_tag :p, link

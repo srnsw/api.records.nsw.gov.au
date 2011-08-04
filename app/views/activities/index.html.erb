@@ -2,7 +2,7 @@
 <% @activities.each do |activity| %>
 <%= link_p activity.Activity_title, activity %>
 <% end %>
-<%= page_navigation(@activities.page_details) %>
+<%= paginate @activities, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Activities" %>

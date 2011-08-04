@@ -5,5 +5,5 @@
 <%= link_i portfolio.Portfolio_title, portfolio %>
 </div>
 <% end %>
-<%= page_navigation(portfolios.page_details, browse_uri) %>
+<%= paginate portfolios, :param_name => param_name, :per_page => 5, :browse_uri => browse_uri %>
 </div>

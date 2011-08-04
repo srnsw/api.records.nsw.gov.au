@@ -1,0 +1,9 @@
+<%= paginator.render do -%>
+<div>
+	<p class="collection_navigation">
+		<%= prev_page_tag -%> 
+		<% each_page.select(&:inside_window?).each do |page| %><%= page_tag page -%><% end %>
+		<%= next_page_tag -%>
+	</p>
+</div>
+<% end %>

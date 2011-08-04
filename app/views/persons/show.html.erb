@@ -16,23 +16,28 @@
 <div class="entity_relations">
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies related to this person", :browse_uri => "#{current_uri}/agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:param_name => :agencies_page ,:title => "Agencies related to this person", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 <% if @ministries.first %>
-<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this person", :browse_uri => "#{current_uri}/ministries"} %>
+<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:param_name => :ministries_page ,:title => "Ministries containing this person", :browse_uri => "#{current_uri}/ministries"} %>
 <% end %>
 
 <% if @portfolios.first %>
-<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios this person held as minister", :browse_uri => "#{current_uri}/portfolios"} %>
+<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:param_name => :portfolios_page ,:title => "Portfolios this person held as minister", :browse_uri => "#{current_uri}/portfolios"} %>
 <% end %>
 
 <% if @functions.first %>
-<%= render :partial => 'relations/functions', :object => @functions, :locals => {:title => "Functions exercised by this person", :browse_uri => "#{current_uri}/functions"} %>
+<%= render :partial => 'relations/functions', :object => @functions, :locals => {:param_name => :functions_page ,:title => "Functions exercised by this person", :browse_uri => "#{current_uri}/functions"} %>
 <% end %>
 
 <% if @series.first %>
-<%= render :partial => 'relations/series', :object => @series, :locals => {:title => "Record series created by this person", :browse_uri => "#{current_uri}/series"} %>
+<%= render :partial => 'relations/series', :object => @series, :locals => {:param_name => :series_page ,:title => "Record series created by this person", :browse_uri => "#{current_uri}/series"} %>
 <% end %>
 
+
+<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @person.id, :entitytype => Person.name, :link => current_uri, :title => @person.name_long} %>
+
 </div>
+
+<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @person.id, :entitytype => Person.name} %>

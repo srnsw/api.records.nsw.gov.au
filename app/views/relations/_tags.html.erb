@@ -1,0 +1,16 @@
+<div class="tags_item">
+   <% if 0 > 1 %>
+	<form name="input" action="<%= "#{root_url}tags" %>" method="post">
+	<p>User tags:
+		<% tags.each do |tag|%>
+		<%= link_to "#{tag.tag} ", "#{root_url}tags/#{tag.tag}" %>
+		<% end %>
+	</p>
+	<p><input type="text" name="tag" /> <input type="submit" value="Add" /> </p>
+	<p><input type="hidden" name="link" value="<%= link %>" /></p>
+	<p><input type="hidden" name="title" value="<%= title %>" /></p>
+	<p><input type="hidden" name="entityid" value="<%= entityid %>" /></p>
+	<p><input type="hidden" name="entitytype" value="<%= entitytype %>" /></p>
+	</form> 
+	<% end %>
+</div>

@@ -5,9 +5,9 @@ require File.expand_path('../application', __FILE__)
 require 'srnsw.rb'
 
 #require 'magic_multi_connections'
-#connection_names = ActiveRecord::Base.configurations.keys.select do |name|
-#name =~ /^#{ENV['RAILS_ENV']}_clone/
-#end
+connection_names = ActiveRecord::Base.configurations.keys.select do |name|
+name =~ /^#{ENV['RAILS_ENV']}_clone/
+end
 
 @@connection_pool = connection_names.map do |connection_name|
 Object.class_eval <<-EOS

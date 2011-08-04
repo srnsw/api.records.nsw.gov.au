@@ -2,7 +2,7 @@
 <% @series.each do |series| %>
 <%= link_p series.Series_title, series %>
 <% end %>
-<%= page_navigation(@series.page_details) %>
+<%= paginate @series, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Series" %>

@@ -2,7 +2,7 @@
 <% @persons.each do |person| %>
 <%= link_p person.name_short, person %>
 <% end %>
-<%= page_navigation(@persons.page_details) %>
+<%= paginate @persons, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Persons" %>

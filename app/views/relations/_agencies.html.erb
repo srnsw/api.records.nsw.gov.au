@@ -5,5 +5,5 @@
 <%= link_i agency.Agency_title, agency %>
 </div>
 <% end %>
-<%= page_navigation(agencies.page_details, browse_uri) %>
+<%=  paginate agencies, :param_name => param_name, :default_per_page => 5, :browse_uri => browse_uri %>
 </div>

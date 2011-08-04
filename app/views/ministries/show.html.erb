@@ -12,7 +12,11 @@
 <div class="entity_relations">
 
 <% if @portfolios.first %>
-<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:title => "Portfolios in this ministry", :browse_uri => "#{current_uri}/portfolios"} %>
+<%= render :partial => 'relations/portfolios', :object => @portfolios, :locals => {:param_name => :portfolios_page ,:title => "Portfolios in this ministry", :browse_uri => "#{current_uri}/portfolios"} %>
 <% end %>
 
+<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @ministry.id, :entitytype => Ministry.name, :link => current_uri, :title => @ministry.Ministry_title} %>
+
 </div>
+
+<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @ministry.id, :entitytype => Ministry.name} %>

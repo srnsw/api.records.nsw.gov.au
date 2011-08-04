@@ -29,11 +29,15 @@
 </div>
 
 <% if @creating_agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:title => "Creating agency", :browse_uri => "#{current_uri}/agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @creating_agencies, :locals => {:param_name => :creating_agencies_page ,:title => "Creating agency", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Creating person", :browse_uri => "#{current_uri}/persons"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:param_name => :persons_page ,:title => "Creating person", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
+<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @item.id, :entitytype => Item.name, :link => current_uri, :title => @item.Item_title} %>
+
 </div>
+
+<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @item.id, :entitytype => Item.name} %>

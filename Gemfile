@@ -37,6 +37,6 @@ gem 'activesupport', '~> 3.0.3'
 gem 'arel', '~> 2.0.7'
 #gem 'magic_multi_connections', '~> 1.2.1' #Multiple DB connections
 gem "rake", "0.8.7"
-
+gem "kaminari"
 
 

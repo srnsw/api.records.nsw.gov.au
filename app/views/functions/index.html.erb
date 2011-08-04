@@ -2,7 +2,7 @@
 <% @functions.each do |function| %>
 <%= link_p function.Function_title, function %>
 <% end %>
-<%= page_navigation(@functions.page_details) %>
+<%= paginate @functions, :browse_uri => nil %>
 
 <% content_for :title do %>
 <% "Functions" %>

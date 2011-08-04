@@ -73,21 +73,44 @@ module SRNSW
   end
   
   module Serializers
-    def to_paginated_xml set
-      require 'builder' unless defined? ::Builder
+    def to_paginated_xml set, page
 
-      builder = ::Builder::XmlMarkup.new(:indent => 2)
-      builder.instruct!
-      root = set.first.class.name.pluralize.downcase
-      builder.tag!(root, {:type => "array"}) do |xml|
-        set.to_a.unshift(set.page_details).each do |record|
-        xml << record.to_xml(:skip_instruct => true)
-        end
+		page = page.to_i > 0 ? page.to_i : 1
+      
+      set.to_xml(:except => :__rn) do |xml|
+			xml.pagination do
+				xml.this_page page
+				xml.total_results set.total_count
+				xml.per_page Kaminari.config.default_per_page
+			end
       end
+      
     end
     
-    def to_paginated_json set
-      set.to_a.unshift(set.page_details).to_json
+    def to_paginated_json set, page
+		
+		page = page.to_i > 0 ? page.to_i : 1
+      
+      payload = Serializers::Pagination.new page, set.total_count, Kaminari.config.default_per_page
+       
+      set.to_a.unshift(payload).to_json
+    end
+    
+    class Pagination
+    include ActiveModel::Serializers::JSON
+    attr_accessor :total_results, :this_page, :per_page
+  
+    def initialize(page, count, length)
+      @total_results = length
+      @this_page = page
+      @per_page = count
+    end
+     
+    def attributes
+     {'total_results' => @total_results,
+      'this_page' => @this_page,
+      'per_page' => @per_page}
+    end
     end
   end
 end

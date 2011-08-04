@@ -2,7 +2,12 @@
 <% @agencies.each do |agency| %>
 <%= link_p agency.Agency_title, agency %>
 <% end %>
-<%= page_navigation(@agencies.page_details) %>
+<%= paginate @agencies, :browse_uri => nil %>
+<%= "#{@agencies.length} items in total of #{@agencies.total_count} items" %>
+<%= @agencies.to_xml(:except => :__rn) do |xml|%>
+<% xml.some_tag "some_value" %>
+<% xml.some_tag2 "some_value22" %>
+<% end %>
 
 <% content_for :title do %>
 <% "Agencies" %>

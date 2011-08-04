@@ -13,23 +13,27 @@
 <div class="entity_relations">
 
 <% if @preceding.first %>
-<%= render :partial => 'relations/portfolios', :object => @preceding, :locals => {:title => "Preceding portfolios", :browse_uri => "#{current_uri}/preceding"} %>
+<%= render :partial => 'relations/portfolios', :object => @preceding, :locals => {:param_name => :preceding_page ,:title => "Preceding portfolios", :browse_uri => "#{current_uri}/preceding"} %>
 <% end %>
 
 <% if @succeeding.first %>
-<%= render :partial => 'relations/portfolios', :object => @succeeding, :locals => {:title => "Succeeding portfolios", :browse_uri => "#{current_uri}/succeeding"} %>
+<%= render :partial => 'relations/portfolios', :object => @succeeding, :locals => {:param_name => :succeeding_page ,:title => "Succeeding portfolios", :browse_uri => "#{current_uri}/succeeding"} %>
 <% end %>
 
 <% if @ministries.first %>
-<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:title => "Ministries containing this portfolio", :browse_uri => "#{current_uri}/ministries"} %>
+<%= render :partial => 'relations/ministries', :object => @ministries, :locals => {:param_name => :ministries_page ,:title => "Ministries containing this portfolio", :browse_uri => "#{current_uri}/ministries"} %>
 <% end %>
 
 <% if @persons.first %>
-<%= render :partial => 'relations/persons', :object => @persons, :locals => {:title => "Ministers appointed to this portfolio", :browse_uri => "#{current_uri}/persons"} %>
+<%= render :partial => 'relations/persons', :object => @persons, :locals => {:param_name => :persons_page ,:title => "Ministers appointed to this portfolio", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
 <% if @agencies.first %>
-<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:title => "Agencies administered through this portfolio", :browse_uri => "#{current_uri}/agencies"} %>
+<%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:param_name => :agencies_page ,:title => "Agencies administered through this portfolio", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
+<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @portfolio.id, :entitytype => Portfolio.name, :link => current_uri, :title => @portfolio.Portfolio_title} %>
+
 </div>
+
+<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @portfolio.id, :entitytype => Portfolio.name} %>

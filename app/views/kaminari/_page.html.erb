@@ -1,0 +1,5 @@
+<% if page.current? %>
+<%= "#{page} of #{num_pages}" %>
+<% else %>
+<td><%= link_to raw(%Q[#{page}]), url %></td>
+<% end %>
