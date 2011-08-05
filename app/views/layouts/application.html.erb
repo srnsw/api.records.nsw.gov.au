@@ -1,8 +1,10 @@
 <!DOCTYPE html>
 <html>
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <head>
   <title><%= (title = yield :title) ? title : "api.records.nsw.gov.au" %></title>
-  <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => 'opensearch', :format => 'xml') %>" title="State Records NSW search" />
+  <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => '/opensearch', :format => 'xml') %>" title="State Records NSW search" />
   <%= stylesheet_link_tag 'srnsw' %>
   <%= stylesheet_link_tag 'api' %>
   <!--[if IE]><%= stylesheet_link_tag 'IEFixes', :media=>"all" %><![endif]-->
@@ -52,15 +54,21 @@
       </a>
     </div>
     <div id="portal-breadcrumbs">
-      <span id="breadcrumbs-you-are-here">You are here ::</span>
+     <span id="breadcrumbs-you-are-here">You are here ::</span>
  	  <a href="http://www.records.nsw.gov.au">Home</a>
  	  <span class="breadcrumbSeparator"> &rarr; </span>
  	  <%= link_to "API", root_path %>
+ 	  <span class="alignright">
+ 	  <%= render 'devise/menu/registration_items' %> | <%= render 'devise/menu/login_items' %>
+ 	  </span>	  
     </div>
   </div>
 </div>
 <div id="viewlet-above-content"></div>
 <div id="region-content" class="documentContent">
+<% flash.each do |name, msg| %>
+ <%= content_tag :div, msg, :id=> "flash_#{name}" if msg.is_a?(String) %>
+<% end %>
 <%= yield %>
 </div>
 <div class="visualClear" id="clear-space-before-footer"><!-- --></div>

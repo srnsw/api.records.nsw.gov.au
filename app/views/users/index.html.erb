@@ -1,0 +1,8 @@
+<h1>Users#index</h1>
+<p>Find me in app/views/users/index.html.erb</p>
+
+<% if @users %>
+	<% @users.each do |user| %>
+	 <p> User: <%= link_to user.name, user%> </p>
+	<% end %>
+<% end %>
