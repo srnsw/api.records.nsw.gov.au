@@ -1,27 +1,28 @@
 
 <div class="entity_data">
-<% if 0 > 1 %>
 <% if show_comment %>
-  <% comments.each do |comment|%>
-    <div class="greybox">
-      <%= content_tag :h4, "#{comment.username} wrote at #{comment.created_at.to_formatted_s(:long_ordinal)}" %>
-      <%= comment.comments %>
-    </div>
+  <% if comments %> 
+	  <% comments.each do |comment|%>
+	    <div class="user_contents_item">
+	      <%= content_tag :h4, "#{comment.user.name} wrote at #{comment.created_at.to_formatted_s(:long_ordinal)}" %>
+	      <%= comment.comments %>
+	    </div>
+	  <% end %>
   <% end %>
 
-  <div class="greybox">
-    <form name="input" action="<%= "#{root_url}comment" %>" method="post">
-      <p>Username: <input type="text" name="user" /></p>
-      <p>Comment: <textarea name="comment" rows="5" cols="40"></textarea></p>
-      <p><input type="submit" value="Submit" /></p>
-      <p><input type="hidden" name="entityid" value="<%= entityid %>" /></p>
-      <p><input type="hidden" name="entitytype" value="<%= entitytype %>" /></p>
-    </form>
+  <div class="user_contents_item">
+	 <% if current_user.nil?%>    
+      Please <%= render 'devise/menu/registration_items' %> or <%= render 'devise/menu/login_items' %> to comment 
+    <% else %>      
+      <%= form_tag do %>
+        <p>Comment: <textarea name="comment"></textarea></p>
+        <p><input type="submit" value="Submit" /></p>
+        <p><input type="hidden" name="entityid" value="<%= entityid %>" /></p>
+        <p><input type="hidden" name="entitytype" value="<%= entitytype %>" /></p>
+      <% end %>
+    <% end %>
   </div>
 <% else %>
-  <!--div class="greybox"-->
-    <%= link_to "Show comments (#{comments.count})", "#{request.env['PATH_INFO']}?comment=true" %>
-  <!--/div-->
-<% end %>
+    <%= link_to "Show or add comments", "#{request.env['PATH_INFO']}?comment=true" %>
 <% end %>
 </div>

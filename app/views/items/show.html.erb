@@ -36,8 +36,7 @@
 <%= render :partial => 'relations/persons', :object => @persons, :locals => {:param_name => :persons_page ,:title => "Creating person", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @item.id, :entitytype => Item.name, :link => current_uri, :title => @item.Item_title} %>
-
+<%= render :partial => 'relations/tags', :object => @item.tags, :locals => {:entityid => @item.id, :entitytype => Item.name, :link => current_uri, :title => @item.Item_title} %>
 </div>
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @item.id, :entitytype => Item.name} %>
+<%= render :partial => 'relations/comments', :object => @item.comments, :locals => {:show_comment => params[:comment], :entityid => @item.id, :entitytype => Item.name} %>

@@ -24,8 +24,8 @@
 <%= render :partial => 'relations/persons', :object => @persons, :locals => {:param_name => :persons_page ,:title => "Persons exercising this function", :browse_uri => "#{current_uri}/persons"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @function.id, :entitytype => Function.name, :link => current_uri, :title => @function.Function_title} %>
+<%= render :partial => 'relations/tags', :object => @function.tags, :locals => {:entityid => @function.id, :entitytype => Function.name, :link => current_uri, :title => @function.Function_title} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @function.id, :entitytype => Function.name} %>
+<%= render :partial => 'relations/comments', :object => @function.comments, :locals => {:show_comment => params[:comment], :entityid => @function.id, :entitytype => Function.name} %>

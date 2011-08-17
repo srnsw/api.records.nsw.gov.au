@@ -1,4 +1,13 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
-<p>User: <%= @user.name %></p>
-<p>Email: <%= @user.email if @user.email %></p>
+<% if @user %>
+<h2>User: <%= @user.first.name %></h2>
+
+<h3>Tags</h3>
+<% @user.first.tags.each do |tag| %>
+<%= link_to tag.tag, tag.link %>
+<% end %>
+
+<h3>Comments</h3>
+<% @user.first.comments.each do |comment| %>
+<% end %>
+
+<% end %>

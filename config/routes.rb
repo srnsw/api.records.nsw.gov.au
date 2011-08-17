@@ -1,4 +1,5 @@
 Collection::Application.routes.draw do
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -62,14 +63,22 @@ Collection::Application.routes.draw do
   match 'opensearch' => 'opensearch#index'
   match 'usage' => 'usage#index' #developer documentation
  
-  resources :activities, :only => [:index, :show] do
+  #for authentication
+  devise_for :users
+  resources :users, :only => [:index, :show]
+  resources :token_authentications, :only => [:create, :destroy]
+
+  resources :tags, :only => [:index, :show]
+  
+  resources :activities, :only => [:index, :show, :create] do
     member do
       get 'functions'
       get 'series'
+      post 'create'
     end
   end
   
-  resources :agencies, :only => [:index, :show] do
+  resources :agencies, :only => [:index, :show, :create] do
     member do
       get 'preceding'
       get 'succeeding'
@@ -81,59 +90,66 @@ Collection::Application.routes.draw do
       get 'persons'
       get 'series_created'
       get 'series_controlled'
+      post 'create'
     end
   end
   
-  resources :functions, :only => [:index, :show] do
+  resources :functions, :only => [:index, :show, :create] do
     member do
       get 'activities'
       get 'agencies'
       get 'persons'
+      post 'create'
     end
   end
   
-  resources :items, :only => [:index, :show] do
+  resources :items, :only => [:index, :show, :create] do
 		member do
 			get 'agencies'
 			get 'persons'
+			post 'create'
 		end
 	end
   
-  resources :ministries, :only => [:index, :show] do
+  resources :ministries, :only => [:index, :show, :create] do
     member do
       get 'portfolios'
+      post 'create'
     end
   end
   
-  resources :organisations, :only => [:index, :show] do
+  resources :organisations, :only => [:index, :show, :create] do
     member do
       get 'preceding'
       get 'succeeding'
       get 'agencies'
+      post 'create'
     end
   end
   
-  resources :persons, :only => [:index, :show] do
+  resources :persons, :only => [:index, :show, :create] do
     member do
       get 'ministries'
       get 'portfolios'
       get 'functions'
       get 'agencies'
       get 'series'
+      post 'create'
     end
   end
   
-  resources :portfolios, :only => [:index, :show] do
+  resources :portfolios, :only => [:index, :show, :create] do
     member do
       get 'ministries'
       get 'agencies'
       get 'persons'
       get 'preceding'
       get 'succeeding'
+      post 'create'
     end
   end
 
-  resources :series, :only => [:index, :show] do
+  resources :series, :only => [:index, :show, :create] do
     member do
       get 'items'
       get 'agencies_creating'
@@ -145,6 +161,7 @@ Collection::Application.routes.draw do
       get 'persons'
 	  get 'controlling'
 	  get 'controlled'
+	  post 'create'
     end
   end
 end

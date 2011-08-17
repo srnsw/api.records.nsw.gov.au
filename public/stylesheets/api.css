@@ -135,3 +135,16 @@ border-color: #4779ae;
 padding-left: 15px;
 padding-right: 5px;
 }
+
+div.user_contents_item
+{
+margin-top: 0px;
+margin-left: 0px;
+margin-right: 0px;
+margin-bottom: 20px;
+border: solid;
+border-width: 1px;
+border-color: #B8474B;
+padding-left: 15px;
+padding-right: 5px;
+}

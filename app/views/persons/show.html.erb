@@ -36,8 +36,8 @@
 <% end %>
 
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @person.id, :entitytype => Person.name, :link => current_uri, :title => @person.name_long} %>
+<%= render :partial => 'relations/tags', :object => @person.tags, :locals => {:entityid => @person.id, :entitytype => Person.name, :link => current_uri, :title => @person.name_long} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @person.id, :entitytype => Person.name} %>
+<%= render :partial => 'relations/comments', :object => @person.comments, :locals => {:show_comment => params[:comment], :entityid => @person.id, :entitytype => Person.name} %>

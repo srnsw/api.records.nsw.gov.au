@@ -55,9 +55,9 @@
 <%= render :partial => 'relations/series', :object => @series_controlled, :locals => {:param_name => :series_controlled_page, :title => "Record series controlled by this agency", :browse_uri => "#{current_uri}/series_controlled"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @agency.id, :entitytype => Agency.name, :link => current_uri, :title => @agency.Agency_title} %>
+<%= render :partial => 'relations/tags', :object => @agency.tags, :locals => {:entityid => @agency.id, :entitytype => Agency.name, :link => current_uri, :title => @agency.Agency_title} %>
 
 </div>
 
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @agency.id, :entitytype => Agency.name} %>
+<%= render :partial => 'relations/comments', :object => @agency.comments, :locals => {:show_comment => params[:comment], :entityid => @agency.id, :entitytype => Agency.name} %>

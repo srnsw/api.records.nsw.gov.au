@@ -6,7 +6,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = User.find(params[:id])
+
+    @user = User.where(:name => params[:id])
   end
 
 end

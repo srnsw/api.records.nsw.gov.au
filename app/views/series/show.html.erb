@@ -64,8 +64,8 @@
 <%= render :partial => 'relations/items', :object => @items, :locals => {:param_name => :items_page ,:title => "Items in this series", :browse_uri => "#{current_uri}/items"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @series.id, :entitytype => Series.name, :link => current_uri, :title => @series.Series_title} %>
+<%= render :partial => 'relations/tags', :object => @series.tags, :locals => {:entityid => @series.id, :entitytype => Series.name, :link => current_uri, :title => @series.Series_title} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @series.id, :entitytype => Series.name} %>
+<%= render :partial => 'relations/comments', :object => @series.comments, :locals => {:show_comment => params[:comment], :entityid => @series.id, :entitytype => Series.name} %>

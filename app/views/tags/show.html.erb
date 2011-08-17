@@ -1,0 +1,9 @@
+<% content_for :title do %>
+<% "Tag: #{params[:id]}" %>
+<% end %>
+
+<%= make_header "Tag: #{params[:id]}" %>
+
+<% @tags.each do |tag| %>
+<%= link_tag tag.title, tag.link, tag.entitytype %>
+<% end %>

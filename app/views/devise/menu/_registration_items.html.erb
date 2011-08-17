@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  Logged in as <%= link_to( current_user.email, edit_user_registration_path) %>
+  Logged in as <%= link_to( current_user.name, edit_user_registration_path) %>
 <% else %>
   <%= link_to('Register', new_user_registration_path)  %>
 <% end %>

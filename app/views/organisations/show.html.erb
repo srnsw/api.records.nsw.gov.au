@@ -27,8 +27,8 @@
 <%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:param_name => :agencies_page, :title => "Agencies controlled by this organisation", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @tags, :locals => {:entityid => @organisation.id, :entitytype => Organisation.name, :link => current_uri, :title => @organisation.Organisation_title} %>
+<%= render :partial => 'relations/tags', :object => @organisation.tags, :locals => {:entityid => @organisation.id, :entitytype => Organisation.name, :link => current_uri, :title => @organisation.Organisation_title} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @comments, :locals => {:show_comment => @showcomment, :entityid => @organisation.id, :entitytype => Organisation.name} %>
+<%= render :partial => 'relations/comments', :object => @organisation.comments, :locals => {:show_comment => params[:comment], :entityid => @organisation.id, :entitytype => Organisation.name} %>

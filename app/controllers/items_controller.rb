@@ -12,10 +12,10 @@ class ItemsController < EntitiesController
   end
   
   def show
-	@item = Item.find(params[:id])
+    @item = Item.find(params[:id])
 
-  @creating_agencies = @item.series.creating_agencies.page params[:creating_agencies_page]
-	@persons = @item.series.persons.page params[:persons_page]
+    @creating_agencies = @item.series.creating_agencies.page params[:creating_agencies_page]
+    @persons = @item.series.persons.page params[:persons_page]
 
 		respond_to do |format|
       format.html

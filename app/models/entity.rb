@@ -1,24 +1,5 @@
 class Entity < ActiveRecord::Base
-#
-# TO DO: Rails allows connections to multiple databases. SRNSW's API could act
-# as front-end to separate data stores (AI, Photosearch, disposal authorities, digital archive, user-generated content)
-#
-# This entity model could be based on a direct, read-only connection to AI's SQL-server database.
-#
-# From Rails's documentation...
-#
-# Connection to multiple databases in different models (http://api.rubyonrails.org/classes/ActiveRecord/Base.html)
-#
-# Connections are usually created through ActiveRecord::Base.establish_connection and retrieved by ActiveRecord::Base.connection.
-# All classes inheriting from ActiveRecord::Base will use this connection.
-# But you can also set a class-specific connection. For example, if Course is an ActiveRecord::Base,
-# but resides in a different database, you can just say Course.establish_connection
-# and Course and all of its subclasses will use this connection instead.
-#
-# This feature is implemented by keeping a connection pool in ActiveRecord::Base
-# that is a Hash indexed by the class. If a connection is requested,
-# the retrieve_connection method will go up the class-hierarchy until a connection is found in the connection pool.
-#
+
 # add custom pagination
 extend SRNSW::Pages
 
@@ -75,5 +56,17 @@ extend SRNSW::Pages
   
   def day_month_year date
     date.day.to_s + "/" + date.month.to_s + "/" + date.year.to_s
+  end
+
+  def comments
+	@comments = Comment.where(:entitytype => self.class.name).and(:entityid => self.id).order_by([:created_at, :asc])	
+  end
+  
+  def tags
+	@tags = Tag.where(:entitytype => self.class.name).and(:entityid => self.id).order_by([:created_at, :asc])
+  end
+  
+  def dbg
+   "#{self.class.name}-#{self.id}"
   end
 end
