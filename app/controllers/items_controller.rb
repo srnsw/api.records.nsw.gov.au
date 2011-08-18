@@ -11,6 +11,10 @@ class ItemsController < EntitiesController
     end
   end
   
+  def model
+    Item.find(params[:id])
+  end
+  
   def show
     @item = Item.find(params[:id])
 

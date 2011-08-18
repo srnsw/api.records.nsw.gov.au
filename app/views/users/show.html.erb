@@ -3,7 +3,7 @@
 
 <h3>Tags</h3>
 <% @user.first.tags.each do |tag| %>
-<%= link_to tag.tag, tag.link %>
+<%= link_to tag.tag, tag %>
 <% end %>
 
 <h3>Comments</h3>

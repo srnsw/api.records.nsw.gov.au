@@ -1,8 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  
   include SessionHelper
-
+  
   # Customize the Devise after_sign_in_path_for() for redirecct to previous page after login
   def after_sign_in_path_for(resource_or_scope)
     case resource_or_scope
@@ -14,6 +13,28 @@ class ApplicationController < ActionController::Base
       super
     end
   end
+
+
+  def tags
+     @tags = self.model.tags 
+     
+	  respond_to do |format|
+     format.any {render :action => 'tags/index'}
+     format.xml {render :xml => @tags.to_xml}
+     format.json {render :json => @tags.to_json}
+    end
+  end
+  
+  def comments
+  	  @comments = self.model.comments 
+     
+	  respond_to do |format|
+     format.any {render :action => 'comments/index'}
+     format.xml {render :xml => to_paginated_xml(@tags, params[:page])}
+     format.json {render :json => to_paginated_json(@tags, params[:page])}
+     end
+  end  
+  
   
   #handle POST
   def create

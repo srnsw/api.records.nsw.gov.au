@@ -9,6 +9,10 @@ class AgenciesController < EntitiesController
     end
   end
   
+  def model
+  	 Agency.find(params[:id])
+  end
+  
   def show
     @agency = Agency.find(params[:id])
     

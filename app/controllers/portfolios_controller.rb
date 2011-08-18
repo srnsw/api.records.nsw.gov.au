@@ -9,6 +9,10 @@ class PortfoliosController < EntitiesController
     end
   end
   
+  def model
+	Portfolio.find(params[:id])
+  end
+  
   def show
     @portfolio = Portfolio.find(params[:id])
     

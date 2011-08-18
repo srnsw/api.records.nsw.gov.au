@@ -12,6 +12,10 @@ class SeriesController < EntitiesController
     end
   end
   
+  def model
+    Series.find(params[:id])
+  end
+  
   def show
 	@series = Series.find(params[:id])
 	  

@@ -9,6 +9,10 @@ class PersonsController < EntitiesController
     end
   end
   
+  def model
+	Person.find(params[:id])
+  end
+  
   def show
     @person = Person.find(params[:id])
     

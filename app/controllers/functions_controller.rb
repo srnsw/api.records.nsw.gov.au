@@ -9,6 +9,10 @@ class FunctionsController < EntitiesController
     end
   end
   
+  def model
+  	 Function.find(params[:id])
+  end
+  
   def show
     @function = Function.find(params[:id])
     

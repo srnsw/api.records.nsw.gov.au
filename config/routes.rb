@@ -74,6 +74,8 @@ Collection::Application.routes.draw do
     member do
       get 'functions'
       get 'series'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -90,6 +92,8 @@ Collection::Application.routes.draw do
       get 'persons'
       get 'series_created'
       get 'series_controlled'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -99,6 +103,8 @@ Collection::Application.routes.draw do
       get 'activities'
       get 'agencies'
       get 'persons'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -107,6 +113,8 @@ Collection::Application.routes.draw do
 		member do
 			get 'agencies'
 			get 'persons'
+      	get 'tags'
+      	get 'comments'
 			post 'create'
 		end
 	end
@@ -114,6 +122,8 @@ Collection::Application.routes.draw do
   resources :ministries, :only => [:index, :show, :create] do
     member do
       get 'portfolios'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -123,6 +133,8 @@ Collection::Application.routes.draw do
       get 'preceding'
       get 'succeeding'
       get 'agencies'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -134,6 +146,8 @@ Collection::Application.routes.draw do
       get 'functions'
       get 'agencies'
       get 'series'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -145,6 +159,8 @@ Collection::Application.routes.draw do
       get 'persons'
       get 'preceding'
       get 'succeeding'
+      get 'tags'
+      get 'comments'
       post 'create'
     end
   end
@@ -161,6 +177,8 @@ Collection::Application.routes.draw do
       get 'persons'
 	  get 'controlling'
 	  get 'controlled'
+      get 'tags'
+      get 'comments'
 	  post 'create'
     end
   end

@@ -9,6 +9,10 @@ class OrganisationsController < EntitiesController
     end
   end
   
+  def model
+	 Organisation.find(params[:id])
+  end
+  
   def show
     @organisation = Organisation.find(params[:id])
     

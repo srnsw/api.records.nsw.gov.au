@@ -9,6 +9,10 @@ class MinistriesController < EntitiesController
     end
   end
   
+  def model
+    Ministry.find(params[:id])
+  end 
+  
   def show
     @ministry = Ministry.find(params[:id])
     @portfolios = @ministry.portfolios.page(params[:portfolios_page]).per(10)

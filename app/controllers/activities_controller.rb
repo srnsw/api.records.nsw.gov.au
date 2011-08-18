@@ -7,7 +7,11 @@ class ActivitiesController < EntitiesController
       format.json {render :json => to_paginated_json(@activities, params[:page])}
     end
   end
-  
+
+  def model
+  	Activity.find(params[:id])
+  end
+ 
   def show
     @activity = Activity.find(params[:id])
     @functions = @activity.functions.page(params[:functions_page]).per(5)
