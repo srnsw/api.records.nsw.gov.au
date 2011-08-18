@@ -3,12 +3,14 @@ class Comment
 include Mongoid::Document
 include Mongoid::Timestamps
 
-self.collection_name = 'comments'
+  self.collection_name = 'comments'
 
-belongs_to :user
+  belongs_to :user
 
-field :comments, type: String
-field :entitytype, type: String
-field :entityid, type: Integer
+  field :link, type: String
+  field :title, type: String
+  field :entitytype, type: String
+  field :entityid, type: Integer
+  field :comments, type: String
 
 end

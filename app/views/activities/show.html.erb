@@ -22,9 +22,8 @@
 <%= render :partial => 'relations/series', :object => @series, :locals => {:param_name => :series_page ,:title => "Record series documenting this activity", :browse_uri => "#{current_uri}/series"} %>
 <% end %>
 
-<%= @activity.dbg %>
-<%= render :partial => 'relations/tags', :object => @activity.tags, :locals => {:entityid => @activity.id, :entitytype => Activity.name, :link => current_uri, :title => @activity.Activity_title} %>
+<%= render :partial => 'relations/tags', :object => @activity.tags, :locals => {:entitytype => Activity.name, :title => @activity.Activity_title} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @activity.comments, :locals => {:show_comment => params[:comment], :entityid => @activity.id, :entitytype => Activity.name} %>
+<%= render :partial => 'relations/comments', :object => @activity.comments, :locals => {:show_comment => params[:comment], :entitytype => Activity.name, :title => @activity.Activity_title} %>

@@ -20,9 +20,10 @@ class ApplicationController < ActionController::Base
 
 	if current_user.nil?
       deny_access
-   else 
+   else
+     
      if params[:comment]  	
-	  	 current_user.comments.create!(comments: params[:comment], entitytype: params[:entitytype], entityid: params[:id])
+	  	 current_user.comments.create!(comments: params[:comment], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
 	  end	
 	  if params[:tag]
 	    current_user.tags.create!(tag: params[:tag], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])

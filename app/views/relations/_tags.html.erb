@@ -8,7 +8,7 @@
 		<% end %>
 	</p>
 	<p><input type="text" name="tag" /> <input type="submit" value="Add" /> </p>
-	<p><input type="hidden" name="link" value="<%= link %>" /></p>
+	<p><input type="hidden" name="link" value="<%= request.env['PATH_INFO'] %>" /></p>
 	<p><input type="hidden" name="title" value="<%= title %>" /></p>
 	<p><input type="hidden" name="entitytype" value="<%= entitytype %>" /></p>
 	<% end %> 

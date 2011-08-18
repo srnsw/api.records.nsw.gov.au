@@ -32,8 +32,8 @@
 <%= render :partial => 'relations/agencies', :object => @agencies, :locals => {:param_name => :agencies_page ,:title => "Agencies administered through this portfolio", :browse_uri => "#{current_uri}/agencies"} %>
 <% end %>
 
-<%= render :partial => 'relations/tags', :object => @portfolio.tags, :locals => {:entityid => @portfolio.id, :entitytype => Portfolio.name, :link => current_uri, :title => @portfolio.Portfolio_title} %>
+<%= render :partial => 'relations/tags', :object => @portfolio.tags, :locals => {:entitytype => Portfolio.name, :title => @portfolio.Portfolio_title} %>
 
 </div>
 
-<%= render :partial => 'relations/comments', :object => @portfolio.comments, :locals => {:show_comment => params[:comment], :entityid => @portfolio.id, :entitytype => Portfolio.name} %>
+<%= render :partial => 'relations/comments', :object => @portfolio.comments, :locals => {:show_comment => params[:comment], :title => @portfolio.Portfolio_title, :entitytype => Portfolio.name} %>
