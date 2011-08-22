@@ -20,8 +20,8 @@ class ApplicationController < ActionController::Base
      
 	  respond_to do |format|
      format.any {render :action => 'tags/index'}
-     format.xml {render :xml => @tags.to_xml}
-     format.json {render :json => @tags.to_json}
+     format.xml {render :xml => @tags.to_xml(:only => [:tag])}
+     format.json {render :json => @tags.to_json(:only => [:tag])}
     end
   end
   
@@ -30,8 +30,8 @@ class ApplicationController < ActionController::Base
      
 	  respond_to do |format|
      format.any {render :action => 'comments/index'}
-     format.xml {render :xml => to_paginated_xml(@tags, params[:page])}
-     format.json {render :json => to_paginated_json(@tags, params[:page])}
+     format.xml {render :xml => @comments.to_xml(:only => [:comments])}
+     format.json {render :json => @comments.to_json(:only => [:comments])}
      end
   end  
   
