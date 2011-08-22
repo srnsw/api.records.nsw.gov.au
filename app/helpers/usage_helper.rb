@@ -27,13 +27,17 @@ module UsageHelper
     	"business of any organisation.", "1", 
       [['activities', 'Activity', 'activities comprising a particular function', '1'],
       ['agencies', 'Agency', 'agencies exercising a particular function', '1'],
-      ['persons', 'Person', 'persons exercising a particular function', '1']]
+      ['persons', 'Person', 'persons exercising a particular function', '1'],
+			['comments', 'Comment', 'comments in a particular function', '1'],
+			['tags', 'Tag', 'tags in a particular function', '1']]
       ],
 		  ["Activity", "An activity is a part of a function. Activities provide more"\
 		  " specific functional context for record series than can be provided"\
 		  "be provided by a function.", "1",
       [['functions', 'Function', 'functions containing a particular activity', '1'],
-      ['series', 'Series', 'series documenting a particular activity', '1']]
+      ['series', 'Series', 'series documenting a particular activity', '1'],
+			['comments', 'Comment', 'comments in a particular activity', '1'],
+			['tags', 'Tag', 'tags in a particular activity', '1']]
       ],
 		  ["Agency", "An agency is an administrative or business unit which has "\
 		  "responsibility for carrying out some designated activity.",  "1",
@@ -46,7 +50,9 @@ module UsageHelper
       ['organisations', 'Organisation', 'organisations controlling a particular agency', '1'],
       ['persons', 'Person', 'persons related to a particular agency', '23'],
       ['series_created', 'Series', 'series created by a particular agency', '1'],
-      ['series_controlled', 'Series', 'series controlled by a particular agency', '1']]
+      ['series_controlled', 'Series', 'series controlled by a particular agency', '1'],
+			['comments', 'Comment', 'comments in a particular agency', '1'],
+			['tags', 'Tag', 'tags in a particular agency', '1']]
       ],
 			["Person", "A person is an individual who creates records, usually in "\
 			"an official capacity, but whose records have not been maintained in "\
@@ -55,7 +61,9 @@ module UsageHelper
       ['ministries', 'Ministry', 'ministries containing a particular person', '69'],
       ['portfolios', 'Portfolio', 'portfolios held by a particular person', '69'],
       ['functions', 'Function', 'functions exercised by a particular person', '69'],
-      ['series', 'Series', 'series created by a particular person', '69']]
+      ['series', 'Series', 'series created by a particular person', '69'],
+			['comments', 'Comment', 'comments in a particular person', '69'],
+			['tags', 'Tag', 'tags in a particular person', '69']]
       ],
 			["Organisation", "An organisation is a whole government, municipal "\
 			"council, incorporated company, church or other body that is generally "\
@@ -63,7 +71,9 @@ module UsageHelper
 			"normal functions.", "1",
       [['preceding', 'Organisation', 'organisations preceding a particular organisation', '2'],
       ['succeeding', 'Organisation', 'organisations succeeding a particular organisation', '1'],
-      ['agencies', 'Agency', 'agencies controlled by a particular organisation', '1']]
+      ['agencies', 'Agency', 'agencies controlled by a particular organisation', '1'],
+			['comments', 'Comment', 'comments in a particular organisation', '1'],
+			['tags', 'Tag', 'tags in a particular organisation', '1']]
       ],
 			["Ministry", "A ministry is the body of ministers who hold warrants "\
 			"from the Head of State as members of the Executive Council. A ministry "\
@@ -76,7 +86,9 @@ module UsageHelper
       ['succeeding', 'Porfolio', 'porfolios succeeding a particular portfolio', '2'],
       ['ministries', 'Ministry', 'ministries containing a particular porfolio', '2'],
       ['persons', 'Person', 'ministers appointed to a particular portfolio', '2'],
-      ['agencies', 'Agency', 'agencies administered through a particular portfolio', '2']]
+      ['agencies', 'Agency', 'agencies administered through a particular portfolio', '2'],
+			['comments', 'Comment', 'comments in a particular portfolio', '2'],
+			['tags', 'Tag', 'tags in a particular portfolio', '2']]
       ],
 			["Series", "A record series is a group of (one or more) record items "\
 			"accumulated by an agency or person which have a common identity "\
@@ -88,7 +100,9 @@ module UsageHelper
       ['preceding', 'Series', 'series preceding a particular series', '1'],
       ['succeeding', 'Series', 'series succeeding a particular series', '1'],
       ['related', 'Series', 'series related to a particular series', '13660'],
-      ['items', 'Item', 'items in a particular series', '13660']]
+      ['items', 'Item', 'items in a particular series', '13660'],
+			['comments', 'Comment', 'comments in a particular series', '13660'],
+			['tags', 'Tag', 'tags in a particular series', '13660']]
       ],
 			["Item", "A record item is an individual unit within a record series, "\
 			"and the smallest entity. A record item may be in any format:"\
