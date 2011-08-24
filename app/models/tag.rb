@@ -12,6 +12,8 @@ include Mongoid::Document
   field :entityid, type: Integer
   field :tag, type: String
 
+  validates_length_of :tag, maximum: 30
+  
   def to_param
     tag
   end
