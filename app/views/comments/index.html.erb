@@ -1,0 +1,18 @@
+<% content_for :title do %>
+<% "Comments" %>
+<% end %>
+
+<h1>Comments</h1>
+
+<% @comments.each do |comment| %>
+	<p> 	  
+	  <%= link_to comment.user.name, comment.user %> 
+	  <% if params[:id].nil? %>
+  	    <%= "#{comment.comments.slice(0,50)}..." %> 
+	    at <%= link_to comment.title, "#{comment.link}?comment=true" %></p>
+	  <%else%>
+	    <%= comment.comments %> 
+	  <% end %>
+<% end %>
+
+
