@@ -38,7 +38,9 @@ module Collection
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    
+    #
+    config.rakismet.key = ''    
+    config.rakismet.url = 'http://api.records.nsw.gov.au'    
     Mime::Type.register "application/xml", :mods
     Mime::Type.register "application/xml", :eac_cpf
     Mime::Type.register "application/xml", :oai_dc

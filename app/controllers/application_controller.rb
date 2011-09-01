@@ -40,17 +40,14 @@ class ApplicationController < ActionController::Base
   def create
 
 	if current_user.nil?
-		if params[:tag]
-			current_user = User.where(:name => "anonymous").first
-			current_user.tags.create!(tag: params[:tag], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
-			redirect_to :back
-		else
       deny_access
-		end
    else
      
-     if params[:comment]  	
-	  	 current_user.comments.create!(comments: params[:comment], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
+     if params[:comment] 
+ 	 
+	comment = current_user.comments.new(comments: params[:comment], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
+	comment.save unless comment.spam?
+
 	  end	
 	  if params[:tag]
 	    current_user.tags.create!(tag: params[:tag], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
