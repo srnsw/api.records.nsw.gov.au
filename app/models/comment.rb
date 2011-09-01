@@ -2,8 +2,9 @@ class Comment
 
 include Mongoid::Document
 include Mongoid::Timestamps
+include Rakismet::Model
 
-  self.collection_name = 'comments'
+self.collection_name = 'comments'
 
   belongs_to :user
 
@@ -13,4 +14,5 @@ include Mongoid::Timestamps
   field :entityid, type: Integer
   field :comments, type: String
 
+rakismet_attrs :author => proc{ user.name }, :author_email => proc{ user.email }, :content => :comments
 end
