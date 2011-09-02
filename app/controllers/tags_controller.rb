@@ -5,6 +5,8 @@ class TagsController < ApplicationController
 	
 	respond_to do |format|
 		format.html
+		format.xml {render :xml => @tags.to_xml(:only => [:tag])}
+      format.json {render :json => @tags.to_json(:only => [:tag])}
 	end
   end
   
@@ -14,6 +16,8 @@ class TagsController < ApplicationController
     
     respond_to do |format|
 		format.html
+		format.xml {render :xml => @tags.to_xml(:only => [:tag])}
+      format.json {render :json => @tags.to_json(:only => [:tag])}
 	 end
   end
 
