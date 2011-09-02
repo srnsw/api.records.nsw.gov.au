@@ -29,8 +29,8 @@ class ActivitiesController < EntitiesController
     @functions = activity.functions.page
     respond_to do |format|
       format.any {render :action => 'functions/index'}
-      format.xml {render :xml => to_paginated_xml(@functions)}
-      format.json {render :json => to_paginated_json(@functions)}
+      format.xml {render :xml => to_paginated_xml(@functions, params[:page])}
+      format.json {render :json => to_paginated_json(@functions, params[:page])}
     end
   end
   
@@ -39,8 +39,8 @@ class ActivitiesController < EntitiesController
     @series = activity.series.page
     respond_to do |format|
       format.any {render :action => 'series/index'}
-      format.xml {render :xml => to_paginated_xml(@series)}
-      format.json {render :json => to_paginated_json(@series)}
+      format.xml {render :xml => to_paginated_xml(@series, params[:page])}
+      format.json {render :json => to_paginated_json(@series, params[:page])}
     end
   end
 end
