@@ -40,11 +40,11 @@ class ApplicationController < ActionController::Base
   def create
 
    #anonymous tagging will be logged as api's tags
-	if params[:tag] and current_user.nil?
-		current_user = User.where(email: "api@records.nsw.gov.au").first
-	end 
+   #if params[:tag] and current_user.nil?
+   #current_user = User.where(email: "api@records.nsw.gov.au").first
+   #end 
 
-	if current_user.nil?
+   if current_user.nil?
       deny_access 
    else
      entitytype = ApplicationHelper::CONTROLLER_TO_MODEL[self.class.name]
