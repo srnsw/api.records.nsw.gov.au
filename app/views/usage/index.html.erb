@@ -5,6 +5,19 @@
 <p>All API responses return at least XML or JSON. Depending on the method, additional formats (such as MODS) may also be returned. Formats can be specified by adding a dot extension (e.g. <a href="/search.xml?q=coal">/search.xml?q=coal</a>) or a format parameter (e.g. <a href="/search?q=coal&format=xml">/search?q=coal&format=xml</a>).</p>
 <%= search_documentation %>
 <%= entity_documentation %>
+
+<H2>User Contents</H2>
+
+<H3>Comments</H3>
+<p>User is able to add a comment to an API by issuing the HTTP POST request to an entity page with the following POST parameters</p>
+<%= params_documentation UsageHelper::Comment::PARAMS %>
+
+<H3>Tags</H3>
+<p>User is able to add a tag to an API by issuing the HTTP POST request to an entity page with the following POST parameters</p>
+<%= params_documentation UsageHelper::Tag::PARAMS %>
+
+<p>To generate an API token key, please sign in and then genearate it at your <a href="http://api.records.nsw.gov.au/users/edit">personal page</a>.</p>
+
 <H2>Licensing</H2>
 <p>Data in this API is released under the <a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/au/">Creative Commons Attribution-NonCommercial 3.0 Australia License</a>.</p>
 <p><a rel="license" href="http://creativecommons.org/licenses/by-nc/3.0/au/"><img style="border-width: 0;" src="http://i.creativecommons.org/l/by-nc/3.0/au/88x31.png" alt="Creative Commons License" /></a></p>

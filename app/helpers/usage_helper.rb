@@ -4,6 +4,16 @@ module UsageHelper
     ["count", "integer &le; 200", "50", "increase the number of results per page (default is 25)"]]
     FORMATS = ["xml", "json"]
   
+  module Comment
+	PARAMS = [["comments", "String", "Comment from a user", "the desired comment string"],
+	["auth_token", "String", "texRPgrxKPrXhvrevoev", "the token key string"]]
+  end
+  
+  module Tag
+	PARAMS = [["tag", "String", "boat, women, tags", "the desired tag string, use comma separators to add multiple tags at the same time"],
+	["auth_token", "String", "texRPgrxKPrXhvrevoev", "the token key string"]]
+  end
+
   module Search
     # this module contains parameters and schemas for formats specific to the search method
   	PARAMS = [["q", "query string", "unemployment", "keyword search"],
