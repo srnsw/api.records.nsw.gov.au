@@ -14,6 +14,7 @@ class Agency < Entity
   has_and_belongs_to_many :succeeding, :class_name => "Agency", :join_table => "agencies_link_succeeding",  :foreign_key => "agency_id", :association_foreign_key => "succeeding_id" 
   has_and_belongs_to_many :superiors, :class_name => "Agency", :join_table => "agencies_link_superiors",  :foreign_key => "agency_id", :association_foreign_key => "superior_id" 
   
+  alias_attribute :title, :Agency_title
   
   searchable do 
     text :Agency_title, :boost => 2

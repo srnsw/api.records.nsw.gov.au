@@ -8,6 +8,7 @@ class Portfolio < Entity
   has_and_belongs_to_many :preceding, :class_name => "Portfolio", :join_table => "portfolios_link_preceding",  :foreign_key => "portfolio_id", :association_foreign_key => "preceding_id" 
   has_and_belongs_to_many :succeeding, :class_name => "Portfolio", :join_table => "portfolios_link_succeeding",  :foreign_key => "portfolio_id", :association_foreign_key => "succeeding_id" 
   
+  alias_attribute :title, :Portfolio_title
   
   searchable do 
     text :Portfolio_title, :boost => 2

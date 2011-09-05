@@ -8,6 +8,8 @@ class Person < Entity
   has_and_belongs_to_many :portfolios, :class_name => "Portfolio", :join_table => "persons_link_portfolios"
   has_and_belongs_to_many :ministries, :class_name => "Ministry", :join_table => "persons_link_ministries"
   
+  alias_attribute :title, :Person_title
+
   searchable do 
     text :name_short, :boost => 2
     text :Biographical_note

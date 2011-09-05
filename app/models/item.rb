@@ -2,6 +2,9 @@ class Item < Entity
   set_table_name 'items_view'
   set_primary_key :ID
   belongs_to :series, :foreign_key => 'Series_number'
+
+  alias_attribute :title, :Item_title
+  
   searchable do 
     text :Item_title, :boost => 2
     text :description, :using => :Descriptive_Note, :stored => true

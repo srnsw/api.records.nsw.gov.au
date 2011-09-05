@@ -6,6 +6,8 @@ class Organisation < Entity
   has_and_belongs_to_many :preceding, :class_name => "Organisation", :join_table => "organisations_link_preceding",  :foreign_key => "organisation_id", :association_foreign_key => "preceding_id" 
   has_and_belongs_to_many :agencies, :class_name => "Agency", :join_table => "organisations_link_agencies"
   
+  alias_attribute :title, :Organisation_title
+  
   searchable do 
     text :Organisation_title, :boost => 2
     text :Administrative_history_note

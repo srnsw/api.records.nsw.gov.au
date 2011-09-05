@@ -4,6 +4,8 @@ class Ministry < Entity
   
   has_and_belongs_to_many :portfolios, :class_name => "Portfolio", :join_table => "ministries_link_portfolios"
   
+  alias_attribute :title, :Ministry_title
+
   searchable do 
     text :Ministry_title, :boost => 2
     integer :start_year, :trie => true do |ministry|

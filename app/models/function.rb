@@ -5,6 +5,8 @@ class Function < Entity
   has_and_belongs_to_many :activities, :class_name => "Activity", :join_table => "functions_link_activities"
   has_and_belongs_to_many :agencies, :class_name => "Agency", :join_table => "functions_link_agencies"
   has_and_belongs_to_many :persons, :class_name => "Person", :join_table => "functions_link_persons"
+  
+  alias_attribute :title, :Function_title
 
   searchable do 
     text :Function_title, :boost => 2

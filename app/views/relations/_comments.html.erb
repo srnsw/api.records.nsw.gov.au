@@ -20,9 +20,6 @@
       <%= form_tag do %>
         <p>Comment: <textarea name="comment"></textarea></p>
         <p><input type="submit" value="Submit" /></p>
-        <p><input type="hidden" name="link" value="<%= request.env['PATH_INFO'] %>" /></p>
-		  <p><input type="hidden" name="title" value="<%= title %>" /></p>
-        <p><input type="hidden" name="entitytype" value="<%= entitytype %>" /></p>
       <% end %>
     <% end %>
   </div>

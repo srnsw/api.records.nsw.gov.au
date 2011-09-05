@@ -39,20 +39,26 @@ class ApplicationController < ActionController::Base
   #handle POST
   def create
 
-	if current_user.nil?
-      deny_access
-   else
-     
-     if params[:comment] 
- 	 
-	comment = current_user.comments.new(comments: params[:comment], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
-	comment.save unless comment.spam?
+   #anonymous tagging will be logged as api's tags
+	if params[:tag] and current_user.nil?
+		current_user = User.where(email: "api@records.nsw.gov.au").first
+	end 
 
-	  end	
-	  if params[:tag]
-	    current_user.tags.create!(tag: params[:tag], entitytype: params[:entitytype], entityid: params[:id], link: params[:link], title: params[:title])
+	if current_user.nil?
+      deny_access 
+   else
+     entitytype = ApplicationHelper::CONTROLLER_TO_MODEL[self.class.name]
+     link = request.env['PATH_INFO'] 
+     title = self.model.title
+
+     if params[:comment]
+       comment = current_user.comments.new(comments: params[:comment], entitytype: entitytype, entityid: params[:id], link: link, title: title)
+       comment.save unless comment.spam?
+     end	
+     if params[:tag]
+       current_user.tags.create!(tag: params[:tag], entitytype: entitytype, entityid: params[:id], link: link, title: title)
 	  end
-	  redirect_to :back
+       redirect_to :back
    end
   end
   
