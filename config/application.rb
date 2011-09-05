@@ -41,9 +41,10 @@ module Collection
     #
     config.rakismet.key = ''    
     config.rakismet.url = 'http://api.records.nsw.gov.au'    
-    Mime::Type.register "application/xml", :mods
-    Mime::Type.register "application/xml", :eac_cpf
-    Mime::Type.register "application/xml", :oai_dc
-    Mime::Type.register "application/xml", :rdf_zotero
+    Mime::Type.register "application/mods+xml", :mods
+    Mime::Type.register "application/eac_cpf+xml", :eac_cpf
+    Mime::Type.register "application/oai_dc+xml", :oai_dc
+    Mime::Type.register "application/rdf_zotero+xml", :rdf_zotero
+		Mime::Type.register "application/xml", :xml
   end
 end
