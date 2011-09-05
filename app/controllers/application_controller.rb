@@ -55,10 +55,14 @@ class ApplicationController < ActionController::Base
        comment = current_user.comments.new(comments: params[:comment], entitytype: entitytype, entityid: params[:id], link: link, title: title)
        comment.save unless comment.spam?
      end	
+     
      if params[:tag]
-       current_user.tags.create!(tag: params[:tag], entitytype: entitytype, entityid: params[:id], link: link, title: title)
-	  end
-       redirect_to :back
+       tags = params[:tag].split(',')
+       tags.each do |tag|
+         current_user.tags.create!(tag: tag, entitytype: entitytype, entityid: params[:id], link: link, title: title)
+       end
+     end
+     redirect_to :back
    end
   end
   
