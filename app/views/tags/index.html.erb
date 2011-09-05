@@ -5,5 +5,9 @@
 <h1>Tags</h1>
 
 <% @tags.each do |tag| %>
-<%= link_to tag.tag, tag %>
+<% if params[:id]%>
+        <%= link_to tag.tag, tag %>
+<% else %>
+        <%= link_to tag, "/tags/#{tag}" %>
+<% end %>
 <% end %>
