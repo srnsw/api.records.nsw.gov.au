@@ -97,18 +97,34 @@ class MigrateView < ActiveRecord::Migration
 		RelType = 267')
 		
 		execute('CREATE VIEW agencies_link_related AS select 
-		 related_id=convert(int, ChildID),
-		 agency_id=convert(int, ParentID),
-		 SDate,
-		 SDateQualifier,
-		 EDate,
-		 EDateQualifier
-		from 
-		 EntityRelationships 
-		where
-		 ParentType = 25 and
-		 ChildType = 25 and 
-		 RelType = 271')
+ related_id=convert(int, ParentID),
+ agency_id=convert(int, ChildID),
+ SDate,
+ SDateQualifier,
+ EDate,
+ EDateQualifier
+from 
+ EntityRelationships 
+where
+ ParentType = 25 and
+ ChildType = 25 and 
+ RelType = 271
+
+UNION
+
+select 
+ related_id=convert(int, ChildID),
+ agency_id=convert(int, ParentID),
+ SDate,
+ SDateQualifier,
+ EDate,
+ EDateQualifier
+from 
+ EntityRelationships 
+where
+ ParentType = 25 and
+ ChildType = 25 and 
+ RelType = 271')
 		
 		execute('CREATE VIEW agencies_link_series_controlled AS select 
  ParentID as [series_id], 
