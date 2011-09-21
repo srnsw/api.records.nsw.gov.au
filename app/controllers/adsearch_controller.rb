@@ -14,22 +14,9 @@ class AdsearchController < ApplicationController
 			fulltext params[:q]
 			paginate(:page => page, :per_page => per_page)
     end
-    
-    @page = @search.hits
-    num_pages = (@search.total/20.0).ceil.to_i   
-    
-    @page.instance_eval <<-EVAL
-      def current_page
-        #{params[:page] || 1}
-      end
-      def num_pages
-       #{num_pages}
-      end
-      def limit_value
-        #{per_page}
-      end
-    EVAL
         
+    @page = Kaminari.paginate_array(Array.new(@search.total)).page(params[:page]).per(20)
+
     respond_to do |format|
       format.any
       format.yaml {render :text => @search.to_xml}
