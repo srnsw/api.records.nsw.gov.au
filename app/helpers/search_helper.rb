@@ -11,6 +11,12 @@ module SearchHelper
     img_link link, entity
   end 
   
+  def search_ad_link hit
+    entity = hit.class_name
+    link = link_to("#{hit.stored(:id)} #{hit.stored(:title).html_safe}", search_url(entity, hit.stored(:id)))
+    img_link link, entity
+  end
+  
   def series_filter row
     params_dup = params.dup
     if params_dup[:series]
@@ -63,6 +69,13 @@ module SearchHelper
   def highlight_hits hit
     if hit.highlight(:description) and not (hit.stored(:title).strip == (hit.highlight(:description).format {|fragment| fragment}).strip)
       content = hit.highlight(:description).format {|fragment| content_tag(:em, fragment)}
+      desc = content_tag :p, "..." + content, {:class => "collection_p"}, false
+    end
+  end
+  
+  def highlight_ad_hits hit
+    if hit.highlight(:scope) and not (hit.stored(:agency_title).strip == (hit.highlight(:scope).format {|fragment| fragment}).strip)
+      content = hit.highlight(:scope).format {|fragment| content_tag(:em, fragment)}
       desc = content_tag :p, "..." + content, {:class => "collection_p"}, false
     end
   end

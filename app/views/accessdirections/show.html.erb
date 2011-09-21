@@ -1,0 +1,17 @@
+<% content_for :title do %>
+<% @accessdir.agency_title %>
+<% end %>
+
+<%= make_header "Access Direction" %>
+<div class="entity_data">
+<%= make_title "Access direction #{@accessdir.id}" %>
+<%= simple_field "Agency", @accessdir.agency_title %>
+<%= simple_field "Type access", @accessdir.type_access %>
+<%= simple_field "Scope", @accessdir.scope %>
+<%= simple_field "Effect", @accessdir.effect %>
+<%= simple_field "CPA duration", @accessdir.cpa_duration %>
+<%= simple_field "Location", @accessdir.location %>
+<%= simple_field "Authorisation date", @accessdir.authorisation_date.to_date().to_formatted_s(:long_ordinal) %>
+
+</div>
+

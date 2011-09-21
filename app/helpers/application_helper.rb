@@ -1,5 +1,5 @@
 module ApplicationHelper
-  ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'group.png'], 'Ministry' => ['ministries', 'group.png'], 'Series' => ['series', 'folder_page.png'], 'Portfolio' => ['portfolios', 'folder_page.png'], 'Item' => ['items', 'page.png']} 
+  ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'group.png'], 'Ministry' => ['ministries', 'group.png'], 'Series' => ['series', 'folder_page.png'], 'Portfolio' => ['portfolios', 'folder_page.png'], 'Item' => ['items', 'page.png'], 'Accessdirection' => ['accessdirections', 'page.png']} 
   ENTITY_CONTROLLERS = {'functions' => 'Function', 'activities' => 'Activity', 'agencies' => 'Agency', 'persons' => 'Person', 'organisations' => 'Organisation', 'ministries' => 'Ministry', 'series' => 'Series', 'items' => 'Item', 'portfolios' => 'Portfolio'}
   
   CONTROLLER_TO_MODEL = { "ActivitiesController" => "Activity",

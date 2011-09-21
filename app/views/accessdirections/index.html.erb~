@@ -1,0 +1,16 @@
+<h1>Access Directions</h1>
+
+<% if @accessdirs %>
+	<% @accessdirs.each do |accessdir| %>
+		<%= link_p "Access direction #{accessdir.id}", accessdir %>
+	<% end %>
+	<% if params[:q]%>
+	  <%= "page_navigation(@page_details)" %>
+	<% else %>
+	  <%= paginate @accessdirs, :browse_uri => nil %>
+  <% end %>	
+<% end %>
+
+<% content_for :title do %>
+	<% "Access Directions" %>
+<% end %>

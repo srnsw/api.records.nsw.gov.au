@@ -60,6 +60,7 @@ Collection::Application.routes.draw do
   match 'unapi' => 'unapi#index'
   match 'oai' => 'oai#index'
   match 'search' => 'search#show'
+  match 'adsearch' => 'adsearch#show'
   match 'opensearch' => 'opensearch#index'
   match 'usage' => 'usage#index' #developer documentation
  
@@ -69,6 +70,8 @@ Collection::Application.routes.draw do
   resources :token_authentications, :only => [:create, :destroy]
 
   resources :tags, :only => [:index, :show]
+  
+  resources :accessdirections, :only => [:index, :show]
   
   resources :activities, :only => [:index, :show, :create] do
     member do
