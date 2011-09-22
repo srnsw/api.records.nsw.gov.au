@@ -23,5 +23,4 @@ include SRNSW::Serializers
       format.json {render :json => @accessdir.to_json}
     end
   end
-
 end
