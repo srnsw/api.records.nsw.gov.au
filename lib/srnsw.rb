@@ -75,16 +75,16 @@ module SRNSW
   module Serializers
     def to_paginated_xml set, page
 
-		page = page.to_i > 0 ? page.to_i : 1
-      
+      page = page.to_i > 0 ? page.to_i : 1
+      total = set.kind_of?(Array) ? set.count : set.total_count 
       set.to_xml(:except => :__rn) do |xml|
-			xml.pagination do
-				xml.this_page page
-				xml.total_results set.total_count
-				xml.per_page Kaminari.config.default_per_page
-			end
+  		  xml.pagination do
+  				xml.this_page page
+  				xml.total_results total 
+  				xml.per_page Kaminari.config.default_per_page
+  			end
       end
-      
+        
     end
     
     def to_paginated_json set, page
