@@ -13,7 +13,7 @@ module SearchHelper
   
   def search_ad_link hit
     entity = hit.class_name
-    link = link_to("#{hit.stored(:id)} #{hit.stored(:title).html_safe}", search_url(entity, hit.stored(:id)))
+    link = link_to("#{hit.stored(:id)} - #{hit.stored(:title).html_safe}", search_url(entity, hit.stored(:id)))
     img_link link, entity
   end
   
