@@ -13,7 +13,7 @@ module SearchHelper
   
   def search_ad_link hit
     entity = hit.class_name
-    link = link_to("#{hit.stored(:id)} - #{hit.stored(:title).html_safe}", search_url(entity, hit.stored(:id)))
+    link = link_to("#{hit.stored(:id)} - #{hit.stored(:title).first}", search_url(entity, hit.stored(:id)))
     img_link link, entity
   end
   
@@ -74,7 +74,7 @@ module SearchHelper
   end
   
   def highlight_ad_hits hit
-    if hit.highlight(:scope) and not (hit.stored(:agency_title).strip == (hit.highlight(:scope).format {|fragment| fragment}).strip)
+    if hit.highlight(:scope)
       content = hit.highlight(:scope).format {|fragment| content_tag(:em, fragment)}
       desc = content_tag :p, "..." + content, {:class => "collection_p"}, false
     end

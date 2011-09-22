@@ -9,9 +9,9 @@ set_primary_key :id
     text :scope
     text :type_access
 
-    string :title, :using => :agency_title, :stored => true
-    string :scope, :using => :scope, :stored => true
-    integer :id, :using => :id, :stored => true
+    text :title, :using => :agency_title, :stored => true
+    text :scope, :stored => true
+    integer :id, :stored => true
   end
   
 end
