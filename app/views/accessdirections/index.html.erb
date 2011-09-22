@@ -2,10 +2,9 @@
 
 <% if @accessdirs %>
 	<% @accessdirs.each do |accessdir| %>
-		<%= link_p "Access direction #{accessdir.id}", accessdir %>
+		<%= link_p "#{accessdir.id} - #{accessdir.agency_title}", accessdir %>
 	<% end %>
 	<%= paginate @accessdirs, :browse_uri => nil %>
-
 <% end %>
 
 <% content_for :title do %>
