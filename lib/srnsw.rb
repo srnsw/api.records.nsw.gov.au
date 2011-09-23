@@ -73,10 +73,10 @@ module SRNSW
   end
   
   module Serializers
-    def to_paginated_xml set, page
+    def to_paginated_xml set, page, total = nil
 
       page = page.to_i > 0 ? page.to_i : 1
-      total = set.kind_of?(Array) ? set.count : set.total_count 
+      total = set.total_count if total.nil? 
       set.to_xml(:except => :__rn) do |xml|
   		  xml.pagination do
   				xml.this_page page

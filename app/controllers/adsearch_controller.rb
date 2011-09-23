@@ -20,7 +20,7 @@ class AdsearchController < ApplicationController
     end
     respond_to do |format|
       format.any
-       format.xml {render :xml => to_paginated_xml(@search.results, params[:page])}
+      format.xml {render :xml => to_paginated_xml(@search.results, params[:page], @search.total)}
       format.json
     end
   end
