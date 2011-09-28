@@ -5,11 +5,13 @@
 <%= make_header "Access Direction" %>
 <div class="entity_data">
 <%= make_title "Access direction #{@accessdir.id}" %>
-<%= simple_field "Agency", @accessdir.agency_title %>
-<%= simple_field "Type access", @accessdir.type_access %>
 <%= simple_field "Scope", @accessdir.scope %>
+<%= simple_field "Further details", @accessdir.details %>
+<%= simple_field "Current agency responsible", @accessdir.agency_title %>
+<%= simple_field "Access type", @accessdir.type_access %>
 <%= simple_field "Effect", @accessdir.effect %>
-<%= simple_field "CPA duration", @accessdir.cpa_duration %>
+<%= simple_field "Duration CPA", @accessdir.cpa_duration %>
+<%= simple_field "Reasons CPA", @accessdir.cpa_reason %>
 <%= simple_field "Location", @accessdir.location %>
 <%= simple_field "Authorisation date", @accessdir.authorisation_date.to_date().to_formatted_s(:long_ordinal) %>
 
