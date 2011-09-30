@@ -89,7 +89,7 @@ module SRNSW
     
     def to_paginated_json set, page
 		
-		page = page.to_i > 0 ? page.to_i : 1
+      page = page.to_i > 0 ? page.to_i : 1
       
       payload = Serializers::Pagination.new page, set.total_count, Kaminari.config.default_per_page
        
@@ -101,9 +101,9 @@ module SRNSW
     attr_accessor :total_results, :this_page, :per_page
   
     def initialize(page, count, length)
-      @total_results = length
+      @total_results = count
       @this_page = page
-      @per_page = count
+      @per_page = length
     end
      
     def attributes
