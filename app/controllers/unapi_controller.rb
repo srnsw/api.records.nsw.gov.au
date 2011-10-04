@@ -1,7 +1,7 @@
 class UnapiController < ApplicationController
   include XmlHelper
   
-  FORMATS = [["rdf_zotero", "application/xml"],["mods", "application/xml"]]
+  FORMATS = [["rdf_zotero", "application/x-rdf_zotero+xml"],["mods", "application/mods+xml"]]
     
   def index
     if params[:id]
