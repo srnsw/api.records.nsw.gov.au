@@ -1,3 +1,8 @@
+<% content_for :head do %><link rel="unapi-server" type="application/x-rdf_zotero+xml" title="unAPI"
+    href="<%= url_for(:action => 'index', :controller=> 'unapi', :only_path => false)%>" />
+<% end %>
+<abbr class="unapi-id" title="<%= url_for(:only_path => false) %>"></abbr>
+
 <h1>Series</h1>
 <% @series.each do |series| %>
 <%= link_p series.Series_title, series %>
