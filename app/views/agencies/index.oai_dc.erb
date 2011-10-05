@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <oai_dc_set>
 <page_details>
-  <totalResults><%= @agencies.page_details.total_results %></totalResults>
-  <startIndex><%= @agencies.page_details.offset %></startIndex>
-  <itemsPerPage><%= @agencies.page_details.per_page %></itemsPerPage>
+  <totalResults><%= @agencies.total_count %></totalResults>
+  <startIndex><%= (@agencies.current_page - 1) * Kaminari.config.default_per_page  %></startIndex>
+  <itemsPerPage><%= Kaminari.config.default_per_page %></itemsPerPage>
 </page_details>
 <%= render :partial => "agencies/oai_dc", :collection => @agencies %>
 </oai_dc_set>
