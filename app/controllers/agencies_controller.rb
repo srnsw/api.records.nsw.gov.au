@@ -31,7 +31,7 @@ class AgenciesController < EntitiesController
     @series_controlled = @agency.series_controlled.page( params[:series_controlled_page]).per(5)
 
     respond_to do |format|
-      format.html
+      format.any
       format.oai_dc
       format.xml {render :xml => @agency.to_xml}
       format.json {render :json => @agency.to_json}
