@@ -3,7 +3,7 @@ class AgenciesController < EntitiesController
     @agencies = Agency.page params[:page]
     
     respond_to do |format|
-      format.html
+      format.any
       format.xml {render :xml => to_paginated_xml(@agencies, params[:page])}
       format.json {render :json => to_paginated_json(@agencies, params[:page])}
     end
