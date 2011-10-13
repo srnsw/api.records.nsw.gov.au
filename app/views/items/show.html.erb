@@ -16,6 +16,7 @@
 <%= simple_field "Access Direction", @item.AccessDirectionNo %>
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
+<%= simple_field "Location", @item.series.Repository %>
 <% current_uri = request.env['PATH_INFO'] %>
 </div>
 
