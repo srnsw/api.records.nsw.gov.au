@@ -10,7 +10,7 @@
 <%= make_header "Item" %>
 <div class="entity_data">
 <%= make_title @item.Item_title %>
-<%= simple_field "Item number", @item.Item_number_or_control_symbol %>
+<%= simple_field "Item number", @item.Item_number_or_control_symbol || @item.id.to_s %>
 <%= simple_field "Date range", @item.date_range %>
 <%= rich_field "Descriptive note", @item.Descriptive_Note %>
 <%= simple_field "Access Direction", @item.AccessDirectionNo %>
