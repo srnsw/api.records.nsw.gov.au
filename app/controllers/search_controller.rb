@@ -56,6 +56,19 @@ class SearchController < ApplicationController
     search = Sunspot.search(entities) do
     
       keywords(params[:q], :highlight => true)
+
+		if (params[:location] and not (entities - [Item, Series])[0])
+		   any_of do
+          all_of do
+            with(:class, Item)
+            with(:location, params[:location])
+          end
+          all_of do
+            with(:class, Series)
+            with(:location, params[:location])
+          end
+        end
+		end      
       
       if (from = numeric_param params[:from])
         any_of do
@@ -67,7 +80,7 @@ class SearchController < ApplicationController
         with(:start_year).less_than to
       end
       
-      if ((series = numeric_param params[:series]) and not (entities - [Item, Series])[0])
+      if ((series = numeric_param params[:series]) and entities.include?(Item))
         any_of do
           all_of do
             with(:class, Item)
@@ -79,6 +92,8 @@ class SearchController < ApplicationController
           end
         end
       end
+
+		facet(:location, :limit => 20)  if entities.include?(Item) 
       
       facet(:Series_number, :limit => 20) if entities.include?(Item)
       

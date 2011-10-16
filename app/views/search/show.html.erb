@@ -92,4 +92,11 @@
  <% end %>
 </div>
 <% end %>
+<% if @what_search.facet(:location) %>
+<%= content_tag :h4, "Filter by location" %>
+  <% for row in @what_search.facet(:location).rows %>
+   <%= location_filter(row) %>
+ <% end %>
+</div>
+<% end %>
 </div>

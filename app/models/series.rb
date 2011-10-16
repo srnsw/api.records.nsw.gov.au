@@ -18,7 +18,17 @@ class Series < Entity
   searchable do 
     text :Series_title, :boost => 2
     text :description, :using => :Descriptive_note, :stored => true
-     integer :start_year, :trie => true do |series|
+    string :location,  :stored => true do |series|
+      location = series.Repository.sub(" however", ". however")
+	   regexp = /^.*?[A-Z].*?([A-Z].*?)\./
+	   match = regexp.match(location)
+	   if match
+	  	  match = match[1]
+	  	else
+	  	  location
+	  	end  
+    end
+    integer :start_year, :trie => true do |series|
       series.Start_date ? series.Start_date.year : nil
     end
     integer :end_year, :trie => true do |series|
