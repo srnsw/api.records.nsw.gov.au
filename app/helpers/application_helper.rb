@@ -56,7 +56,7 @@ module ApplicationHelper
       content_tag :dl, dic_title + dic_def
     end
   end
-  
+    
   def make_link text, entity
     link = link_to text.html_safe, entity
   end

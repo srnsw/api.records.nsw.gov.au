@@ -9,14 +9,7 @@ class Item < Entity
     text :Item_title, :boost => 2
     text :description, :using => :Descriptive_Note, :stored => true
     string :location, :stored => true do |items|
-      location = items.series.Repository.sub(" however", ". however")
-	   regexp = /^.*?[A-Z].*?([A-Z].*?)\./
-	   match = regexp.match(location)
-	   if match
-	  	  match = match[1]
-	  	else
-	  	  location
-	  	end  
+      simple_location items.series.Repository
     end
     integer :start_year, :trie => true do |item|
       item.Start_date ? item.Start_date.year : nil

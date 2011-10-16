@@ -58,6 +58,18 @@ extend SRNSW::Pages
     date.day.to_s + "/" + date.month.to_s + "/" + date.year.to_s
   end
 
+  def self.simple_location location
+   #for some weird text which has no dot at the end of sentence.
+   location = location.sub(" however", ". however")
+   regexp = /^.*?[A-Z].*?([A-Z].*?)\./
+   match = regexp.match(location)
+   if match
+  	  match = match[1]
+  	else
+  	  location
+  	end
+  end 
+  
   def comments
 	@comments = Comment.where(:entitytype => self.class.name).and(:entityid => self.id).order_by([:created_at, :asc])	
   end
