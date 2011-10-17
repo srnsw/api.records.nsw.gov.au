@@ -59,6 +59,8 @@ extend SRNSW::Pages
   end
 
   def self.simple_location location
+  
+   location = "Western Sydney Records Centre" if location.blank?
    #for some weird text which has no dot at the end of sentence.
    location = location.sub(" however", ". however")
    #we do expect to have at least one dot to match the end of a sentence
@@ -75,6 +77,8 @@ extend SRNSW::Pages
        "State Records (Western Sydney)",
        "Western SydneyRecords Centre",
        "Sydney Records Centre",
+       "Western Sydney Repository Kingswood",
+       "Sydney",
        "."].include? match[1].strip
         match = "Western Sydney Records Centre"
       else
