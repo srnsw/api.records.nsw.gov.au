@@ -20,7 +20,8 @@ module UsageHelper
    		["series", "series id", "13660", "filter results by series id"],
     	["entities", "comma-separated list of entities", "Item,Series,Function,Activity", "return results for selected entities"],
     	["from", "year", "1940", "return results from this year onwards"],
-    	["to", "year", "1980", "return results up to this year"]]
+    	["to", "year", "1980", "return results up to this year"],
+    	["location", "location string", "Western Sydney", "filter results by location"]]
     # hash of descriptions and links to external schemas for special formats
     SCHEMAS = {"xml" => ["OpenSearch response elements", "http://www.opensearch.org/"]}
   end
