@@ -74,6 +74,15 @@
  <% end %>
  <% end %>
 </div>
+<div> 
+<% if @custom_search.facet(:location) %>
+	<%= content_tag :h4, "Filter by location" %>
+	  <% for row in @custom_search.facet(:location).rows %>
+	   <%= location_filter(row) %>
+	 <% end %>
+	</div>
+<% end %>
+</div>
 <% else %>
 <div>
 <% if @what_search.facet(:era) %>
@@ -91,12 +100,14 @@
  <% end %>
  <% end %>
 </div>
-<% end %>
+<div>
 <% if @what_search.facet(:location) %>
-<%= content_tag :h4, "Filter by location" %>
-  <% for row in @what_search.facet(:location).rows %>
-   <%= location_filter(row) %>
- <% end %>
+	<%= content_tag :h4, "Filter by location" %>
+	  <% for row in @what_search.facet(:location).rows %>
+	   <%= location_filter(row) %>
+	 <% end %>
+	</div>
+<% end %>
 </div>
 <% end %>
 </div>

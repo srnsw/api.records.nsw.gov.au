@@ -80,7 +80,7 @@ class SearchController < ApplicationController
         with(:start_year).less_than to
       end
       
-      if ((series = numeric_param params[:series]) and entities.include?(Item))
+      if ((series = numeric_param params[:series]) and not (entities - [Item, Series])[0])
         any_of do
           all_of do
             with(:class, Item)
@@ -93,7 +93,7 @@ class SearchController < ApplicationController
         end
       end
 
-		facet(:location, :limit => 20)  if entities.include?(Item) 
+		facet(:location, :limit => 20) if (entities.include?(Item) or entities.include?(Series))
       
       facet(:Series_number, :limit => 20) if entities.include?(Item)
       

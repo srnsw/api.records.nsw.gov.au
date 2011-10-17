@@ -64,23 +64,22 @@ extend SRNSW::Pages
    #we do expect to have at least one dot to match the end of a sentence
    #but some of the data doesn't contain it
    location = location.concat(".")
-   location = "No location" if location.blank?
    regexp = /^.*?[A-Z].*?([A-Z].*?)\./
    match = regexp.match(location)
    if match
       if	["Western Sydney Records Centre)",
-			"Western Sydney Records Centre",
-			"Western Sydney",
-			"Sydney Repository Kingswood",
-			"Western sydney Repository Kingswood",
-			"State Records (Western Sydney)",
-			"Western SydneyRecords Centre",
-			"Sydney Records Centre",
-			"."].include(match[1].strip)?
-      match = "Western Sydney Records Centre"
+       "Western Sydney Records Centre",
+       "Western Sydney",
+       "Sydney Repository Kingswood",
+       "Western sydney Repository Kingswood",
+       "State Records (Western Sydney)",
+       "Western SydneyRecords Centre",
+       "Sydney Records Centre",
+       "."].include? match[1].strip
+        match = "Western Sydney Records Centre"
       else
-				match = match[1]
-			end
+		  match = match[1]
+	   end
   	else
   	  location
   	end
