@@ -64,7 +64,7 @@ extend SRNSW::Pages
    #we do expect to have at least one dot to match the end of a sentence
    #but some of the data doesn't contain it
    location = location.concat(".")
-   location = "No location" unless location.blank?
+   location = "No location" if location.blank?
    regexp = /^.*?[A-Z].*?([A-Z].*?)\./
    match = regexp.match(location)
    if match
