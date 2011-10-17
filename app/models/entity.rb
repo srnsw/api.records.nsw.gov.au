@@ -61,6 +61,9 @@ extend SRNSW::Pages
   def self.simple_location location
    #for some weird text which has no dot at the end of sentence.
    location = location.sub(" however", ". however")
+   #we do expect to have at least one dot to match the end of a sentence
+   #but some of the data doesn't contain it
+   location = location.concat(".")
    regexp = /^.*?[A-Z].*?([A-Z].*?)\./
    match = regexp.match(location)
    if match

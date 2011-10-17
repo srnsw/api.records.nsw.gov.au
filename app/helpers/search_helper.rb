@@ -27,7 +27,7 @@ module SearchHelper
       image = image_tag("folder_page.png", {:alt=> "Filter by location"})
     end
     params_dup = reset_pages params_dup    
-    link = link_to(row.instance.location, params_dup)
+    link = link_to(row.value, params_dup)
     link =  image + " " + link + " (#{row.count})"
     p = content_tag :p, link
   end  
@@ -39,7 +39,7 @@ module SearchHelper
       image = image_tag("cross.png", {:alt => "Remove filter"})
     else
       params_dup[:series] = row.value
-      image = image_tag("folder_page.png", {:alt=> "Filter by series"})
+      image = image_tag("house.png", {:alt=> "Filter by series"})
     end
     params_dup = reset_pages params_dup
     link = link_to(row.instance.Series_title, params_dup)
