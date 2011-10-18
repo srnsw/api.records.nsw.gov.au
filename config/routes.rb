@@ -60,7 +60,6 @@ Collection::Application.routes.draw do
   match 'unapi' => 'unapi#index'
   match 'oai' => 'oai#index'
   match 'search' => 'search#show'
-  match 'adsearch' => 'adsearch#show'
   match 'opensearch' => 'opensearch#index'
   match 'usage' => 'usage#index' #developer documentation
  
@@ -71,7 +70,11 @@ Collection::Application.routes.draw do
 
   resources :tags, :only => [:index, :show]
   
-  resources :accessdirections, :only => [:index, :show]
+  resources :accessdirections, :only => [:index, :show] do
+    collection do
+      get 'search'
+    end
+  end
   
   resources :activities, :only => [:index, :show, :create] do
     member do

@@ -1,0 +1,18 @@
+<% content_for :title do %>
+<% "Search Results" %>
+<% end %>
+
+<%= render 'adsearch' %>
+<% if params[:q] %>
+  <% unless @search.hits[0] %>
+    <p><em>No results</em></p>
+  <% end %>
+  
+  <% for hit in @search.hits %>
+    <div class="collection_search_result">
+      <%= search_ad_link hit %>      
+      <%= highlight_ad_hits hit %>
+    </div>
+  <% end %>
+  <%= paginate @page, :browse_uri => nil %>
+<% end %>
