@@ -1,5 +1,5 @@
 module ApplicationHelper
-  ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'group.png'], 'Ministry' => ['ministries', 'group.png'], 'Series' => ['series', 'folder_page.png'], 'Portfolio' => ['portfolios', 'folder_page.png'], 'Item' => ['items', 'page.png'], 'Accessdirection' => ['accessdirections', 'page.png']} 
+  ENTITIES = {'Function' => ['functions', 'tag_red.png'], 'Activity' => ['activities', 'tag_purple.png'], 'Agency' => ['agencies', 'group.png'], 'Person' => ['persons', 'user_suit.png'], 'Organisation' => ['organisations', 'sitemap.png'], 'Ministry' => ['ministries', 'user_gray.png'], 'Series' => ['series', 'folder_page.png'], 'Portfolio' => ['portfolios', 'report_user.png'], 'Item' => ['items', 'page.png'], 'Accessdirection' => ['accessdirections', 'page.png']} 
   ENTITY_CONTROLLERS = {'functions' => 'Function', 'activities' => 'Activity', 'agencies' => 'Agency', 'persons' => 'Person', 'organisations' => 'Organisation', 'ministries' => 'Ministry', 'series' => 'Series', 'items' => 'Item', 'portfolios' => 'Portfolio'}
   
   CONTROLLER_TO_MODEL = { "ActivitiesController" => "Activity",
@@ -81,9 +81,10 @@ module ApplicationHelper
 		link_to image_tag("folder_explore.png", {:alt=> "browse"}), uri
 	end
 	
-	def link_ai_purchase text, item     
+	def link_ai_purchase text, item, preorder
+    img = preorder ? "basket.png" : "camera.png"	
 	  linktag = link_to text.html_safe,  "http://investigator.records.nsw.gov.au/Entity.aspx?Path=\\Item\\#{item}" , :target => "_blank"
-     link = image_tag("basket.png", {:alt=> "process through Archive Investigator"}) + " " + linktag
+     link = image_tag(img, {:alt=> "process through Archive Investigator"}) + " " + linktag
      p = content_tag :p, link
 	end
 	

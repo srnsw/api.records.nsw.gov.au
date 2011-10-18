@@ -16,7 +16,7 @@
 <%= simple_field "Access Direction", @item.AccessDirectionNo %>
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
-<%= simple_field "Purchase", link_ai_purchase("Purchase item through Archives Investigator", @item.id) if can_order_copy @item.series.Series_number %>
+<%= simple_field "Purchase copy", link_ai_purchase("Purchase copy through Archives Investigator", @item.id) if can_order_copy @item.series.Series_number %>
 <%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id) if can_pre_order_copy @item.series.Series_number %>  
 <%= simple_field "Location", @item.series.Repository %>
 <% current_uri = request.env['PATH_INFO'] %>
