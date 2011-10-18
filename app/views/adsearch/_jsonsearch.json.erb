@@ -1,8 +1,0 @@
-<% link = search_url(jsonsearch.class_name, jsonsearch.stored(:id), false) %><% if jsonsearch_counter > 0 %>,<% end %>{"Result":{
-  "term":"<%= jsonsearch.class_name %>",
-  "title":"<%= jsonsearch.stored(:title) %>",
-  "href":"<%= link %>",
-  <% if jsonsearch.highlight(:scope)%>
-  "highlight":"<%= ActiveSupport::JSON.encode(jsonsearch.highlight(:scope).format)[1...-1] %>",
-  <% end %>
-  "updated":"<%= SearchHelper::LAST_MODIFIED %>"}}
