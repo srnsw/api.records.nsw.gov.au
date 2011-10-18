@@ -81,6 +81,13 @@ module ApplicationHelper
 		link_to image_tag("folder_explore.png", {:alt=> "browse"}), uri
 	end
 	
+	def link_ai_purchase text, item     
+	  linktag = link_to text.html_safe,  "http://investigator.records.nsw.gov.au/Entity.aspx?Path=\\Item\\#{item}"
+     link = image_tag("basket.png", {:alt=> "process through Archive Investigator"}) + " " + linktag
+     p = content_tag :p, link
+	  #link_to image_tag("basket.png", {:alt=> "process through Archive Investigator"}), "http://investigator.records.nsw.gov.au//Entity.aspx?Path=\\Item\#{item}"
+	end
+	
 	def link_tag title, lnk, entityname
 		linktag = link_to title.html_safe, lnk
 		img_link linktag, entityname
