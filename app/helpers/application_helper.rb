@@ -82,10 +82,9 @@ module ApplicationHelper
 	end
 	
 	def link_ai_purchase text, item     
-	  linktag = link_to text.html_safe,  "http://investigator.records.nsw.gov.au/Entity.aspx?Path=\\Item\\#{item}"
+	  linktag = link_to text.html_safe,  "http://investigator.records.nsw.gov.au/Entity.aspx?Path=\\Item\\#{item}" , :target => "_blank"
      link = image_tag("basket.png", {:alt=> "process through Archive Investigator"}) + " " + linktag
      p = content_tag :p, link
-	  #link_to image_tag("basket.png", {:alt=> "process through Archive Investigator"}), "http://investigator.records.nsw.gov.au//Entity.aspx?Path=\\Item\#{item}"
 	end
 	
 	def link_tag title, lnk, entityname
