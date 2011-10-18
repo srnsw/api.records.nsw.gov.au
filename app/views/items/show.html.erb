@@ -17,10 +17,10 @@
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
 <% if can_order_copy @item.series.Series_number %>
-  <%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id) %>
+  <%= simple_field "Purchase", link_ai_purchase("Purchase item through Archives Investigator", @item.id) %>
 <% end %>
 <% if can_pre_order_copy @item.series.Series_number %>
-  <%= simple_field "Purchase", link_ai_purchase("Purchase item through Archives Investigator", @item.id) %>
+  <%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id) %>  
 <% end %>
 <%= simple_field "Location", @item.series.Repository %>
 <% current_uri = request.env['PATH_INFO'] %>
