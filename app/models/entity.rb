@@ -2,7 +2,19 @@ class Entity < ActiveRecord::Base
 
 # add custom pagination
 extend SRNSW::Pages
-
+   LOCATIONS = Hash.new
+	 LOCATIONS["Charles Sturt"] = "Charles Sturt University Regional Archives, Wagga Wagga"
+	 LOCATIONS["University of Newcastle"] = "Auchmuty Library, University of Newcastle"
+	 LOCATIONS["New England"] = "University of New England and Regional Archives, Armidale"
+	 LOCATIONS["Outback"] = "Outback Archives, Broken Hill City Library"
+	 LOCATIONS["Police Force"] = "New South Wales Police Force"
+	 LOCATIONS["Newcastle Region"] = "Newcastle Region Library"
+	 LOCATIONS["Mitchell"] = "Mitchell Library, State Library of NSW"
+	 LOCATIONS["University of Western Sydney"] = "University of Western Sydney, Hawkesbury"
+	 LOCATIONS["University of Wollongong"] = "Library, University of Wollongong"
+	 
+	 DEFAULT_LOCATION = "Western Sydney Records Centre, Kingswood"
+	 
   def date_range
     date_string self.Start_date_qualifier, self.Start_date, self.End_date_qualifier, self.End_date
   end
@@ -59,34 +71,15 @@ extend SRNSW::Pages
   end
 
   def self.simple_location location
-  
-   location = "Western Sydney Records Centre" if location.blank?
-   #for some weird text which has no dot at the end of sentence.
-   location = location.sub(" however", ". however")
-   #we do expect to have at least one dot to match the end of a sentence
-   #but some of the data doesn't contain it
-   location = location.concat(".")
-   regexp = /^.*?[A-Z].*?([A-Z].*?)\./
-   match = regexp.match(location)
-   if match
-      if	["Western Sydney Records Centre)",
-       "Western Sydney Records Centre",
-       "Western Sydney",
-       "Sydney Repository Kingswood",
-       "Western sydney Repository Kingswood",
-       "State Records (Western Sydney)",
-       "Western SydneyRecords Centre",
-       "Sydney Records Centre",
-       "Western Sydney Repository Kingswood",
-       "Sydney",
-       "."].include? match[1].strip
-        match = "Western Sydney Records Centre"
-      else
-		  match = match[1]
-	   end
-  	else
-  	  location
-  	end
+   loc = DEFAULT_LOCATION
+	 h = LOCATIONS
+	 h.keys.each do |key| 
+	   if location.include? key
+		   loc = h[key]
+		   break
+		 end
+	 end
+	 loc
   end 
   
   def comments
