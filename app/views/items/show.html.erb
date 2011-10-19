@@ -13,11 +13,11 @@
 <%= simple_field "Item number", @item.Item_number_or_control_symbol || @item.id.to_s %>
 <%= simple_field "Date range", @item.date_range %>
 <%= rich_field "Descriptive note", @item.Descriptive_Note %>
-<%= simple_field "Access Direction", @item.AccessDirectionNo %>
+<%= simple_field "Access direction", link_to(@item.AccessDirectionNo.to_s ,url_for(:controller => 'accessdirections').concat("/#{@item.AccessDirectionNo.to_s}")) if not @item.AccessDirectionNo.blank?%>
 <%= numeric_field "Images", @item.ImagesCount %>
 <%= simple_field "Availability", @item.Availability %>
-<%= simple_field "Purchase copy", link_ai_purchase("Purchase copy through Archives Investigator", @item.id) if can_order_copy @item.series.Series_number %>
-<%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id) if can_pre_order_copy @item.series.Series_number %>  
+<%= simple_field "Purchase copy", link_ai_purchase("Purchase copy through Archives Investigator", @item.id, false) if can_order_copy @item.series.Series_number %>
+<%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id, true) if can_pre_order_copy @item.series.Series_number %>  
 <%= simple_field "Location", @item.series.Repository %>
 <% current_uri = request.env['PATH_INFO'] %>
 </div>
