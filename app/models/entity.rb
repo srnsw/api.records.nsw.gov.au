@@ -72,10 +72,9 @@ extend SRNSW::Pages
 
   def self.simple_location location
    loc = DEFAULT_LOCATION
-	 h = LOCATIONS
-	 h.keys.each do |key| 
+	 LOCATIONS.keys.each do |key| 
 	   if location.include? key
-		   loc = h[key]
+		   loc = LOCATIONS[key]
 		   break
 		 end
 	 end
@@ -90,7 +89,4 @@ extend SRNSW::Pages
 	@tags = Tag.where(:entitytype => self.class.name).and(:entityid => self.id).order_by([:created_at, :asc])
   end
   
-  def dbg
-   "#{self.class.name}-#{self.id}"
-  end
 end
