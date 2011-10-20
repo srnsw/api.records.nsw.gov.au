@@ -26,7 +26,7 @@ class ActivitiesController < EntitiesController
   
   def functions
     activity = Activity.find(params[:id])
-    @functions = activity.functions.page
+    @functions = activity.functions.page(params[:page])
     respond_to do |format|
       format.any {render :action => 'functions/index'}
       format.xml {render :xml => to_paginated_xml(@functions, params[:page])}
@@ -36,7 +36,7 @@ class ActivitiesController < EntitiesController
   
   def series
     activity = Activity.find(params[:id])
-    @series = activity.series.page
+    @series = activity.series.page(params[:page])
     respond_to do |format|
       format.any {render :action => 'series/index'}
       format.xml {render :xml => to_paginated_xml(@series, params[:page])}
