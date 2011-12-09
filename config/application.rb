@@ -45,8 +45,8 @@ module Collection
     config.rakismet.url = 'http://api.records.nsw.gov.au'    
 
     #Flickr setting
-    FlickRaw.api_key="9e5278b20e4a4f10079c45faefed203f"
-    FlickRaw.shared_secret="afe0a53e37630b73"
+    FlickRaw.api_key=""
+    FlickRaw.shared_secret=""
         
     Mime::Type.register "application/mods+xml", :mods
     Mime::Type.register "application/x-eac_cpf+xml", :eac_cpf
