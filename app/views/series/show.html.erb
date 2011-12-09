@@ -20,6 +20,9 @@
 <%= simple_field "Bridging aids", @series.Bridging_aids %>
 <%= simple_field "Series control status", @series.Series_control_status %>
 <%= simple_field "Location", @series.Repository %>
+
+<%= render :partial => 'relations/flickr_photos' %>
+
 <% current_uri = request.env['PATH_INFO'] %>
 </div>
 
@@ -67,6 +70,7 @@
 
 <%= render :partial => 'relations/tags', :object => @series.tags, :locals => {:entitytype => Series.name, :title => @series.Series_title} %>
 
+<%= render :partial => 'relations/flickr_tags' %>
 </div>
 
 <%= render :partial => 'relations/comments', :object => @series.comments, :locals => {:show_comment => params[:comment], :entitytype => Series.name, :title => @series.Series_title} %>

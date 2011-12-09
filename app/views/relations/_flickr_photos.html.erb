@@ -1,0 +1,8 @@
+
+<% infos = flickr_photos_info(request.url.sub("localhost", "api.records.nsw.gov.au")) %>
+<% if infos.count > 0 %>  
+  <%= simple_field "Flickr images", "" %>
+  <% infos.each do |info| %>
+    <%= link_to image_tag(flickr_photos_thumbs(info)), FlickRaw.url_photopage(info) %>
+  <% end %>
+<% end %>

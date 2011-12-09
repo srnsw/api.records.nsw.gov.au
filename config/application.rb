@@ -1,6 +1,7 @@
 require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
+require 'flickraw'
 
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
@@ -38,13 +39,19 @@ module Collection
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
-    #
+    
+    # Rakismet setting
     config.rakismet.key = ''    
     config.rakismet.url = 'http://api.records.nsw.gov.au'    
+
+    #Flickr setting
+    FlickRaw.api_key="9e5278b20e4a4f10079c45faefed203f"
+    FlickRaw.shared_secret="afe0a53e37630b73"
+        
     Mime::Type.register "application/mods+xml", :mods
     Mime::Type.register "application/x-eac_cpf+xml", :eac_cpf
     Mime::Type.register "application/x-oai_dc+xml", :oai_dc
     Mime::Type.register "application/x-rdf_zotero+xml", :rdf_zotero
-		Mime::Type.register "application/xml", :xml
+	 Mime::Type.register "application/xml", :xml
   end
 end

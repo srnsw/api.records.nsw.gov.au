@@ -1,0 +1,12 @@
+
+
+<% tags = flickr_photo_tags(request.url.sub("localhost", "api.records.nsw.gov.au")) %>
+<% if not tags.blank? %>  
+  <div class="user_contents_item">
+    <%= content_tag :h4, "Flickr tags" %>
+    <% tags.uniq.each do |tag| %>
+      <%= link_to tag, "http://www.flickr.com/search/?w=all&q=#{tag}" unless tag.include?("http://")%>
+    <% end %>
+  </div>
+<% end %>
+ 
