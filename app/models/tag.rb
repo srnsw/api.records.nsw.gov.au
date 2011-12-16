@@ -11,10 +11,11 @@ include Mongoid::Document
   field :entitytype, type: String
   field :entityid, type: Integer
   field :tag, type: String
+  field :safe_tag, type: String
 
   validates_length_of :tag, maximum: 30
   
   def to_param
-    tag
+    safe_tag
   end
 end

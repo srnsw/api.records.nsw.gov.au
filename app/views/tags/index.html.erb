@@ -8,6 +8,6 @@
 <% if params[:id]%>
         <%= link_to tag.tag, tag %>
 <% else %>
-        <%= link_to tag, "/tags/#{tag}" %>
+        <%= link_to tag, "/tags/#{tag.gsub(/[^0-9A-Za-z]/,'')}" %>
 <% end %>
 <% end %>

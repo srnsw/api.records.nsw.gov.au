@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
      if params[:tag]
        tags = params[:tag].split(',')
        tags.each do |tag|
-         current_user.tags.create!(tag: tag.strip, entitytype: entitytype, entityid: params[:id], link: link, title: title)
+         current_user.tags.create!(tag: tag.strip, safe_tag: tag.gsub(/[^0-9A-Za-z]/,''), entitytype: entitytype, entityid: params[:id], link: link, title: title)
        end
      end
      redirect_to :back

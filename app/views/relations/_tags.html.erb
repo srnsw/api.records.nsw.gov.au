@@ -3,7 +3,11 @@
 	<p>Tags:
 	   <% if tags %>
 			<% tags.each do |tag|%>
-			<%= link_to "#{tag.tag} ", "/tags/#{tag.tag}" %>
+   			<%  if tag.safe_tag.blank? %>
+   			  <%= link_to "#{tag.tag} ", "/tags/#{tag.tag}" %>
+   			<% else %>
+   			  <%= link_to "#{tag.tag} ", "/tags/#{tag.safe_tag}" %>
+   			<% end %>
 			<% end %>
 		<% end %>
 	</p>
