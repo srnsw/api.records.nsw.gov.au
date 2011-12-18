@@ -1,7 +1,10 @@
 module FlickrHelper
 
   def flickr_photos_info url
-    flickr.photos.search(:machine_tags => "dc:identifier=#{url}")
+    url_portions = url.gsub("items", "item").split('/')
+    entity =url_portions[url_portions.count-2]
+    id = url_portions.last
+    flickr.photos.search(:machine_tags => "srnsw:#{entity}=#{id}")
   end
   
   def flickr_photos_thumbs photo_info
@@ -17,8 +20,12 @@ module FlickrHelper
   
   def flickr_photo_tags url
 
+    url_portions = url.gsub("items", "item").split('/')
+    entity =url_portions[url_portions.count-2]
+    id = url_portions.last
+    
     tags = Array.new
-    photos = flickr.photos.search(:machine_tags => "dc:identifier=#{url}")
+    photos = flickr.photos.search(:machine_tags => "srnsw:#{entity}=#{id}")
 
     photos.each do |photo|
       
