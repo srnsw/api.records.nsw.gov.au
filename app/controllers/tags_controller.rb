@@ -3,6 +3,8 @@ class TagsController < ApplicationController
   def index
 	@tags = Tag.asc(:created_at).distinct(:tag)
 	
+	migrate
+	
 	respond_to do |format|
 		format.html
 		format.xml {render :xml => @tags.to_xml(:only => [:tag])}
@@ -13,10 +15,7 @@ class TagsController < ApplicationController
   def show
 
     @tags = Tag.where(safe_tag: params[:id]).order_by([:created_at, :asc])
-    
-    #backward compatibility
-    @tags = Tag.where(tag: params[:id]).order_by([:created_at, :asc]) if @tags.count == 0
-    
+        
     respond_to do |format|
 		format.html
 		format.xml {render :xml => @tags.to_xml(:only => [:tag, :safe_tag, :link, :title])}
@@ -24,4 +23,11 @@ class TagsController < ApplicationController
 	 end
   end
 
+  def migrate
+    tags = Tag.all
+    tags.each do |tag|
+      tag.safe_tag = tag.tag.gsub(/[^0-9A-Za-z:\+-]/,'')
+      tag.save
+    end
+  end
 end
