@@ -18,6 +18,8 @@ class Series < Entity
   searchable do 
     text :Series_title, :boost => 2
     text :description, :using => :Descriptive_note, :stored => true
+    text :series_id, :using => :Series_number, :boost => 2
+    
     string :location,  :stored => true do |series|
 		simple_location series.Repository        
     end
