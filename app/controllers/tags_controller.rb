@@ -3,8 +3,6 @@ class TagsController < ApplicationController
   def index
 	@tags = Tag.asc(:created_at).distinct(:tag)
 	
-	migrate
-	
 	respond_to do |format|
 		format.html
 		format.xml {render :xml => @tags.to_xml(:only => [:tag])}
@@ -23,11 +21,5 @@ class TagsController < ApplicationController
 	 end
   end
 
-  def migrate
-    tags = Tag.all
-    tags.each do |tag|
-      tag.safe_tag = tag.tag.gsub(/[^0-9A-Za-z:\+-]/,'')
-      tag.save
-    end
-  end
+
 end
