@@ -1,13 +1,13 @@
 <div class="user_contents_item">
 	<%= form_tag do %>
-	<p>Tags:
-	   <% if tags %>
-			<% tags.each do |tag|%>
-   			<%  if tag.safe_tag.blank? %>
-   			  <%= link_to "#{tag.tag} ", "/tags/#{tag.tag}" %>
-   			<% else %>
-   			  <%= link_to "#{tag.tag} ", "/tags/#{tag.safe_tag}" %>
-   			<% end %>
+	<%= content_tag :h4, "Tags" %>
+	<p>
+	  <% if tags %>
+			<% tags.each do |tag|%>	
+   		  <% if current_user %>
+   		    <%= link_to image_tag("cross.png"), "/tags/#{tag.id}", :method => "delete", :confirm => "Delete \"#{tag.safe_tag}\" tag?" if current_user.tags.include?(tag)%>
+   		  <% end %>
+   		  <%= link_to "#{tag.tag} ", "/tags/#{tag.safe_tag}" %>
 			<% end %>
 		<% end %>
 	</p>

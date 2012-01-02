@@ -23,11 +23,11 @@ class TagsController < ApplicationController
 	 end
   end
 
-  def migrate
-    tags = Tag.all
-    tags.each do |tag|
-      tag.safe_tag = tag.tag.gsub(/[^0-9A-Za-z:\+-]/,'')
-      tag.save
-    end
+  def destroy
+      tag = Tag.find(params[:id])
+      tag.destroy unless tag.nil?
+      
+      redirect_to :back
   end
+  
 end

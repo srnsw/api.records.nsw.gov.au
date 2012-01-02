@@ -68,7 +68,7 @@ Collection::Application.routes.draw do
   resources :users, :only => [:index, :show]
   resources :token_authentications, :only => [:create, :destroy]
 
-  resources :tags, :only => [:index, :show]
+  resources :tags, :only => [:index, :show, :destroy]
   
   resources :accessdirections, :only => [:index, :show] do
     collection do
