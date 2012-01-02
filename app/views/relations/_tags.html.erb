@@ -1,6 +1,7 @@
 <div class="user_contents_item">
 	<%= form_tag do %>
-	<p>Tags:
+	<%= content_tag :h4, "Tags" %>
+	<p>
 	   <% if tags %>
 			<% tags.each do |tag|%>
    			<%  if current_user %>
