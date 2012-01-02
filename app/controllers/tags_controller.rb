@@ -21,5 +21,11 @@ class TagsController < ApplicationController
 	 end
   end
 
+	def destroy
+		tag = tag.find(params[:id])
+		tag.destroy unless tag.nil?
+		
+		redirect_to :back
+	end
 
 end
