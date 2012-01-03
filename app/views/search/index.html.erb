@@ -5,24 +5,23 @@
 <%= render 'search' %>
 
 <br>
-<% content_tag :h4 'Archive2Share' %>
+<%= content_tag :h4, "Archive2Share" %>
 <% photos = flickr_all_photo %>
 <%= "#{photos.count} images shared by our user" %>
 <!-- thumbnail scroller markup begin -->
 <div id="tS1" class="jThumbnailScroller" style="margin-top:20px;">
 	<div class="jTscrollerContainer">
 		<div class="jTscroller">
-			<% photos.sample(10).each do |photo| %>
-				<%= link_to image_tag(flickr_photos_thumb photo), FlickRaw.url_photopage(photo) %>
+			<% photos.each do |photo| %>
+				<%= link_to image_tag(flickr_photos_thumbs photo), FlickRaw.url_photopage(photo) %>
 			<% end %>
 		</div>
 	</div>
-	<a href="#" class="jTscrollerPrevButton"></a>
-	<a href="#" class="jTscrollerNextButton"></a>
 </div>
 <!-- thumbnail scroller markup end -->
-
+<br>
+<a href="http://www.flickr.com/groups/archives2share">Upload and share</a> your own images
 <br>
 <br>
-<% content_tag :h2 '' %>
+<%= content_tag :h2, '' %>
 <p>If you are a developer, see the <%= link_to "API Documentation", {:action=> "index", :controller => "usage"} %>.</p>

@@ -40,7 +40,7 @@ module FlickrHelper
   
 	def flickr_all_photo
 		begin
-			flickr.photos.search(:machine_tags => "srnsw.*")
+			flickr.photos.search(:text => "srnsw.*")
 		rescue
 			Array.new
 		end
