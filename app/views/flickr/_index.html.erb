@@ -7,7 +7,7 @@
 <div id="tS1" class="jThumbnailScroller" style="margin-top:20px;">
    <div class="jTscrollerContainer">
       <div class="jTscroller">
-      <% @photos.to_a.sample(10).each do |photo| %>
+      <% @photos.to_a.sample(15).each do |photo| %>
       <%= link_to image_tag(flickr_photos_thumbs photo), FlickRaw.url_photopage(photo) %>
       <% end %>
       </div>
