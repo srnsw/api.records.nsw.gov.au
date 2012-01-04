@@ -5,11 +5,15 @@
   <link rel="search" type="application/opensearchdescription+xml" href="<%= url_for(:controller => '/opensearch', :format => 'xml') %>" title="State Records NSW search" />
   <%= stylesheet_link_tag 'srnsw' %>
   <%= stylesheet_link_tag 'api' %>
+	<%= stylesheet_link_tag 'jquery.thumbnailScroller' %>
+	
   <!--[if IE]><%= stylesheet_link_tag 'IEFixes', :media=>"all" %><![endif]-->
   <%= javascript_include_tag :defaults %>
   <%= csrf_meta_tag %>
   <%= yield :head %>
+  
 </head>
+
 <body>
 <div id="visual-portal-wrapper">
   <div id="portal-top">
@@ -125,5 +129,45 @@
     <p>PO Box 516, Kingswood, NSW 2747, Australia | Phone: +61 2 9673 1788 | Fax: +61 2 9833 4518 | Email: info@records.nsw.gov.au | ABN: 96 588 554 718</p>
   </div>
 </div>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2365263-11']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+  </script>
+	<script>
+	/* jQuery.noConflict() for using the plugin along with other libraries. 
+		 You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
+		 if you include jQuery before other libraries in yourdocument's head tag. 
+		 [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
+	jQuery.noConflict(); 
+	/* calling thumbnailScroller function with options as parameters */
+	(function($){
+	window.onload=function(){ 
+		$("#tS1").thumbnailScroller({ 
+			scrollerType:"hoverAccelerate", 
+			scrollerOrientation:"horizontal", 
+			scrollSpeed:2, 
+			scrollEasing:"easeOutCirc", 
+			scrollEasingAmount:600, 
+			acceleration:4, 
+			scrollSpeed:800, 
+			noScrollCenterSpace:10, 
+			autoScrolling:0, 
+			autoScrollingSpeed:2000, 
+			autoScrollingEasing:"easeInOutQuad", 
+			autoScrollingDelay:500 
+		});
+	}
+	})(jQuery);
+	</script>
+  <%= javascript_include_tag "jquery.thumbnailScroller" %>
 </body>
 </html>

@@ -1,6 +1,20 @@
-<%= render 'search' %>
-
-<p>If you are a developer, see the <%= link_to "API Documentation", {:action=> "index", :controller => "usage"} %>.</p>
 <% content_for :title do %>
 <% "State Records NSW API" %>
 <% end %>
+
+<%= render 'search' %>
+
+<br>
+<div id="flickr">
+</div>
+
+<%= content_tag :h2, '' %>
+<p>If you are a developer, see the <%= link_to "API Documentation", {:action=> "index", :controller => "usage"} %>.</p>
+
+<script>
+(function($){
+   $(document).ready(function(){
+       $('#flickr').replaceWith('<%= escape_javascript(render 'flickr') %>')
+   });
+})(jQuery);
+</script>

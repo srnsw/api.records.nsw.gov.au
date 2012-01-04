@@ -3,8 +3,6 @@ class TagsController < ApplicationController
   def index
 	@tags = Tag.asc(:created_at).distinct(:tag)
 	
-	migrate
-	
 	respond_to do |format|
 		format.html
 		format.xml {render :xml => @tags.to_xml(:only => [:tag])}
@@ -30,4 +28,5 @@ class TagsController < ApplicationController
       redirect_to :back
   end
   
+
 end

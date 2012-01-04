@@ -38,4 +38,12 @@ module FlickrHelper
     tags
   end
   
+	def flickr_all_photo
+		begin
+			flickr.photos.search(:text => "srnsw.*")
+		rescue
+			Array.new
+		end
+	end
+	
 end
