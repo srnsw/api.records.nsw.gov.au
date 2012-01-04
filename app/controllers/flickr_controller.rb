@@ -2,7 +2,7 @@ class FlickrController < ApplicationController
   def index
     
 	begin
-	  @photos = flickr.photos.search(:text => "srnsw.*")
+	  @photos = flickr.photos.search(:machine_tags => "srnsw.*=")
 	rescue
 	  @photos = Array.new
 	end 
