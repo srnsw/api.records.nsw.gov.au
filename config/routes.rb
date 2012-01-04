@@ -67,8 +67,8 @@ Collection::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:index, :show]
   resources :token_authentications, :only => [:create, :destroy]
-
   resources :tags, :only => [:index, :show, :destroy]
+  resources :flickr, :only => [:index]
   
   resources :accessdirections, :only => [:index, :show] do
     collection do

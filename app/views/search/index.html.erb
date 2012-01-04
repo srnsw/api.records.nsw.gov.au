@@ -14,7 +14,7 @@
 <script>
 (function($){
    $(document).ready(function(){
-       $('#flickr').replaceWith('<%= escape_javascript(render 'flickr') %>')
+       $('#flickr').load('/flickr'); 
    });
 })(jQuery);
 </script>
