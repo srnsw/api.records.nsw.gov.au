@@ -1,4 +1,6 @@
 class FlickrController < ApplicationController
+  caches_action :index
+  
   def index
     
 	begin
