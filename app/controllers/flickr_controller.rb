@@ -1,3 +1,4 @@
+
 class FlickrController < ApplicationController
   caches_action :index
   def index
@@ -9,9 +10,11 @@ class FlickrController < ApplicationController
 	end 
    
    render :partial => 'index'
+
   end
   
   def entity
    render( :partial => 'flickr_photo', :locals => {:url => params[:url]})
   end
+
 end
