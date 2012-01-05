@@ -68,7 +68,12 @@ Collection::Application.routes.draw do
   resources :users, :only => [:index, :show]
   resources :token_authentications, :only => [:create, :destroy]
   resources :tags, :only => [:index, :show, :destroy]
-  resources :flickr, :only => [:index]
+  
+  resources :flickr , :only => [:index] do
+   collection do
+     get 'entity'
+   end
+  end
   
   resources :accessdirections, :only => [:index, :show] do
     collection do

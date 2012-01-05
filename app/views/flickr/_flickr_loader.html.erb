@@ -1,0 +1,40 @@
+<div id="flickr">
+   <%= image_tag "ajaxloader.png", :style=>"border:0px" %>
+</div>
+
+<script>
+(function($){
+   $(document).ready(function(){
+       $('#flickr').load('/flickr/entity/?url=<%= request.url %>'); 
+   });
+})(jQuery);
+</script>
+
+
+<script>
+   /* jQuery.noConflict() for using the plugin along with other libraries. 
+    You can remove it if you won't use other libraries (e.g. prototype, scriptaculous etc.) or 
+    if you include jQuery before other libraries in yourdocument's head tag. 
+    [more info: http://docs.jquery.com/Using_jQuery_with_Other_Libraries] */
+   jQuery.noConflict(); 
+   /* calling thumbnailScroller function with options as parameters */
+   (function($){
+     $("#flickr").bind("ajaxComplete", function(){
+        $("#tS1").thumbnailScroller({ 
+      	scrollerType:"hoverAccelerate", 
+      	scrollerOrientation:"horizontal", 
+      	scrollSpeed:2, 
+      	scrollEasing:"easeOutCirc", 
+      	scrollEasingAmount:600, 
+      	acceleration:4, 
+      	scrollSpeed:800, 
+      	noScrollCenterSpace:10, 
+      	autoScrolling:0, 
+      	autoScrollingSpeed:2000, 
+      	autoScrollingEasing:"easeInOutQuad", 
+      	autoScrollingDelay:500 
+       });
+     });
+   })(jQuery);
+</script>	
+<%= javascript_include_tag "jquery.thumbnailScroller" %>

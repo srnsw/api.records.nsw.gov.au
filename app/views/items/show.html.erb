@@ -20,7 +20,7 @@
 <%= simple_field "Pre-order", link_ai_purchase("Pre-order item through Archives Investigator", @item.id, true) if can_pre_order_copy @item.series.Series_number %>  
 <%= simple_field "Location", @item.series.Repository %>
 
-<%= render :partial => 'relations/flickr_photos' %>
+<%= render :partial => 'flickr/flickr_loader' %>
 
 <% current_uri = request.env['PATH_INFO'] %>
 </div>
