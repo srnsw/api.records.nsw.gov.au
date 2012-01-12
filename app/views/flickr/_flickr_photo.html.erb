@@ -1,0 +1,15 @@
+<% infos = flickr_photos_info(url.sub("localhost", "api.records.nsw.gov.au")) %> 
+<% if infos.count > 0 %>  
+   <%= simple_field "Flickr images", "" %>
+   <!-- thumbnail scroller markup begin -->
+   <div id="tS1" class="jThumbnailScroller">
+      <div class="jTscrollerContainer">
+         <div class="jTscroller">
+            <% infos.each do |photo| %>
+               <%= link_to image_tag(flickr_photos_thumbs photo), FlickRaw.url_photopage(photo) %>
+            <% end %>
+         </div>
+      </div>
+   </div>
+   <!-- thumbnail scroller markup end -->
+<% end %>

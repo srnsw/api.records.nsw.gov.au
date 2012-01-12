@@ -1,19 +1,11 @@
-<% content_for :title do %>
-<% "State Records NSW API" %>
-<% end %>
-
-<%= render 'search' %>
-
-<div id="flickr"> <%= image_tag 'ajaxloader.gif', :style=>"border:0px" %> Loading Archives2Share...
+<div id="flickr">
+   <%= image_tag "ajaxloader.gif", :style=>"border:0px" %>
 </div>
-
-<%= content_tag :h2, '' %>
-<p>If you are a developer, see the <%= link_to "API Documentation", {:action=> "index", :controller => "usage"} %>.</p>
 
 <script>
 (function($){
    $(document).ready(function(){
-       $('#flickr').load('/flickr'); 
+       $('#flickr').load('/flickr/entity/?url=<%= request.url %>'); 
    });
 })(jQuery);
 </script>
@@ -46,4 +38,3 @@
    })(jQuery);
 </script>	
 <%= javascript_include_tag "jquery.thumbnailScroller" %>
-  
