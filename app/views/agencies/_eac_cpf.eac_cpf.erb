@@ -25,7 +25,7 @@
     <entityId><%= url_for :action => "show", :controller => "agencies", :id => eac_cpf.Agency_number, :only_path => false %></entityId>
     <entityType>corporateBody</entityType>
     <nameEntry>
-      <part>eac_cpf.Agency_title</part>
+      <part><%= eac_cpf.Agency_title %></part>
     </nameEntry>
   </identity>
   <description>
