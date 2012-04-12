@@ -41,5 +41,5 @@ gem "mongoid"
 gem "devise"
 gem "bson_ext"
 gem "rakismet"
-gem "flickraw
+gem "flickraw"
 gem "jquery-rails"

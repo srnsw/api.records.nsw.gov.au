@@ -32,11 +32,24 @@ GEM
       activesupport (= 3.0.6)
     activesupport (3.0.6)
     arel (2.0.10)
+    bcrypt-ruby (3.0.1)
+    bcrypt-ruby (3.0.1-x86-mingw32)
+    bson (1.6.2)
+    bson_ext (1.6.2)
+      bson (~> 1.6.2)
     builder (2.1.2)
+    devise (1.5.3)
+      bcrypt-ruby (~> 3.0)
+      orm_adapter (~> 0.0.3)
+      warden (~> 1.1)
     erubis (2.6.6)
       abstract (>= 1.0.0)
     escape (0.0.4)
+    flickraw (0.9.5)
     i18n (0.5.0)
+    jquery-rails (1.0.19)
+      railties (~> 3.0)
+      thor (~> 0.14)
     kaminari (0.12.4)
       rails (>= 3.0.0)
     mail (2.2.19)
@@ -45,8 +58,15 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.16)
+    mongo (1.6.2)
+      bson (~> 1.6.2)
+    mongoid (2.2.6)
+      activemodel (~> 3.0.0)
+      mongo (~> 1.3)
+      tzinfo (~> 0.3.22)
     nokogiri (1.5.0)
     nokogiri (1.5.0-x86-mingw32)
+    orm_adapter (0.0.7)
     polyglot (0.3.2)
     pr_geohash (1.0.0)
     rack (1.2.3)
@@ -68,10 +88,9 @@ GEM
       rake (>= 0.8.7)
       thor (~> 0.14.4)
     rake (0.8.7)
+    rakismet (1.1.2)
     rsolr (0.12.1)
       builder (>= 2.1.2)
-    sqlite3 (1.3.4)
-    sqlite3 (1.3.4-x86-mingw32)
     sunspot (1.2.1)
       escape (= 0.0.4)
       pr_geohash (~> 1.0)
@@ -86,6 +105,8 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.29)
+    warden (1.1.1)
+      rack (>= 1.0)
 
 PLATFORMS
   ruby
@@ -95,9 +116,14 @@ DEPENDENCIES
   activerecord-sqlserver-adapter (~> 3.0.15)
   activesupport (~> 3.0.3)
   arel (~> 2.0.7)
+  bson_ext
+  devise
+  flickraw
+  jquery-rails
   kaminari
+  mongoid
   rails (= 3.0.6)
   rake (= 0.8.7)
-  sqlite3
+  rakismet
   sunspot_rails (~> 1.2.1)
   tiny_tds (~> 0.4.5)
