@@ -2,7 +2,6 @@ require File.expand_path('../boot', __FILE__)
 
 require 'rails/all'
 require 'flickraw'
-
 # If you have a Gemfile, require the gems listed there, including any gems
 # you've limited to :test, :development, or :production.
 Bundler.require(:default, Rails.env) if defined?(Bundler)
@@ -47,7 +46,7 @@ module Collection
     #Flickr setting
     FlickRaw.api_key=""
     FlickRaw.shared_secret=""
-        
+    FlickRaw.proxy=""
     Mime::Type.register "application/mods+xml", :mods
     Mime::Type.register "application/x-eac_cpf+xml", :eac_cpf
     Mime::Type.register "application/x-oai_dc+xml", :oai_dc
