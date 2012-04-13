@@ -1,0 +1,104 @@
+<% unless noRootElement %>
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
+<% end %>
+<registryObject group="State Records Authority of New South Wales">
+  <% key = url_for :action => "show", :controller => "agencies", :id => rif.Series_number, :only_path => false %>
+  <key><%= key %></key>
+  <originatingSource>http://www.records.nsw.gov.au</originatingSource>
+  <collection type="repository">
+    <identifier type="uri"><%= key %></identifier>
+    <name>
+      <namePart type="full"><%= rif.Series_title %></namePart>
+    </name>
+    <% fromDate = rif.Start_date %>
+    <% toDate = rif.End_date %>
+    <% if fromDate or toDate %>
+    <coverage>
+      <temporal>
+        <% if fromDate %>
+        <date type="dateFrom"><%= fromDate %></date>
+        <% end %>
+        <% if toDate %>
+        <date type="dateTo"><%= toDate %></date>
+        <% end %>
+      </temporal>
+    </coverage>
+    <% end %>
+    <relatedObject>
+      <key>http://api.records.nsw.gov.au/agencies/1070</key>
+      <relation type="isLocatedIn">
+        <description><%= rif.Repository %></description>
+      </relation>
+    </relatedObject>
+    <% rif.creating_agencies.each do |agency| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "agencies", :id => agency.Agency_number, :only_path => false%></key>
+      <relation type="hasCollector">
+        <description><%= agency.Agency_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.persons.each do |person| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "persons", :id => person.Person_number, :only_path => false%></key>
+      <relation type="hasCollector">
+        <description><%= person.name_short %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.preceding_series.each do |series| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <relation type="hasAssociationWith">
+        <description><%= series.Series_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.succeeding_series.each do |series| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <relation type="hasAssociationWith">
+        <description><%= series.Series_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.related_series.each do |series| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <relation type="hasAssociationWith">
+        <description><%= series.Series_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.controlling_series.each do |series| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <relation type="isPartOf">
+        <description><%= series.Series_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <% rif.controlled_series.each do |series| %>
+    <relatedObject>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <relation type="hasPart">
+        <description><%= series.Series_title %></description>
+      </relation>
+    </relatedObject>
+    <% end %>
+    <description type="full"><%= rif.Descriptive_note %></description>
+    <rights>
+      <rightsStatement rightsUri="http://www.records.nsw.gov.au/about-us/copyright-policy">Copyright, State of New South Wales through the State Records Authority of NSW</rightsStatement>
+      <license rightsUri="http://creativecommons.org/licenses/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</license>
+    </rights>
+    <relatedInfo>
+      <identifier type="website"><%= key %></identifier>
+    </relatedInfo>
+    <citationInfo>
+      <fullCitation>SRNSW: NRS <%= rif.Series_number %></fullCitation>
+    </citationInfo>
+  </collection>
+</registryObject> 
+<% unless noRootElement %>
+</registryObjects>
+<% end %>

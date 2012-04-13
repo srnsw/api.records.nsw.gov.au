@@ -7,6 +7,7 @@ class SeriesController < EntitiesController
       format.html
       format.mods
       format.rdf_zotero
+      format.rif
       format.xml {render :xml => to_paginated_xml(@series, params[:page])}  
       format.json {render :json => to_paginated_json(@series, params[:page])}
     end
@@ -37,6 +38,7 @@ class SeriesController < EntitiesController
       format.html
       format.mods
       format.rdf_zotero
+      format.rif
       format.xml {render :xml => @series.to_xml}
       format.json {render :json => @series.to_json}
     end

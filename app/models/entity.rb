@@ -1,7 +1,8 @@
 class Entity < ActiveRecord::Base
 
-# add custom pagination
-extend SRNSW::Pages
+  # add custom pagination
+  extend SRNSW::Pages
+
    LOCATIONS = Hash.new
 	 LOCATIONS["Charles Sturt"] = "Charles Sturt University Regional Archives, Wagga Wagga"
 	 LOCATIONS["University of Newcastle"] = "Auchmuty Library, University of Newcastle"

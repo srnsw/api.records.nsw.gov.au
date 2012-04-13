@@ -51,6 +51,7 @@ module Collection
     Mime::Type.register "application/x-eac_cpf+xml", :eac_cpf
     Mime::Type.register "application/x-oai_dc+xml", :oai_dc
     Mime::Type.register "application/x-rdf_zotero+xml", :rdf_zotero
-	 Mime::Type.register "application/xml", :xml
+    Mime::Type.register "application/x-rif+xml", :rif
+	Mime::Type.register "application/xml", :xml
   end
 end

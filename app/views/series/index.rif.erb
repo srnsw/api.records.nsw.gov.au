@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  Pagination:
+    total results = <%= @series.total_count %>
+    starting index = <%= (@series.current_page - 1) * Kaminari.config.default_per_page  %>
+    items per page = <%= Kaminari.config.default_per_page %>
+-->
+<registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
+<% @series.each do |series| %>
+  <%= render :partial => "series/rif", :object => series, :locals => {:noRootElement => true} %>
+<% end %>
+</registryObjects>
