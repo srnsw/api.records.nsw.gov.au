@@ -2,7 +2,7 @@
 <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
 <% end %>
 <registryObject group="State Records Authority of New South Wales">
-  <% key = url_for :action => "show", :controller => "agencies", :id => rif.Series_number, :only_path => false %>
+  <% key = url_for :action => "show", :controller => "series", :id => rif.Series_number, :only_path => false %>
   <key><%= key %></key>
   <originatingSource>http://www.records.nsw.gov.au</originatingSource>
   <collection type="repository">
@@ -10,16 +10,16 @@
     <name>
       <namePart type="full"><%= rif.Series_title %></namePart>
     </name>
-    <% fromDate = rif.Start_date %>
-    <% toDate = rif.End_date %>
+    <% fromDate = date_w3c(rif.Start_date) %>
+    <% toDate = date_w3c(rif.End_date) %>
     <% if fromDate or toDate %>
     <coverage>
       <temporal>
         <% if fromDate %>
-        <date type="dateFrom"><%= fromDate %></date>
+        <date type="dateFrom" dateFormat="W3CDTF"><%= fromDate %></date>
         <% end %>
         <% if toDate %>
-        <date type="dateTo"><%= toDate %></date>
+        <date type="dateTo" dateFormat="W3CDTF"><%= toDate %></date>
         <% end %>
       </temporal>
     </coverage>
@@ -32,7 +32,7 @@
     </relatedObject>
     <% rif.creating_agencies.each do |agency| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "agencies", :id => agency.Agency_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "agencies", :id => agency.Agency_number, :only_path => false %></key>
       <relation type="hasCollector">
         <description><%= agency.Agency_title %></description>
       </relation>
@@ -40,7 +40,7 @@
     <% end %>
     <% rif.persons.each do |person| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "persons", :id => person.Person_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "persons", :id => person.Person_number, :only_path => false %></key>
       <relation type="hasCollector">
         <description><%= person.name_short %></description>
       </relation>
@@ -48,7 +48,7 @@
     <% end %>
     <% rif.preceding_series.each do |series| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false %></key>
       <relation type="hasAssociationWith">
         <description><%= series.Series_title %></description>
       </relation>
@@ -56,7 +56,7 @@
     <% end %>
     <% rif.succeeding_series.each do |series| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false %></key>
       <relation type="hasAssociationWith">
         <description><%= series.Series_title %></description>
       </relation>
@@ -64,7 +64,7 @@
     <% end %>
     <% rif.related_series.each do |series| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false %></key>
       <relation type="hasAssociationWith">
         <description><%= series.Series_title %></description>
       </relation>
@@ -72,7 +72,7 @@
     <% end %>
     <% rif.controlling_series.each do |series| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false %></key>
       <relation type="isPartOf">
         <description><%= series.Series_title %></description>
       </relation>
@@ -80,7 +80,7 @@
     <% end %>
     <% rif.controlled_series.each do |series| %>
     <relatedObject>
-      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false%></key>
+      <key><%= url_for :action => "show", :controller => "series", :id => series.Series_number, :only_path => false %></key>
       <relation type="hasPart">
         <description><%= series.Series_title %></description>
       </relation>

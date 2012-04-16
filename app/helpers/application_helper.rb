@@ -123,6 +123,12 @@ module ApplicationHelper
     end
   end
   
+  def date_w3c datetime
+    if datetime
+      datetime.strftime("%Y-%m-%dT%H:%M:%SZ")
+    end
+  end
+  
   # custom page navigation (see SRNSW.rb)
   def page_navigation page_details, browse_uri=nil
     if page_details.needs_navigation? 
