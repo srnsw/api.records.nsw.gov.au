@@ -160,5 +160,6 @@ module ApplicationHelper
     html.gsub!(/&[lr][sd]quo;/, "'")
     html.gsub!(/&amp;/, '&')
     html.gsub!(/<\/?[^>]*>/, '')
+    html
   end
 end
