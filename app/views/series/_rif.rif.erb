@@ -86,7 +86,7 @@
       </relation>
     </relatedObject>
     <% end %>
-    <description type="full"><%= rif.Descriptive_note %></description>
+    <description type="full"><%= html_to_text(rif.Descriptive_note) %></description>
     <rights>
       <rightsStatement rightsUri="http://www.records.nsw.gov.au/about-us/copyright-policy">Copyright, State of New South Wales through the State Records Authority of NSW</rightsStatement>
       <license rightsUri="http://creativecommons.org/licenses/by-nc/3.0/au/">Attribution-NonCommercial 3.0 Australia (CC BY-NC 3.0)</license>

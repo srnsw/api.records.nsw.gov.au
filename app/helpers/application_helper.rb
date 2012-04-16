@@ -148,4 +148,17 @@ module ApplicationHelper
       content_tag :p, content, {:class => "collection_navigation"}, false
     end
   end
+
+  # At some point in future, retire this and eac_cpf_helper and swap in Loofah gem
+  # Used in rif view to plaintext descriptions
+  def html_to_text html
+    html.gsub!(/<br\s*\/?>\s*/, "\n") 
+    html.gsub!(/&nbsp;/, ' ')
+    html.gsub!(/&(middot|ndash|emdash);/, '-')
+    html.gsub!(/&quot;/, '"')
+    html.gsub!(/&hellip;/, '...')
+    html.gsub!(/&[lr][sd]quo;/, "'")
+    html.gsub!(/&amp;/, '&')
+    html.gsub!(/<\/?[^>]*>/, '')
+  end
 end
