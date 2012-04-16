@@ -1,4 +1,4 @@
-<% unless noRootElement %>
+<% unless local_assigns.has_key? :noRootElement %>
 <registryObjects xmlns="http://ands.org.au/standards/rif-cs/registryObjects" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ands.org.au/standards/rif-cs/registryObjects http://services.ands.org.au/documentation/rifcs/1.3/schema/registryObjects.xsd">
 <% end %>
 <registryObject group="State Records Authority of New South Wales">
@@ -99,6 +99,6 @@
     </citationInfo>
   </collection>
 </registryObject> 
-<% unless noRootElement %>
+<% unless local_assigns.has_key? :noRootElement %>
 </registryObjects>
 <% end %>
